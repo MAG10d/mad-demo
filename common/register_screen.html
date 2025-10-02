@@ -1,0 +1,194 @@
+<!DOCTYPE html>
+<html lang="zh-HK">
+<head>
+  <meta charset="utf-8"/>
+  <meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+  <title>FoodConnect - 註冊</title>
+  <link href="https://fonts.googleapis.com" rel="preconnect"/>
+  <link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet"/>
+  <script src="https://cdn.tailwindcss.com?plugins=forms"></script>
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          colors: {
+            "primary": "#4CAF50",
+            "secondary": "#FF9800",
+          },
+          fontFamily: {
+            "display": ["Inter"]
+          },
+        },
+      },
+    }
+  </script>
+  <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined" rel="stylesheet"/>
+  <style>
+    .material-symbols-outlined {
+      font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+    }
+  </style>
+</head>
+<body class="bg-gray-50 font-display">
+  <div class="max-w-md mx-auto min-h-screen flex flex-col">
+    
+    <!-- Header - Mobile App Style -->
+    <header class="px-4 py-4 flex items-center gap-3 sticky top-0 bg-gray-50 z-10">
+      <button onclick="history.back()" class="p-2 -ml-2 rounded-full hover:bg-gray-100">
+        <span class="material-symbols-outlined">arrow_back</span>
+      </button>
+      <div class="flex-1">
+        <h1 class="text-xl font-bold text-gray-900">建立新帳號</h1>
+        <p class="text-xs text-gray-500">加入 FoodConnect 社群</p>
+      </div>
+    </header>
+
+    <!-- Main Content -->
+    <main class="flex-grow px-6 py-4 pb-8">
+
+      <!-- Registration Form -->
+      <form class="space-y-5" onsubmit="handleRegister(event)">
+        
+        <!-- Role Selection (FR-01) -->
+        <div>
+          <label class="block text-sm font-semibold text-gray-700 mb-3">我是... *</label>
+          <div class="grid grid-cols-2 gap-3">
+            <label class="relative cursor-pointer">
+              <input type="radio" name="role" value="donor" class="peer sr-only" required/>
+              <div class="border-2 border-gray-300 rounded-xl p-4 text-center peer-checked:border-primary peer-checked:bg-primary/5 transition-all">
+                <span class="material-symbols-outlined text-3xl text-gray-600 peer-checked:text-primary mb-2">store</span>
+                <p class="font-semibold text-sm">捐贈者</p>
+                <p class="text-xs text-gray-500 mt-1">餐廳/商店</p>
+              </div>
+            </label>
+
+            <label class="relative cursor-pointer">
+              <input type="radio" name="role" value="recipient_individual" class="peer sr-only"/>
+              <div class="border-2 border-gray-300 rounded-xl p-4 text-center peer-checked:border-primary peer-checked:bg-primary/5 transition-all">
+                <span class="material-symbols-outlined text-3xl text-gray-600 mb-2">person</span>
+                <p class="font-semibold text-sm">個人領取者</p>
+                <p class="text-xs text-gray-500 mt-1">個人/家庭</p>
+              </div>
+            </label>
+
+            <label class="relative cursor-pointer">
+              <input type="radio" name="role" value="recipient_partner" class="peer sr-only"/>
+              <div class="border-2 border-gray-300 rounded-xl p-4 text-center peer-checked:border-primary peer-checked:bg-primary/5 transition-all">
+                <span class="material-symbols-outlined text-3xl text-gray-600 mb-2">business</span>
+                <p class="font-semibold text-sm">社群夥伴</p>
+                <p class="text-xs text-gray-500 mt-1">NGO/社區</p>
+              </div>
+            </label>
+
+            <label class="relative cursor-pointer">
+              <input type="radio" name="role" value="volunteer" class="peer sr-only"/>
+              <div class="border-2 border-gray-300 rounded-xl p-4 text-center peer-checked:border-primary peer-checked:bg-primary/5 transition-all">
+                <span class="material-symbols-outlined text-3xl text-gray-600 mb-2">volunteer_activism</span>
+                <p class="font-semibold text-sm">志工</p>
+                <p class="text-xs text-gray-500 mt-1">協助者</p>
+              </div>
+            </label>
+          </div>
+        </div>
+
+        <!-- Name / Organization -->
+        <div>
+          <label class="block text-sm font-semibold text-gray-700 mb-2">名稱 *</label>
+          <input 
+            type="text" 
+            placeholder="個人姓名或機構名稱" 
+            class="w-full px-4 py-3 rounded-xl border border-gray-300 focus:border-primary focus:ring-2 focus:ring-primary/20 outline-none transition-all"
+            required
+          />
+          <p class="text-xs text-gray-500 mt-1">機構請填寫正式名稱（如：XX餐廳、XX社區中心）</p>
+        </div>
+
+        <!-- Email -->
+        <div>
+          <label class="block text-sm font-semibold text-gray-700 mb-2">電郵地址 *</label>
+          <input 
+            type="email" 
+            placeholder="your@email.com" 
+            class="w-full px-4 py-3 rounded-xl border border-gray-300 focus:border-primary focus:ring-2 focus:ring-primary/20 outline-none transition-all"
+            required
+          />
+        </div>
+
+        <!-- Password -->
+        <div>
+          <label class="block text-sm font-semibold text-gray-700 mb-2">密碼 *</label>
+          <input 
+            type="password" 
+            placeholder="至少 8 個字符" 
+            class="w-full px-4 py-3 rounded-xl border border-gray-300 focus:border-primary focus:ring-2 focus:ring-primary/20 outline-none transition-all"
+            required
+            minlength="8"
+          />
+        </div>
+
+        <!-- Confirm Password -->
+        <div>
+          <label class="block text-sm font-semibold text-gray-700 mb-2">確認密碼 *</label>
+          <input 
+            type="password" 
+            placeholder="再次輸入密碼" 
+            class="w-full px-4 py-3 rounded-xl border border-gray-300 focus:border-primary focus:ring-2 focus:ring-primary/20 outline-none transition-all"
+            required
+            minlength="8"
+          />
+        </div>
+
+        <!-- Terms of Service (FR-01 - Scenario 2 & 6 liability protection) -->
+        <div class="bg-amber-50 border border-amber-200 rounded-xl p-4">
+          <label class="flex items-start gap-3 cursor-pointer">
+            <input type="checkbox" class="mt-1 rounded border-gray-300 text-primary focus:ring-primary" required/>
+            <span class="text-sm text-gray-700">
+              我已閱讀並同意 <a href="#" class="text-primary font-semibold underline">服務條款</a> 和 <a href="#" class="text-primary font-semibold underline">私隱政策</a>。我明白平台不對食物質量承擔責任，並會遵守社區守則。*
+            </span>
+          </label>
+        </div>
+
+        <!-- Submit Button -->
+        <button type="submit" class="w-full bg-gradient-to-r from-primary to-green-600 text-white py-4 rounded-2xl font-bold text-lg shadow-lg hover:shadow-xl transition-all">
+          建立帳號
+        </button>
+
+      </form>
+
+      <!-- Sign In Link -->
+      <p class="text-center text-gray-600 mt-6">
+        已有帳號？
+        <a href="login_screen.html" class="text-primary font-semibold hover:underline">立即登入</a>
+      </p>
+
+    </main>
+
+  </div>
+
+  <script>
+    function handleRegister(event) {
+      event.preventDefault();
+      const role = document.querySelector('input[name="role"]:checked').value;
+      alert(`註冊成功！\n角色：${role}\n\n實際應用中會創建帳號並導向對應主頁。`);
+      
+      // 根據角色導向不同主頁
+      switch(role) {
+        case 'donor':
+          location.href = '../donor/donor_dashboard.html';
+          break;
+        case 'recipient_individual':
+          location.href = '../recipient/individual_recipient_home.html';
+          break;
+        case 'recipient_partner':
+          location.href = '../partner/community_partner_dashboard.html';
+          break;
+        case 'volunteer':
+          location.href = '../volunteer/volunteer_dashboard.html';
+          break;
+      }
+    }
+  </script>
+</body>
+</html>
+

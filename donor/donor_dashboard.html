@@ -1,0 +1,251 @@
+<!DOCTYPE html>
+<html lang="zh-HK">
+<head>
+  <meta charset="utf-8"/>
+  <meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+  <title>FoodConnect - 捐贈者儀表板</title>
+  <link href="https://fonts.googleapis.com" rel="preconnect"/>
+  <link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet"/>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          colors: {
+            "primary": "#4CAF50",
+            "secondary": "#FF9800",
+          },
+          fontFamily: {
+            "display": ["Inter"]
+          },
+        },
+      },
+    }
+  </script>
+  <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined" rel="stylesheet"/>
+  <style>
+    .material-symbols-outlined {
+      font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+    }
+  </style>
+</head>
+<body class="bg-gray-50 font-display text-gray-800">
+  <div class="max-w-md mx-auto min-h-screen flex flex-col pb-20">
+    
+    <!-- Header -->
+    <header class="bg-gradient-to-r from-orange-500 to-orange-600 text-white px-4 py-5">
+      <div class="flex items-center justify-between mb-4">
+        <div>
+          <p class="text-xs opacity-90">捐贈者</p>
+          <h1 class="text-xl font-bold">綠色餐廳</h1>
+        </div>
+        <div class="flex gap-2">
+          <button onclick="location.href='donor_contributions.html'" class="p-2 rounded-full hover:bg-white/10">
+            <span class="material-symbols-outlined">bar_chart</span>
+          </button>
+          <button class="p-2 rounded-full hover:bg-white/10">
+            <span class="material-symbols-outlined">notifications</span>
+          </button>
+        </div>
+      </div>
+      
+      <!-- Quick Stats (FR-13 preview) -->
+      <div class="grid grid-cols-3 gap-2">
+        <div class="bg-white/10 backdrop-blur-sm rounded-lg p-3 text-center">
+          <p class="text-2xl font-bold">24</p>
+          <p class="text-xs opacity-90 mt-1">總捐贈</p>
+        </div>
+        <div class="bg-white/10 backdrop-blur-sm rounded-lg p-3 text-center">
+          <p class="text-2xl font-bold">186</p>
+          <p class="text-xs opacity-90 mt-1">總份數</p>
+        </div>
+        <div class="bg-white/10 backdrop-blur-sm rounded-lg p-3 text-center">
+          <p class="text-2xl font-bold">4.8</p>
+          <p class="text-xs opacity-90 mt-1">評分</p>
+        </div>
+      </div>
+    </header>
+
+    <!-- Main Content -->
+    <main class="flex-grow overflow-y-auto">
+      
+      <!-- Tabs -->
+      <div class="sticky top-0 bg-white border-b border-gray-200 px-4 py-2 z-10">
+        <div class="flex gap-4">
+          <button id="tab-active" class="py-2 px-1 border-b-2 border-orange-500 text-orange-600 font-semibold text-sm" onclick="switchTab('active')">
+            進行中 (3)
+          </button>
+          <button id="tab-history" class="py-2 px-1 border-b-2 border-transparent text-gray-500 font-semibold text-sm" onclick="switchTab('history')">
+            歷史記錄
+          </button>
+        </div>
+      </div>
+
+      <!-- Active Listings -->
+      <div id="content-active" class="p-4 space-y-3">
+        
+        <!-- Listing Card 1: Active with claims -->
+        <div class="bg-white rounded-xl shadow-sm border border-gray-200 overflow-hidden">
+          <div class="flex gap-3 p-3">
+            <img src="https://images.unsplash.com/photo-1546069901-ba9599a7e63c?w=200&h=200&fit=crop" alt="Salad" class="w-20 h-20 rounded-lg object-cover flex-shrink-0"/>
+            <div class="flex-1 min-w-0">
+              <h3 class="font-bold text-base">新鮮蔬菜沙拉</h3>
+              <p class="text-xs text-gray-500 mt-1">今天 18:00-20:00</p>
+              
+              <!-- Progress -->
+              <div class="mt-2">
+                <div class="flex items-center justify-between text-xs mb-1">
+                  <span class="text-gray-600">已領取</span>
+                  <span class="font-bold text-primary">5/10 份</span>
+                </div>
+                <div class="w-full bg-gray-200 rounded-full h-2">
+                  <div class="bg-primary h-2 rounded-full" style="width: 50%"></div>
+                </div>
+              </div>
+              
+              <div class="flex gap-2 mt-2">
+                <span class="bg-green-100 text-green-700 px-2 py-0.5 rounded text-xs font-semibold">進行中</span>
+                <span class="text-xs text-gray-400">2 人已領取</span>
+              </div>
+            </div>
+          </div>
+          
+          <!-- Actions -->
+          <div class="border-t border-gray-100 px-3 py-2 flex gap-2">
+            <button onclick="viewClaims()" class="flex-1 text-primary text-sm font-semibold py-2 hover:bg-blue-50 rounded-lg transition-colors">
+              查看領取者
+            </button>
+            <button class="flex-1 text-gray-600 text-sm font-semibold py-2 hover:bg-gray-50 rounded-lg transition-colors">
+              編輯
+            </button>
+          </div>
+        </div>
+
+        <!-- Listing Card 2: New, no claims yet -->
+        <div class="bg-white rounded-xl shadow-sm border border-gray-200 overflow-hidden">
+          <div class="flex gap-3 p-3">
+            <img src="https://images.unsplash.com/photo-1509440159596-0249088772ff?w=200&h=200&fit=crop" alt="Bread" class="w-20 h-20 rounded-lg object-cover flex-shrink-0"/>
+            <div class="flex-1 min-w-0">
+              <h3 class="font-bold text-base">每日麵包</h3>
+              <p class="text-xs text-gray-500 mt-1">明天 17:00-21:00</p>
+              
+              <div class="mt-2">
+                <div class="flex items-center justify-between text-xs mb-1">
+                  <span class="text-gray-600">已領取</span>
+                  <span class="font-bold text-gray-400">0/20 份</span>
+                </div>
+                <div class="w-full bg-gray-200 rounded-full h-2">
+                  <div class="bg-gray-400 h-2 rounded-full" style="width: 0%"></div>
+                </div>
+              </div>
+              
+              <div class="flex gap-2 mt-2">
+                <span class="bg-blue-100 text-blue-700 px-2 py-0.5 rounded text-xs font-semibold">等待領取</span>
+              </div>
+            </div>
+          </div>
+          
+          <div class="border-t border-gray-100 px-3 py-2 flex gap-2">
+            <button class="flex-1 text-gray-600 text-sm font-semibold py-2 hover:bg-gray-50 rounded-lg transition-colors">
+              編輯
+            </button>
+            <button class="flex-1 text-red-600 text-sm font-semibold py-2 hover:bg-red-50 rounded-lg transition-colors">
+              取消
+            </button>
+          </div>
+        </div>
+
+        <!-- Listing Card 3: Almost fully claimed -->
+        <div class="bg-white rounded-xl shadow-sm border border-green-200 overflow-hidden">
+          <div class="flex gap-3 p-3">
+            <img src="https://images.unsplash.com/photo-1628776047620-c8f41409e15a?w=200&h=200&fit=crop" alt="Soup" class="w-20 h-20 rounded-lg object-cover flex-shrink-0"/>
+            <div class="flex-1 min-w-0">
+              <h3 class="font-bold text-base">今日湯品</h3>
+              <p class="text-xs text-gray-500 mt-1">今天 19:00-21:00</p>
+              
+              <div class="mt-2">
+                <div class="flex items-center justify-between text-xs mb-1">
+                  <span class="text-gray-600">已領取</span>
+                  <span class="font-bold text-green-600">14/15 份</span>
+                </div>
+                <div class="w-full bg-gray-200 rounded-full h-2">
+                  <div class="bg-green-500 h-2 rounded-full" style="width: 93%"></div>
+                </div>
+              </div>
+              
+              <div class="flex gap-2 mt-2">
+                <span class="bg-green-100 text-green-700 px-2 py-0.5 rounded text-xs font-semibold">接近滿額</span>
+                <span class="text-xs text-gray-400">4 人已領取</span>
+              </div>
+            </div>
+          </div>
+          
+          <div class="border-t border-gray-100 px-3 py-2 flex gap-2">
+            <button onclick="viewClaims()" class="flex-1 text-primary text-sm font-semibold py-2 hover:bg-blue-50 rounded-lg transition-colors">
+              查看領取者
+            </button>
+          </div>
+        </div>
+
+      </div>
+
+      <!-- History (Hidden by default) -->
+      <div id="content-history" class="p-4 space-y-3" style="display: none;">
+        <div class="text-center py-12 text-gray-400">
+          <span class="material-symbols-outlined text-5xl mb-2">history</span>
+          <p>已完成的捐贈記錄</p>
+        </div>
+      </div>
+
+    </main>
+
+    <!-- Floating Action Button -->
+    <button onclick="location.href='donor_create_listing.html'" class="fixed bottom-24 right-6 w-16 h-16 bg-gradient-to-r from-orange-500 to-orange-600 text-white rounded-full shadow-2xl hover:shadow-3xl transition-all flex items-center justify-center">
+      <span class="material-symbols-outlined text-3xl" style="font-variation-settings: 'FILL' 1">add</span>
+    </button>
+
+    <!-- Bottom Navigation -->
+    <footer class="bg-white border-t border-gray-200 px-4 py-2 fixed bottom-0 left-0 right-0 max-w-md mx-auto">
+      <nav class="flex justify-around">
+        <a class="flex flex-col items-center gap-1 text-orange-600 py-2" href="#">
+          <span class="material-symbols-outlined text-2xl" style="font-variation-settings: 'FILL' 1">home</span>
+          <span class="text-xs font-bold">首頁</span>
+        </a>
+        <a class="flex flex-col items-center gap-1 text-gray-400 py-2" href="donor_contributions.html">
+          <span class="material-symbols-outlined text-2xl">bar_chart</span>
+          <span class="text-xs font-medium">我的貢獻</span>
+        </a>
+        <a class="flex flex-col items-center gap-1 text-gray-400 py-2" href="profile_donor.html">
+          <span class="material-symbols-outlined text-2xl">person</span>
+          <span class="text-xs font-medium">我的</span>
+        </a>
+      </nav>
+    </footer>
+
+  </div>
+
+  <script src="../common/ui_components.js"></script>
+  <script>
+    function switchTab(tab) {
+      if (tab === 'active') {
+        document.getElementById('tab-active').className = "py-2 px-1 border-b-2 border-orange-500 text-orange-600 font-semibold text-sm";
+        document.getElementById('tab-history').className = "py-2 px-1 border-b-2 border-transparent text-gray-500 font-semibold text-sm";
+        document.getElementById('content-active').style.display = 'block';
+        document.getElementById('content-history').style.display = 'none';
+      } else {
+        document.getElementById('tab-active').className = "py-2 px-1 border-b-2 border-transparent text-gray-500 font-semibold text-sm";
+        document.getElementById('tab-history').className = "py-2 px-1 border-b-2 border-orange-500 text-orange-600 font-semibold text-sm";
+        document.getElementById('content-active').style.display = 'none';
+        document.getElementById('content-history').style.display = 'block';
+      }
+    }
+
+    function viewClaims() {
+      showToast('正在載入領取者資訊...', 'info');
+      // 實際應用中會顯示已領取用戶的匿名資訊
+    }
+  </script>
+</body>
+</html>
+

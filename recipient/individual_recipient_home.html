@@ -1,0 +1,404 @@
+<!DOCTYPE html>
+<html lang="zh-HK">
+<head>
+  <meta charset="utf-8"/>
+  <meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+  <title>FoodConnect - 個人領取者主畫面</title>
+  <link href="https://fonts.googleapis.com" rel="preconnect"/>
+  <link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet"/>
+  <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+  <script>
+    tailwind.config = {
+      darkMode: "class",
+      theme: {
+        extend: {
+          colors: {
+            "primary": "#4CAF50",
+            "secondary": "#FF9800",
+            "background-light": "#f6f7f8",
+            "background-dark": "#101922",
+          },
+          fontFamily: {
+            "display": ["Inter"]
+          },
+          borderRadius: {
+            "DEFAULT": "0.5rem",
+            "lg": "0.75rem",
+            "xl": "1rem",
+            "full": "9999px"
+          },
+        },
+      },
+    }
+  </script>
+  <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined" rel="stylesheet"/>
+  <style>
+    .material-symbols-outlined {
+      font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+    }
+    body {
+      min-height: 100dvh;
+    }
+    /* 地圖視圖樣式 */
+    #map-view {
+      position: relative;
+      height: calc(100dvh - 200px);
+    }
+    #map-iframe {
+      width: 100%;
+      height: 100%;
+      border: none;
+    }
+  </style>
+</head>
+<body class="bg-background-light dark:bg-background-dark font-display text-gray-800 dark:text-gray-200">
+  <div class="max-w-md mx-auto min-h-screen flex flex-col">
+    
+    <!-- Header: 簡潔明了 -->
+    <header class="bg-white dark:bg-gray-900 shadow-sm px-4 py-3 sticky top-0 z-20">
+      <div class="flex items-center justify-between mb-3">
+        <div class="flex items-center gap-2">
+          <span class="material-symbols-outlined text-primary text-xl">location_on</span>
+          <span class="text-sm font-medium">觀塘, 香港</span>
+        </div>
+        <h1 class="text-lg font-bold">附近食物</h1>
+        <button class="p-2 rounded-full hover:bg-gray-100 dark:hover:bg-gray-800" onclick="toggleFilter()">
+          <span class="material-symbols-outlined">tune</span>
+        </button>
+      </div>
+      
+      <!-- 簡單的地圖/列表切換 -->
+      <div class="p-1 bg-gray-100 dark:bg-gray-800 rounded-lg flex gap-1">
+        <button id="map-btn" class="w-1/2 py-2 text-sm font-semibold rounded-md bg-primary text-white shadow-sm transition-all" onclick="switchView('map')">
+          <span class="material-symbols-outlined align-middle text-lg mr-1">map</span>
+          地圖
+        </button>
+        <button id="list-btn" class="w-1/2 py-2 text-sm font-semibold text-gray-600 dark:text-gray-400 transition-all" onclick="switchView('list')">
+          <span class="material-symbols-outlined align-middle text-lg mr-1">view_list</span>
+          列表
+        </button>
+      </div>
+    </header>
+
+    <!-- Main Content -->
+    <main class="flex-grow overflow-y-auto">
+      
+      <!-- 地圖視圖 (預設顯示) -->
+      <div id="map-view" class="relative">
+        <!-- 嵌入地圖 iframe -->
+        <iframe id="map-iframe" src="../common/map_view.html" title="地圖視圖"></iframe>
+      </div>
+
+      <!-- 列表視圖 (隱藏) -->
+      <div id="list-view" class="p-4 space-y-3" style="display: none;">
+        
+        <!-- 食物卡片 1: 緊急 - 臨期食品 -->
+        <div class="bg-white dark:bg-gray-900 rounded-xl shadow-sm overflow-hidden border-2 border-red-200 dark:border-red-900" onclick="goToDetail()">
+          <div class="flex gap-3 p-3">
+            <img src="https://images.unsplash.com/photo-1546069901-ba9599a7e63c?w=300&h=300&fit=crop" alt="Salad" class="w-24 h-24 rounded-lg object-cover flex-shrink-0"/>
+            <div class="flex-1 min-w-0">
+              <div class="flex items-start justify-between gap-2">
+                <h3 class="font-bold text-base leading-tight">新鮮蔬菜沙拉</h3>
+                <span class="material-symbols-outlined text-red-500 text-xl flex-shrink-0">emergency</span>
+              </div>
+              <p class="text-xs text-gray-500 dark:text-gray-400 mt-1">
+                <span class="font-medium">綠色餐廳</span> • 150米
+              </p>
+              <p class="text-xs font-bold text-red-500 mt-1.5 flex items-center gap-1">
+                <span class="material-symbols-outlined text-sm">schedule</span>
+                2小時內到期
+              </p>
+              <div class="flex items-center gap-1.5 mt-2">
+                <span class="text-xs bg-green-100 dark:bg-green-900 text-green-700 dark:text-green-300 px-2 py-1 rounded-full font-medium">素食</span>
+                <span class="text-xs bg-green-100 dark:bg-green-900 text-green-700 dark:text-green-300 px-2 py-1 rounded-full font-medium">純素</span>
+              </div>
+              <p class="text-xs text-gray-400 mt-1.5">
+                <span class="font-semibold">領取時段:</span> 今天 18:00-20:00
+              </p>
+            </div>
+          </div>
+        </div>
+
+        <!-- 食物卡片 2: 正常 -->
+        <div class="bg-white dark:bg-gray-900 rounded-xl shadow-sm overflow-hidden" onclick="goToDetail()">
+          <div class="flex gap-3 p-3">
+            <img src="https://images.unsplash.com/photo-1509440159596-0249088772ff?w=300&h=300&fit=crop" alt="Bread" class="w-24 h-24 rounded-lg object-cover flex-shrink-0"/>
+            <div class="flex-1 min-w-0">
+              <h3 class="font-bold text-base leading-tight">每日麵包</h3>
+              <p class="text-xs text-gray-500 dark:text-gray-400 mt-1">
+                <span class="font-medium">陽光烘焙坊</span> • 300米
+              </p>
+              <p class="text-xs font-semibold text-orange-500 mt-1.5">
+                明天到期
+              </p>
+              <div class="flex items-center gap-1.5 mt-2">
+                <span class="text-xs bg-amber-100 dark:bg-amber-900 text-amber-700 dark:text-amber-300 px-2 py-1 rounded-full font-medium">不含豬肉</span>
+              </div>
+              <p class="text-xs text-gray-400 mt-1.5">
+                <span class="font-semibold">領取時段:</span> 今天 17:00-21:00
+              </p>
+            </div>
+          </div>
+        </div>
+
+        <!-- 食物卡片 3: Halal 標記 -->
+        <div class="bg-white dark:bg-gray-900 rounded-xl shadow-sm overflow-hidden" onclick="goToDetail()">
+          <div class="flex gap-3 p-3">
+            <img src="https://images.unsplash.com/photo-1585937421612-70a008356fbe?w=300&h=300&fit=crop" alt="Rice" class="w-24 h-24 rounded-lg object-cover flex-shrink-0"/>
+            <div class="flex-1 min-w-0">
+              <h3 class="font-bold text-base leading-tight">印度香料飯套餐</h3>
+              <p class="text-xs text-gray-500 dark:text-gray-400 mt-1">
+                <span class="font-medium">香料屋餐廳</span> • 450米
+              </p>
+              <p class="text-xs font-semibold text-amber-600 mt-1.5">
+                2天內到期
+              </p>
+              <div class="flex items-center gap-1.5 mt-2">
+                <span class="text-xs bg-emerald-100 dark:bg-emerald-900 text-emerald-700 dark:text-emerald-300 px-2 py-1 rounded-full font-medium">清真 Halal</span>
+              </div>
+              <p class="text-xs text-gray-400 mt-1.5">
+                <span class="font-semibold">領取時段:</span> 明天 12:00-15:00
+              </p>
+            </div>
+          </div>
+        </div>
+
+        <!-- 食物卡片 4: 罐頭食品 -->
+        <div class="bg-white dark:bg-gray-900 rounded-xl shadow-sm overflow-hidden" onclick="goToDetail()">
+          <div class="flex gap-3 p-3">
+            <img src="https://images.unsplash.com/photo-1628776047620-c8f41409e15a?w=300&h=300&fit=crop" alt="Canned food" class="w-24 h-24 rounded-lg object-cover flex-shrink-0"/>
+            <div class="flex-1 min-w-0">
+              <h3 class="font-bold text-base leading-tight">罐裝食品包</h3>
+              <p class="text-xs text-gray-500 dark:text-gray-400 mt-1">
+                <span class="font-medium">萬家超市</span> • 600米
+              </p>
+              <p class="text-xs font-semibold text-gray-600 dark:text-gray-400 mt-1.5">
+                一週內到期
+              </p>
+              <div class="flex items-center gap-1.5 mt-2">
+                <span class="text-xs bg-gray-100 dark:bg-gray-800 text-gray-700 dark:text-gray-300 px-2 py-1 rounded-full font-medium">長期保存</span>
+              </div>
+              <p class="text-xs text-gray-400 mt-1.5">
+                <span class="font-semibold">領取時段:</span> 週三 09:00-18:00
+              </p>
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </main>
+
+    <!-- Bottom Navigation: 簡潔四項 -->
+    <footer class="bg-white dark:bg-gray-900 border-t border-gray-200 dark:border-gray-800 px-4 py-2 sticky bottom-0">
+      <nav class="flex justify-around">
+        <a class="flex flex-col items-center gap-1 text-primary py-2" href="individual_recipient_home.html">
+          <span class="material-symbols-outlined text-2xl" style="font-variation-settings: 'FILL' 1">home</span>
+          <span class="text-xs font-bold">首頁</span>
+        </a>
+        <a class="flex flex-col items-center gap-1 text-gray-400 dark:text-gray-500 py-2" href="favorites_screen.html">
+          <span class="material-symbols-outlined text-2xl">favorite</span>
+          <span class="text-xs font-medium">我的最愛</span>
+        </a>
+        <a class="flex flex-col items-center gap-1 text-gray-400 dark:text-gray-500 py-2" href="my_claims_screen.html">
+          <span class="material-symbols-outlined text-2xl">receipt_long</span>
+          <span class="text-xs font-medium">我的領取</span>
+        </a>
+        <a class="flex flex-col items-center gap-1 text-gray-400 dark:text-gray-500 py-2" href="profile_recipient.html">
+          <span class="material-symbols-outlined text-2xl">person</span>
+          <span class="text-xs font-medium">我的</span>
+        </a>
+      </nav>
+    </footer>
+
+  </div>
+
+  <!-- 篩選器彈出層 (FR-15 - Scenario 8) -->
+  <div id="filter-overlay" class="fixed inset-0 bg-black/50 z-30 hidden" onclick="closeFilter()"></div>
+  <div id="filter-panel" class="fixed bottom-0 left-0 right-0 bg-white dark:bg-gray-900 z-40 max-w-md mx-auto rounded-t-3xl shadow-2xl transform translate-y-full transition-transform duration-300">
+    <div class="p-4 border-b border-gray-200 dark:border-gray-800 flex items-center justify-between">
+      <h2 class="text-lg font-bold">篩選條件</h2>
+      <button onclick="closeFilter()" class="p-2 rounded-full hover:bg-gray-100 dark:hover:bg-gray-800">
+        <span class="material-symbols-outlined">close</span>
+      </button>
+    </div>
+    
+    <div class="p-4 space-y-6 overflow-y-auto" style="max-height: 70vh;">
+      
+      <!-- 食物標籤 (Scenario 8 - 文化與飲食偏好) -->
+      <div class="space-y-3">
+        <h3 class="text-base font-semibold text-gray-800 dark:text-gray-200">食物標籤</h3>
+        <div class="flex flex-wrap gap-2">
+          <label class="flex items-center gap-2 px-3 py-2 rounded-full border-2 border-gray-300 dark:border-gray-700 cursor-pointer has-[:checked]:bg-emerald-100 has-[:checked]:border-emerald-500 has-[:checked]:text-emerald-700">
+            <input class="sr-only" type="checkbox"/>
+            <span class="text-sm font-medium">清真 Halal</span>
+          </label>
+          <label class="flex items-center gap-2 px-3 py-2 rounded-full border-2 border-gray-300 dark:border-gray-700 cursor-pointer has-[:checked]:bg-green-100 has-[:checked]:border-green-500 has-[:checked]:text-green-700">
+            <input class="sr-only" type="checkbox"/>
+            <span class="text-sm font-medium">素食</span>
+          </label>
+          <label class="flex items-center gap-2 px-3 py-2 rounded-full border-2 border-gray-300 dark:border-gray-700 cursor-pointer has-[:checked]:bg-green-100 has-[:checked]:border-green-500 has-[:checked]:text-green-700">
+            <input class="sr-only" type="checkbox"/>
+            <span class="text-sm font-medium">純素</span>
+          </label>
+          <label class="flex items-center gap-2 px-3 py-2 rounded-full border-2 border-gray-300 dark:border-gray-700 cursor-pointer has-[:checked]:bg-amber-100 has-[:checked]:border-amber-500 has-[:checked]:text-amber-700">
+            <input class="sr-only" type="checkbox"/>
+            <span class="text-sm font-medium">不含豬肉</span>
+          </label>
+          <label class="flex items-center gap-2 px-3 py-2 rounded-full border-2 border-gray-300 dark:border-gray-700 cursor-pointer has-[:checked]:bg-blue-100 has-[:checked]:border-blue-500 has-[:checked]:text-blue-700">
+            <input class="sr-only" type="checkbox"/>
+            <span class="text-sm font-medium">無麩質</span>
+          </label>
+          <label class="flex items-center gap-2 px-3 py-2 rounded-full border-2 border-gray-300 dark:border-gray-700 cursor-pointer has-[:checked]:bg-blue-100 has-[:checked]:border-blue-500 has-[:checked]:text-blue-700">
+            <input class="sr-only" type="checkbox"/>
+            <span class="text-sm font-medium">無堅果</span>
+          </label>
+        </div>
+      </div>
+
+      <!-- 距離範圍 -->
+      <div class="space-y-3">
+        <div class="flex justify-between items-center">
+          <h3 class="text-base font-semibold text-gray-800 dark:text-gray-200">距離範圍</h3>
+          <span class="text-sm font-medium text-primary" id="distance-value">5 km</span>
+        </div>
+        <input 
+          id="distance-slider"
+          class="w-full h-2 bg-gray-200 rounded-lg appearance-none cursor-pointer dark:bg-gray-700 accent-primary" 
+          type="range" 
+          min="0" 
+          max="10" 
+          value="5"
+          oninput="document.getElementById('distance-value').textContent = this.value + ' km'"
+        />
+        <div class="flex justify-between text-xs text-gray-500 dark:text-gray-400">
+          <span>0 km</span>
+          <span>10 km</span>
+        </div>
+      </div>
+
+      <!-- 領取時段 -->
+      <div class="space-y-3">
+        <h3 class="text-base font-semibold text-gray-800 dark:text-gray-200">領取時段</h3>
+        <div class="grid grid-cols-2 gap-3">
+          <div>
+            <label class="block text-sm font-medium text-gray-500 dark:text-gray-400 mb-1">從</label>
+            <input class="w-full rounded-lg border-gray-300 dark:border-gray-700 bg-white dark:bg-gray-800 text-sm focus:border-primary focus:ring-primary" type="time" value="09:00"/>
+          </div>
+          <div>
+            <label class="block text-sm font-medium text-gray-500 dark:text-gray-400 mb-1">到</label>
+            <input class="w-full rounded-lg border-gray-300 dark:border-gray-700 bg-white dark:bg-gray-800 text-sm focus:border-primary focus:ring-primary" type="time" value="21:00"/>
+          </div>
+        </div>
+      </div>
+
+      <!-- 最小數量 -->
+      <div class="space-y-3">
+        <h3 class="text-base font-semibold text-gray-800 dark:text-gray-200">最小剩餘數量</h3>
+        <div class="relative">
+          <input class="w-full rounded-lg border-gray-300 dark:border-gray-700 bg-white dark:bg-gray-800 text-sm focus:border-primary focus:ring-primary pl-10" type="number" value="1" min="1"/>
+          <span class="material-symbols-outlined absolute left-3 top-1/2 -translate-y-1/2 text-gray-400">
+            inventory_2
+          </span>
+        </div>
+      </div>
+
+    </div>
+
+    <!-- 底部操作按鈕 -->
+    <div class="p-4 bg-white dark:bg-gray-900 border-t border-gray-200 dark:border-gray-800 flex gap-3">
+      <button onclick="clearFilters()" class="flex-1 py-3 text-sm font-semibold rounded-xl border-2 border-gray-300 dark:border-gray-700 hover:bg-gray-100 dark:hover:bg-gray-800 transition-colors">
+        清除全部
+      </button>
+      <button onclick="applyFilters()" class="flex-1 py-3 text-sm font-semibold rounded-xl bg-gradient-to-r from-primary to-green-600 text-white hover:shadow-lg transition-all">
+        套用篩選
+      </button>
+    </div>
+  </div>
+
+  <script>
+    // 切換地圖/列表視圖
+    function switchView(view) {
+      const mapView = document.getElementById('map-view');
+      const listView = document.getElementById('list-view');
+      const mapBtn = document.getElementById('map-btn');
+      const listBtn = document.getElementById('list-btn');
+      
+      if (view === 'map') {
+        mapView.style.display = 'block';
+        listView.style.display = 'none';
+        mapBtn.classList.add('bg-primary', 'text-white', 'shadow-sm');
+        mapBtn.classList.remove('text-gray-600', 'dark:text-gray-400');
+        listBtn.classList.remove('bg-primary', 'text-white', 'shadow-sm');
+        listBtn.classList.add('text-gray-600', 'dark:text-gray-400');
+      } else {
+        mapView.style.display = 'none';
+        listView.style.display = 'block';
+        listBtn.classList.add('bg-primary', 'text-white', 'shadow-sm');
+        listBtn.classList.remove('text-gray-600', 'dark:text-gray-400');
+        mapBtn.classList.remove('bg-primary', 'text-white', 'shadow-sm');
+        mapBtn.classList.add('text-gray-600', 'dark:text-gray-400');
+      }
+    }
+
+    // 前往詳情頁
+    function goToDetail() {
+      window.location.href = 'individual_recipient_detail.html';
+    }
+
+    // 切換篩選器
+    function toggleFilter() {
+      const overlay = document.getElementById('filter-overlay');
+      const panel = document.getElementById('filter-panel');
+      overlay.classList.remove('hidden');
+      setTimeout(() => {
+        panel.classList.remove('translate-y-full');
+      }, 10);
+    }
+
+    function closeFilter() {
+      const overlay = document.getElementById('filter-overlay');
+      const panel = document.getElementById('filter-panel');
+      panel.classList.add('translate-y-full');
+      setTimeout(() => {
+        overlay.classList.add('hidden');
+      }, 300);
+    }
+
+    function clearFilters() {
+      // 清除所有勾選
+      document.querySelectorAll('#filter-panel input[type="checkbox"]').forEach(cb => {
+        cb.checked = false;
+      });
+      // 重置距離
+      document.getElementById('distance-slider').value = 5;
+      document.getElementById('distance-value').textContent = '5 km';
+      alert('✅ 已清除所有篩選條件');
+    }
+
+    function applyFilters() {
+      // 收集已選標籤
+      const selectedTags = [];
+      document.querySelectorAll('#filter-panel input[type="checkbox"]:checked').forEach(cb => {
+        selectedTags.push(cb.parentElement.textContent.trim());
+      });
+      
+      const distance = document.getElementById('distance-slider').value;
+      
+      const summary = selectedTags.length > 0 
+        ? `已套用篩選：\n\n標籤: ${selectedTags.join(', ')}\n距離: ${distance}km 內`
+        : `已套用篩選：\n\n距離: ${distance}km 內`;
+      
+      alert('✅ ' + summary + '\n\n實際應用中會即時過濾列表。');
+      closeFilter();
+    }
+
+    // 監聽來自 iframe 的訊息
+    window.addEventListener('message', (event) => {
+      if (event.data.action === 'goToDetail') {
+        goToDetail();
+      }
+    });
+  </script>
+</body>
+</html>

@@ -1,0 +1,220 @@
+<!DOCTYPE html>
+<html lang="zh-HK">
+<head>
+  <meta charset="utf-8"/>
+  <meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+  <title>FoodConnect - 捐贈詳情</title>
+  <link href="https://fonts.googleapis.com" rel="preconnect"/>
+  <link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet"/>
+  <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+  <script>
+    tailwind.config = {
+      darkMode: "class",
+      theme: {
+        extend: {
+          colors: {
+            "primary": "#4CAF50",
+            "secondary": "#FF9800",
+            "background-light": "#f6f7f8",
+            "background-dark": "#101922",
+          },
+          fontFamily: {
+            "display": ["Inter"]
+          },
+        },
+      },
+    }
+  </script>
+  <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined" rel="stylesheet"/>
+  <style>
+    .material-symbols-outlined {
+      font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+    }
+  </style>
+</head>
+<body class="bg-background-light dark:bg-background-dark font-display text-gray-800 dark:text-gray-200">
+  <div class="max-w-md mx-auto min-h-screen flex flex-col pb-24">
+    
+    <!-- Header -->
+    <header class="relative">
+      <!-- 大圖片 -->
+      <div class="relative h-72 bg-gray-200 dark:bg-gray-800">
+        <img src="https://images.unsplash.com/photo-1546069901-ba9599a7e63c?w=800&h=600&fit=crop" alt="Food" class="w-full h-full object-cover"/>
+        <button onclick="history.back()" class="absolute top-4 left-4 bg-white/90 dark:bg-gray-900/90 backdrop-blur-sm p-2 rounded-full shadow-lg">
+          <span class="material-symbols-outlined">arrow_back</span>
+        </button>
+        <button onclick="toggleFavorite()" class="absolute top-4 right-4 bg-white/90 dark:bg-gray-900/90 backdrop-blur-sm p-2 rounded-full shadow-lg">
+          <span class="material-symbols-outlined text-red-500" id="favorite-icon">favorite_border</span>
+        </button>
+        <!-- 緊急標籤 -->
+        <div class="absolute bottom-4 left-4 bg-red-500 text-white px-3 py-1.5 rounded-full text-xs font-bold shadow-lg flex items-center gap-1">
+          <span class="material-symbols-outlined text-sm">emergency</span>
+          2小時內到期
+        </div>
+      </div>
+    </header>
+
+    <!-- Main Content -->
+    <main class="flex-grow px-4 py-4 space-y-4">
+      
+      <!-- 標題與基本資訊 -->
+      <div>
+        <h1 class="text-2xl font-bold mb-2">新鮮蔬菜沙拉</h1>
+        <div class="flex items-center gap-2 text-sm text-gray-600 dark:text-gray-400">
+          <div class="flex items-center gap-1">
+            <span class="material-symbols-outlined text-lg">location_on</span>
+            <span>150米</span>
+          </div>
+          <span>•</span>
+          <div class="flex items-center gap-1">
+            <span class="material-symbols-outlined text-lg">schedule</span>
+            <span>今天 18:00-20:00</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- 食品安全資訊 (Scenario 2 對應) -->
+      <div class="bg-red-50 dark:bg-red-900/20 border border-red-200 dark:border-red-800 rounded-xl p-4">
+        <div class="flex items-start gap-3">
+          <span class="material-symbols-outlined text-red-600 dark:text-red-400 text-2xl flex-shrink-0">warning</span>
+          <div>
+            <h3 class="font-bold text-red-900 dark:text-red-200 mb-1">請注意有效期限</h3>
+            <p class="text-xs text-red-800 dark:text-red-300 leading-relaxed">
+              此食物將於 <span class="font-bold">今天 20:00</span> 到期。請確認您能在此時間前領取並食用。如有任何疑慮，請聯絡捐贈者。
+            </p>
+          </div>
+        </div>
+      </div>
+
+      <!-- 食物標籤 -->
+      <div class="flex flex-wrap gap-2">
+        <span class="bg-green-100 dark:bg-green-900 text-green-700 dark:text-green-300 px-3 py-1.5 rounded-full text-sm font-semibold">素食</span>
+        <span class="bg-green-100 dark:bg-green-900 text-green-700 dark:text-green-300 px-3 py-1.5 rounded-full text-sm font-semibold">純素</span>
+        <span class="bg-blue-100 dark:bg-blue-900 text-blue-700 dark:text-blue-300 px-3 py-1.5 rounded-full text-sm font-semibold">無麩質</span>
+      </div>
+
+      <!-- 描述 -->
+      <div class="bg-white dark:bg-gray-900 rounded-xl p-4">
+        <h2 class="font-bold text-lg mb-2 flex items-center gap-2">
+          <span class="material-symbols-outlined text-primary">description</span>
+          食物詳情
+        </h2>
+        <p class="text-sm text-gray-600 dark:text-gray-400 leading-relaxed">
+          新鮮混合綠色蔬菜沙拉，包含羅馬生菜、櫻桃番茄、黃瓜、紅蘿蔔絲和特製油醋汁。非常適合作為健康午餐或晚餐配菜。今日製作，未經冷凍。
+        </p>
+        <div class="mt-3 pt-3 border-t border-gray-200 dark:border-gray-800 text-sm">
+          <div class="flex justify-between py-1">
+            <span class="text-gray-500 dark:text-gray-400">剩餘數量</span>
+            <span class="font-semibold text-primary">8 份</span>
+          </div>
+          <div class="flex justify-between py-1">
+            <span class="text-gray-500 dark:text-gray-400">每份份量</span>
+            <span class="font-semibold">約 300g</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- 捐贈者資訊 -->
+      <div class="bg-white dark:bg-gray-900 rounded-xl p-4">
+        <h2 class="font-bold text-lg mb-3 flex items-center gap-2">
+          <span class="material-symbols-outlined text-primary">store</span>
+          捐贈者
+        </h2>
+        <div class="flex items-center gap-3">
+          <div class="w-12 h-12 bg-gradient-to-br from-green-400 to-green-600 rounded-full flex items-center justify-center text-white font-bold text-lg">
+            綠
+          </div>
+          <div class="flex-1">
+            <h3 class="font-bold">綠色餐廳</h3>
+            <div class="flex items-center gap-2 mt-1">
+              <div class="flex items-center text-yellow-500">
+                <span class="material-symbols-outlined text-sm" style="font-variation-settings: 'FILL' 1">star</span>
+                <span class="material-symbols-outlined text-sm" style="font-variation-settings: 'FILL' 1">star</span>
+                <span class="material-symbols-outlined text-sm" style="font-variation-settings: 'FILL' 1">star</span>
+                <span class="material-symbols-outlined text-sm" style="font-variation-settings: 'FILL' 1">star</span>
+                <span class="material-symbols-outlined text-sm" style="font-variation-settings: 'FILL' 1">star</span>
+              </div>
+              <span class="text-xs text-gray-500 dark:text-gray-400">(127 評價)</span>
+            </div>
+          </div>
+          <button class="text-primary">
+            <span class="material-symbols-outlined">arrow_forward</span>
+          </button>
+        </div>
+        <div class="mt-3 pt-3 border-t border-gray-200 dark:border-gray-800">
+          <p class="text-xs text-gray-500 dark:text-gray-400">
+            已成功捐贈 <span class="font-bold text-primary">253次</span>
+          </p>
+        </div>
+      </div>
+
+      <!-- 領取地點 -->
+      <div class="bg-white dark:bg-gray-900 rounded-xl p-4">
+        <h2 class="font-bold text-lg mb-3 flex items-center gap-2">
+          <span class="material-symbols-outlined text-primary">pin_drop</span>
+          領取地點
+        </h2>
+        <p class="text-sm text-gray-600 dark:text-gray-400 mb-3">
+          觀塘道123號綠色餐廳<br/>
+          九龍觀塘區
+        </p>
+        <!-- 簡化地圖 -->
+        <div class="h-32 bg-gray-100 dark:bg-gray-800 rounded-lg flex items-center justify-center">
+          <span class="text-gray-400 text-sm">地圖預覽</span>
+        </div>
+        <button class="w-full mt-3 py-2 bg-gray-100 dark:bg-gray-800 text-primary font-semibold rounded-lg hover:bg-gray-200 dark:hover:bg-gray-700 transition-colors">
+          在地圖中打開
+        </button>
+      </div>
+
+    </main>
+
+    <!-- 固定底部 CTA: 超大按鈕 -->
+    <div class="fixed bottom-0 left-0 right-0 bg-white dark:bg-gray-900 border-t border-gray-200 dark:border-gray-800 p-4 max-w-md mx-auto">
+      <button onclick="claimFood()" class="w-full bg-gradient-to-r from-primary to-green-600 text-white py-4 rounded-2xl font-bold text-lg shadow-lg hover:shadow-xl transition-all flex items-center justify-center gap-2">
+        <span class="material-symbols-outlined text-3xl" style="font-variation-settings: 'FILL' 1">shopping_bag</span>
+        領取一份
+      </button>
+      <p class="text-center text-xs text-gray-500 dark:text-gray-400 mt-2">
+        領取後請在指定時段前往取餐
+      </p>
+    </div>
+
+  </div>
+
+  <script src="../common/ui_components.js"></script>
+  <script>
+    function toggleFavorite() {
+      const icon = document.getElementById('favorite-icon');
+      if (icon.textContent === 'favorite_border') {
+        icon.textContent = 'favorite';
+        icon.style.fontVariationSettings = "'FILL' 1";
+      } else {
+        icon.textContent = 'favorite_border';
+        icon.style.fontVariationSettings = "'FILL' 0";
+      }
+    }
+
+    function claimFood() {
+      showConfirm(
+        '確認領取',
+        '確認要領取一份新鮮蔬菜沙拉嗎？\n\n領取時段: 今天 18:00-20:00\n地點: 觀塘道123號綠色餐廳',
+        'handleClaimSuccess()'
+      );
+    }
+
+    function handleClaimSuccess() {
+      showSuccess(
+        '領取成功！',
+        '請在今天 18:00-20:00 前往領取。\n\n您可以在「我的領取」中查看詳情。',
+        '查看我的領取',
+        () => { window.location.href = 'my_claims_screen.html'; }
+      );
+    }
+  </script>
+</body>
+</html>
+
+
+

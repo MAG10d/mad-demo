@@ -1,0 +1,213 @@
+<!DOCTYPE html>
+<html lang="zh-HK">
+<head>
+  <meta charset="utf-8"/>
+  <meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+  <title>地圖視圖</title>
+  <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" integrity="sha256-p4NxAoJBhIIN+hmNHrzRCf9tD/miZyoHS5obTRR9BMY=" crossorigin=""/>
+  <style>
+    body {
+      margin: 0;
+      padding: 0;
+      font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+    }
+    #map {
+      width: 100%;
+      height: 100vh;
+    }
+    /* 自定義地圖標記 */
+    .custom-marker {
+      background: #4CAF50;
+      color: white;
+      border-radius: 50%;
+      width: 40px;
+      height: 40px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      box-shadow: 0 4px 6px rgba(0,0,0,0.3);
+      border: 3px solid white;
+      font-weight: bold;
+      cursor: pointer;
+      transition: transform 0.2s;
+    }
+    .custom-marker:hover {
+      transform: scale(1.15);
+    }
+    .custom-marker.urgent {
+      background: #ef4444;
+      animation: pulse 2s infinite;
+    }
+    .custom-marker.halal {
+      background: #10b981;
+    }
+    @keyframes pulse {
+      0%, 100% { transform: scale(1); }
+      50% { transform: scale(1.1); }
+    }
+    /* 地圖彈出窗口樣式 */
+    .leaflet-popup-content-wrapper {
+      border-radius: 12px;
+      padding: 0;
+    }
+    .leaflet-popup-content {
+      margin: 0;
+      min-width: 280px;
+    }
+  </style>
+</head>
+<body>
+  <div id="map"></div>
+
+  <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js" integrity="sha256-20nQCchB9co0qIjJZRGuk2/Z9VM+kNiyxNV1lvTlZBo=" crossorigin=""></script>
+  <script>
+    // 食物捐贈數據（模擬 Supabase 數據）
+    const donations = [
+      {
+        id: 1,
+        title: '新鮮蔬菜沙拉',
+        donor: '綠色餐廳',
+        distance: 150,
+        expiry: '2小時內',
+        urgent: true,
+        tags: ['素食', '純素'],
+        lat: 22.3120,
+        lng: 114.2250,
+        image: 'https://images.unsplash.com/photo-1546069901-ba9599a7e63c?w=300&h=300&fit=crop'
+      },
+      {
+        id: 2,
+        title: '每日麵包',
+        donor: '陽光烘焙坊',
+        distance: 300,
+        expiry: '明天',
+        urgent: false,
+        tags: ['不含豬肉'],
+        lat: 22.3140,
+        lng: 114.2280,
+        image: 'https://images.unsplash.com/photo-1509440159596-0249088772ff?w=300&h=300&fit=crop'
+      },
+      {
+        id: 3,
+        title: '印度香料飯套餐',
+        donor: '香料屋餐廳',
+        distance: 450,
+        expiry: '2天內',
+        urgent: false,
+        tags: ['清真 Halal'],
+        halal: true,
+        lat: 22.3100,
+        lng: 114.2220,
+        image: 'https://images.unsplash.com/photo-1585937421612-70a008356fbe?w=300&h=300&fit=crop'
+      },
+      {
+        id: 4,
+        title: '罐裝食品包',
+        donor: '萬家超市',
+        distance: 600,
+        expiry: '一週內',
+        urgent: false,
+        tags: ['長期保存'],
+        lat: 22.3090,
+        lng: 114.2300,
+        image: 'https://images.unsplash.com/photo-1628776047620-c8f41409e15a?w=300&h=300&fit=crop'
+      }
+    ];
+
+    // 初始化地圖
+    function initMap() {
+      // 設定觀塘區中心點（香港）
+      const kwunTong = [22.3120, 114.2250];
+      
+      const map = L.map('map').setView(kwunTong, 15);
+
+      // 添加 OpenStreetMap 圖層
+      L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+        attribution: '© OpenStreetMap',
+        maxZoom: 19
+      }).addTo(map);
+
+      // 添加用戶位置標記（綠色圓點）
+      L.circle(kwunTong, {
+        color: '#4CAF50',
+        fillColor: '#4CAF50',
+        fillOpacity: 0.3,
+        radius: 100
+      }).addTo(map).bindPopup('<b>📍 您的位置</b><br>觀塘, 香港');
+
+      // 添加食物捐贈標記
+      donations.forEach((donation, index) => {
+        addDonationMarker(donation, index, map);
+      });
+    }
+
+    // 添加捐贈標記
+    function addDonationMarker(donation, index, map) {
+      const iconClass = donation.urgent ? 'custom-marker urgent' : 
+                       donation.halal ? 'custom-marker halal' : 
+                       'custom-marker';
+      
+      const customIcon = L.divIcon({
+        className: 'custom-div-icon',
+        html: `<div class="${iconClass}">${index + 1}</div>`,
+        iconSize: [40, 40],
+        iconAnchor: [20, 20],
+        popupAnchor: [0, -20]
+      });
+
+      const marker = L.marker([donation.lat, donation.lng], { icon: customIcon })
+        .addTo(map);
+
+      // 創建彈出窗口內容
+      const popupContent = `
+        <div style="padding: 12px; min-width: 260px;">
+          <div style="display: flex; gap: 8px; margin-bottom: 8px;">
+            <img src="${donation.image}" alt="${donation.title}" 
+                 style="width: 64px; height: 64px; border-radius: 8px; object-fit: cover;"/>
+            <div style="flex: 1;">
+              <h3 style="margin: 0; font-size: 14px; font-weight: bold;">${donation.title}</h3>
+              <p style="margin: 4px 0 0 0; font-size: 12px; color: #666;">${donation.donor}</p>
+              <p style="margin: 4px 0 0 0; font-size: 12px; color: #888;">📍 ${donation.distance}米</p>
+            </div>
+          </div>
+          ${donation.urgent ? 
+            '<p style="margin: 0 0 8px 0; font-size: 12px; font-weight: bold; color: #ef4444;">⏰ ' + donation.expiry + '到期</p>' : 
+            '<p style="margin: 0 0 8px 0; font-size: 12px; color: #666;">到期: ' + donation.expiry + '</p>'
+          }
+          <div style="display: flex; gap: 4px; margin-bottom: 12px; flex-wrap: wrap;">
+            ${donation.tags.map(tag => 
+              `<span style="font-size: 11px; background: #dbeafe; color: #1e40af; padding: 2px 8px; border-radius: 12px;">${tag}</span>`
+            ).join('')}
+          </div>
+          <button onclick="goToDetail(${donation.id})" 
+                  style="width: 100%; background: #4CAF50; color: white; padding: 8px; border: none; border-radius: 8px; font-size: 14px; font-weight: 600; cursor: pointer;">
+            查看詳情
+          </button>
+        </div>
+      `;
+
+      marker.bindPopup(popupContent, {
+        maxWidth: 300,
+        className: 'custom-popup'
+      });
+    }
+
+    // 前往詳情頁（通過 postMessage 通知父頁面）
+    function goToDetail(id) {
+      // 如果在 iframe 中，通知父頁面
+      if (window.parent !== window) {
+        window.parent.postMessage({ action: 'goToDetail', id: id }, '*');
+      } else {
+        // 如果不在 iframe 中，直接跳轉
+        window.location.href = '../recipient/individual_recipient_detail.html';
+      }
+    }
+
+    // 頁面載入時初始化地圖
+    window.addEventListener('load', () => {
+      initMap();
+    });
+  </script>
+</body>
+</html>
+

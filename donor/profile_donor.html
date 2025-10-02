@@ -1,0 +1,241 @@
+<!DOCTYPE html>
+<html lang="zh-HK">
+<head>
+  <meta charset="utf-8"/>
+  <meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+  <title>FoodConnect - 我的資料</title>
+  <link href="https://fonts.googleapis.com" rel="preconnect"/>
+  <link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet"/>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          colors: { 
+            "primary": "#4CAF50",
+            "secondary": "#FF9800",
+          },
+          fontFamily: { "display": ["Inter"] },
+        },
+      },
+    }
+  </script>
+  <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined" rel="stylesheet"/>
+  <style>
+    .material-symbols-outlined { font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24; }
+  </style>
+</head>
+<body class="bg-gray-50 font-display">
+  <div class="max-w-md mx-auto min-h-screen flex flex-col pb-20">
+    
+    <!-- Header with Profile Info - Orange Theme -->
+    <header class="bg-gradient-to-r from-orange-500 to-orange-600 text-white px-4 pt-8 pb-20">
+      <div class="flex items-center justify-between mb-6">
+        <h1 class="text-xl font-bold">我的資料</h1>
+        <button onclick="location.href='../common/login_screen.html'" class="p-2 rounded-full hover:bg-white/10">
+          <span class="material-symbols-outlined">logout</span>
+        </button>
+      </div>
+      
+      <!-- Profile Card -->
+      <div class="bg-white/10 backdrop-blur-sm rounded-2xl p-6 -mb-12">
+        <div class="flex items-center gap-4">
+          <div class="w-20 h-20 bg-gradient-to-br from-orange-400 to-orange-600 rounded-full flex items-center justify-center text-white font-bold text-3xl">
+            綠
+          </div>
+          <div class="flex-1">
+            <h2 class="text-xl font-bold">綠色餐廳</h2>
+            <p class="text-sm opacity-90 mt-1">捐贈者</p>
+            <div class="flex items-center gap-2 mt-2">
+              <div class="flex text-yellow-300">
+                <span class="material-symbols-outlined text-sm" style="font-variation-settings: 'FILL' 1">star</span>
+                <span class="material-symbols-outlined text-sm" style="font-variation-settings: 'FILL' 1">star</span>
+                <span class="material-symbols-outlined text-sm" style="font-variation-settings: 'FILL' 1">star</span>
+                <span class="material-symbols-outlined text-sm" style="font-variation-settings: 'FILL' 1">star</span>
+                <span class="material-symbols-outlined text-sm" style="font-variation-settings: 'FILL' 1">star</span>
+              </div>
+              <span class="text-sm opacity-90">(127 評價)</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </header>
+
+    <!-- Main Content -->
+    <main class="flex-grow px-4 pt-16 pb-4 space-y-3">
+      
+      <!-- Statistics -->
+      <div class="bg-white rounded-xl shadow-sm p-4">
+        <h3 class="font-bold text-sm text-gray-500 uppercase tracking-wide mb-3">我的統計</h3>
+        <div class="grid grid-cols-3 gap-4">
+          <div class="text-center">
+            <p class="text-2xl font-bold text-orange-600">24</p>
+            <p class="text-xs text-gray-500 mt-1">總捐贈</p>
+          </div>
+          <div class="text-center">
+            <p class="text-2xl font-bold text-orange-600">186</p>
+            <p class="text-xs text-gray-500 mt-1">總份數</p>
+          </div>
+          <div class="text-center">
+            <p class="text-2xl font-bold text-orange-600">112</p>
+            <p class="text-xs text-gray-500 mt-1">受惠人次</p>
+          </div>
+        </div>
+      </div>
+
+      <!-- Account Section -->
+      <div class="bg-white rounded-xl shadow-sm overflow-hidden">
+        <div class="px-4 py-3 border-b border-gray-100">
+          <h3 class="font-bold text-sm text-gray-500 uppercase tracking-wide">帳號</h3>
+        </div>
+        
+        <button class="w-full flex items-center justify-between px-4 py-4 hover:bg-gray-50 transition-colors border-b border-gray-100">
+          <div class="flex items-center gap-3">
+            <span class="material-symbols-outlined text-orange-600">person</span>
+            <span class="font-medium">編輯個人資料</span>
+          </div>
+          <span class="material-symbols-outlined text-gray-400">chevron_right</span>
+        </button>
+
+        <button class="w-full flex items-center justify-between px-4 py-4 hover:bg-gray-50 transition-colors border-b border-gray-100">
+          <div class="flex items-center gap-3">
+            <span class="material-symbols-outlined text-orange-600">lock</span>
+            <span class="font-medium">更改密碼</span>
+          </div>
+          <span class="material-symbols-outlined text-gray-400">chevron_right</span>
+        </button>
+
+        <button class="w-full flex items-center justify-between px-4 py-4 hover:bg-gray-50 transition-colors">
+          <div class="flex items-center gap-3">
+            <span class="material-symbols-outlined text-orange-600">notifications</span>
+            <span class="font-medium">通知設定</span>
+          </div>
+          <span class="material-symbols-outlined text-gray-400">chevron_right</span>
+        </button>
+      </div>
+
+      <!-- Preferences Section -->
+      <div class="bg-white rounded-xl shadow-sm overflow-hidden">
+        <div class="px-4 py-3 border-b border-gray-100">
+          <h3 class="font-bold text-sm text-gray-500 uppercase tracking-wide">偏好設定</h3>
+        </div>
+        
+        <button class="w-full flex items-center justify-between px-4 py-4 hover:bg-gray-50 transition-colors border-b border-gray-100">
+          <div class="flex items-center gap-3">
+            <span class="material-symbols-outlined text-orange-600">language</span>
+            <span class="font-medium">語言</span>
+          </div>
+          <div class="flex items-center gap-2">
+            <span class="text-sm text-gray-500">繁體中文</span>
+            <span class="material-symbols-outlined text-gray-400">chevron_right</span>
+          </div>
+        </button>
+
+        <div class="w-full flex items-center justify-between px-4 py-4 border-b border-gray-100">
+          <div class="flex items-center gap-3">
+            <span class="material-symbols-outlined text-orange-600">dark_mode</span>
+            <span class="font-medium">深色模式</span>
+          </div>
+          <label class="relative inline-flex items-center cursor-pointer">
+            <input type="checkbox" class="sr-only peer"/>
+            <div class="w-11 h-6 bg-gray-200 rounded-full peer peer-checked:bg-orange-500 peer-checked:after:translate-x-full after:content-[''] after:absolute after:top-0.5 after:left-[2px] after:bg-white after:rounded-full after:h-5 after:w-5 after:transition-all"></div>
+          </label>
+        </div>
+
+        <button class="w-full flex items-center justify-between px-4 py-4 hover:bg-gray-50 transition-colors">
+          <div class="flex items-center gap-3">
+            <span class="material-symbols-outlined text-orange-600">location_on</span>
+            <span class="font-medium">預設地區</span>
+          </div>
+          <div class="flex items-center gap-2">
+            <span class="text-sm text-gray-500">觀塘</span>
+            <span class="material-symbols-outlined text-gray-400">chevron_right</span>
+          </div>
+        </button>
+      </div>
+
+      <!-- Support Section -->
+      <div class="bg-white rounded-xl shadow-sm overflow-hidden">
+        <div class="px-4 py-3 border-b border-gray-100">
+          <h3 class="font-bold text-sm text-gray-500 uppercase tracking-wide">支援</h3>
+        </div>
+        
+        <button class="w-full flex items-center justify-between px-4 py-4 hover:bg-gray-50 transition-colors border-b border-gray-100">
+          <div class="flex items-center gap-3">
+            <span class="material-symbols-outlined text-gray-600">help</span>
+            <span class="font-medium">幫助中心</span>
+          </div>
+          <span class="material-symbols-outlined text-gray-400">chevron_right</span>
+        </button>
+
+        <button class="w-full flex items-center justify-between px-4 py-4 hover:bg-gray-50 transition-colors border-b border-gray-100">
+          <div class="flex items-center gap-3">
+            <span class="material-symbols-outlined text-gray-600">description</span>
+            <span class="font-medium">服務條款</span>
+          </div>
+          <span class="material-symbols-outlined text-gray-400">chevron_right</span>
+        </button>
+
+        <button class="w-full flex items-center justify-between px-4 py-4 hover:bg-gray-50 transition-colors border-b border-gray-100">
+          <div class="flex items-center gap-3">
+            <span class="material-symbols-outlined text-gray-600">privacy_tip</span>
+            <span class="font-medium">私隱政策</span>
+          </div>
+          <span class="material-symbols-outlined text-gray-400">chevron_right</span>
+        </button>
+
+        <button class="w-full flex items-center justify-between px-4 py-4 hover:bg-gray-50 transition-colors">
+          <div class="flex items-center gap-3">
+            <span class="material-symbols-outlined text-gray-600">info</span>
+            <span class="font-medium">關於 FoodConnect</span>
+          </div>
+          <span class="material-symbols-outlined text-gray-400">chevron_right</span>
+        </button>
+      </div>
+
+      <!-- Logout Button -->
+      <button onclick="logout()" class="w-full bg-red-50 text-red-600 py-4 rounded-xl font-semibold hover:bg-red-100 transition-colors flex items-center justify-center gap-2">
+        <span class="material-symbols-outlined">logout</span>
+        登出
+      </button>
+
+      <!-- Version Info -->
+      <p class="text-center text-xs text-gray-400 mt-4">
+        FoodConnect v1.0.0<br/>
+        © 2025 UWE Final Project
+      </p>
+
+    </main>
+
+    <!-- Bottom Navigation (Donor) -->
+    <footer class="bg-white border-t border-gray-200 px-4 py-2 fixed bottom-0 left-0 right-0 max-w-md mx-auto">
+      <nav class="flex justify-around">
+        <a class="flex flex-col items-center gap-1 text-gray-400 py-2" href="donor_dashboard.html">
+          <span class="material-symbols-outlined text-2xl">home</span>
+          <span class="text-xs font-medium">首頁</span>
+        </a>
+        <a class="flex flex-col items-center gap-1 text-gray-400 py-2" href="donor_contributions.html">
+          <span class="material-symbols-outlined text-2xl">bar_chart</span>
+          <span class="text-xs font-medium">我的貢獻</span>
+        </a>
+        <a class="flex flex-col items-center gap-1 text-orange-600 py-2" href="profile_donor.html">
+          <span class="material-symbols-outlined text-2xl" style="font-variation-settings: 'FILL' 1">person</span>
+          <span class="text-xs font-bold">我的</span>
+        </a>
+      </nav>
+    </footer>
+
+  </div>
+
+  <script>
+    function logout() {
+      if (confirm('確定要登出嗎？')) {
+        alert('已成功登出');
+        location.href = '../common/welcome_screen.html';
+      }
+    }
+  </script>
+</body>
+</html>
+

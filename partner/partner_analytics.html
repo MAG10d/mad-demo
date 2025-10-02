@@ -1,0 +1,260 @@
+<!DOCTYPE html>
+<html lang="zh-HK">
+<head>
+  <meta charset="utf-8"/>
+  <meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+  <title>FoodConnect - 數據分析</title>
+  <link href="https://fonts.googleapis.com" rel="preconnect"/>
+  <link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet"/>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          colors: { 
+            "primary": "#4CAF50",
+            "secondary": "#FF9800",
+          },
+          fontFamily: { "display": ["Inter"] },
+        },
+      },
+    }
+  </script>
+  <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined" rel="stylesheet"/>
+  <style>
+    .material-symbols-outlined { font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24; }
+  </style>
+</head>
+<body class="bg-gray-50 font-display">
+  <div class="max-w-md mx-auto min-h-screen flex flex-col pb-20">
+    
+    <!-- Purple Theme for Community Partner - Mobile App Style -->
+    <header class="bg-gradient-to-r from-purple-500 to-purple-600 text-white px-4 py-5">
+      <div class="flex items-center gap-3 mb-4">
+        <button onclick="history.back()" class="p-2 -ml-2 rounded-full hover:bg-white/10">
+          <span class="material-symbols-outlined">arrow_back</span>
+        </button>
+        <div class="flex-1">
+          <h1 class="text-xl font-bold">數據分析</h1>
+          <p class="text-sm opacity-90">影響力與統計報告</p>
+        </div>
+      </div>
+
+      <!-- Quick Stats -->
+      <div class="grid grid-cols-3 gap-2">
+        <div class="bg-white/10 backdrop-blur-sm rounded-lg p-3 text-center">
+          <p class="text-2xl font-bold">42</p>
+          <p class="text-xs opacity-90 mt-1">本週領取</p>
+        </div>
+        <div class="bg-white/10 backdrop-blur-sm rounded-lg p-3 text-center">
+          <p class="text-2xl font-bold">315</p>
+          <p class="text-xs opacity-90 mt-1">總服務人次</p>
+        </div>
+        <div class="bg-white/10 backdrop-blur-sm rounded-lg p-3 text-center">
+          <p class="text-2xl font-bold">18</p>
+          <p class="text-xs opacity-90 mt-1">進行中</p>
+        </div>
+      </div>
+    </header>
+
+    <main class="flex-grow overflow-y-auto p-4 space-y-4">
+      
+      <!-- Monthly Trend -->
+      <div class="bg-white rounded-xl shadow-sm p-4">
+        <h2 class="font-bold mb-3">本月領取趨勢</h2>
+        <div class="h-32 flex items-end justify-between gap-2">
+          <div class="flex-1 bg-purple-200 rounded-t-lg" style="height: 45%"></div>
+          <div class="flex-1 bg-purple-300 rounded-t-lg" style="height: 60%"></div>
+          <div class="flex-1 bg-purple-400 rounded-t-lg" style="height: 80%"></div>
+          <div class="flex-1 bg-purple-500 rounded-t-lg" style="height: 100%"></div>
+        </div>
+        <div class="flex justify-between text-xs text-gray-500 mt-2">
+          <span>第1週</span>
+          <span>第2週</span>
+          <span>第3週</span>
+          <span>第4週</span>
+        </div>
+      </div>
+
+      <!-- Food Type Distribution -->
+      <div class="bg-white rounded-xl shadow-sm p-4">
+        <h2 class="font-bold mb-3">食物類型分布</h2>
+        <div class="space-y-3">
+          <div>
+            <div class="flex items-center justify-between text-sm mb-1">
+              <span>熟食/便當</span>
+              <span class="font-bold text-purple-600">45%</span>
+            </div>
+            <div class="w-full bg-gray-200 rounded-full h-2">
+              <div class="bg-purple-500 h-2 rounded-full" style="width: 45%"></div>
+            </div>
+          </div>
+          <div>
+            <div class="flex items-center justify-between text-sm mb-1">
+              <span>麵包糕點</span>
+              <span class="font-bold text-purple-600">30%</span>
+            </div>
+            <div class="w-full bg-gray-200 rounded-full h-2">
+              <div class="bg-purple-400 h-2 rounded-full" style="width: 30%"></div>
+            </div>
+          </div>
+          <div>
+            <div class="flex items-center justify-between text-sm mb-1">
+              <span>蔬菜水果</span>
+              <span class="font-bold text-purple-600">15%</span>
+            </div>
+            <div class="w-full bg-gray-200 rounded-full h-2">
+              <div class="bg-purple-300 h-2 rounded-full" style="width: 15%"></div>
+            </div>
+          </div>
+          <div>
+            <div class="flex items-center justify-between text-sm mb-1">
+              <span>其他</span>
+              <span class="font-bold text-purple-600">10%</span>
+            </div>
+            <div class="w-full bg-gray-200 rounded-full h-2">
+              <div class="bg-purple-200 h-2 rounded-full" style="width: 10%"></div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Beneficiary Categories (Anonymous) -->
+      <div class="bg-white rounded-xl shadow-sm p-4">
+        <h2 class="font-bold mb-3">受惠者類別分布（匿名統計）</h2>
+        <div class="space-y-3">
+          <div class="flex items-center justify-between">
+            <span class="text-sm text-gray-600">長者 (65歲+)</span>
+            <div class="flex items-center gap-2">
+              <div class="w-24 h-2 bg-gray-200 rounded-full overflow-hidden">
+                <div class="h-full bg-blue-500" style="width: 40%"></div>
+              </div>
+              <span class="text-sm font-semibold w-12 text-right">126人</span>
+            </div>
+          </div>
+          <div class="flex items-center justify-between">
+            <span class="text-sm text-gray-600">單親家庭</span>
+            <div class="flex items-center gap-2">
+              <div class="w-24 h-2 bg-gray-200 rounded-full overflow-hidden">
+                <div class="h-full bg-green-500" style="width: 35%"></div>
+              </div>
+              <span class="text-sm font-semibold w-12 text-right">110人</span>
+            </div>
+          </div>
+          <div class="flex items-center justify-between">
+            <span class="text-sm text-gray-600">低收入人士</span>
+            <div class="flex items-center gap-2">
+              <div class="w-24 h-2 bg-gray-200 rounded-full overflow-hidden">
+                <div class="h-full bg-orange-500" style="width: 25%"></div>
+              </div>
+              <span class="text-sm font-semibold w-12 text-right">79人</span>
+            </div>
+          </div>
+        </div>
+        <p class="text-xs text-gray-400 mt-3 flex items-center gap-1">
+          <span class="material-symbols-outlined text-sm">lock</span>
+          個人資料已完全匿名化處理
+        </p>
+      </div>
+
+      <!-- Time Slots Analysis -->
+      <div class="bg-white rounded-xl shadow-sm p-4">
+        <h2 class="font-bold mb-3">最受歡迎的領取時段</h2>
+        <div class="space-y-2">
+          <div class="flex items-center justify-between text-sm">
+            <span class="text-gray-600">18:00 - 20:00</span>
+            <div class="flex items-center gap-2">
+              <div class="w-32 h-2 bg-gray-200 rounded-full overflow-hidden">
+                <div class="h-full bg-primary" style="width: 85%"></div>
+              </div>
+              <span class="font-bold text-primary">85%</span>
+            </div>
+          </div>
+          <div class="flex items-center justify-between text-sm">
+            <span class="text-gray-600">12:00 - 14:00</span>
+            <div class="flex items-center gap-2">
+              <div class="w-32 h-2 bg-gray-200 rounded-full overflow-hidden">
+                <div class="h-full bg-primary" style="width: 60%"></div>
+              </div>
+              <span class="font-bold text-primary">60%</span>
+            </div>
+          </div>
+          <div class="flex items-center justify-between text-sm">
+            <span class="text-gray-600">09:00 - 11:00</span>
+            <div class="flex items-center gap-2">
+              <div class="w-32 h-2 bg-gray-200 rounded-full overflow-hidden">
+                <div class="h-full bg-primary" style="width: 40%"></div>
+              </div>
+              <span class="font-bold text-primary">40%</span>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Impact Report -->
+      <div class="bg-gradient-to-br from-green-500 to-emerald-600 text-white rounded-xl p-4">
+        <h2 class="font-bold mb-3 flex items-center gap-2">
+          <span class="material-symbols-outlined">eco</span>
+          環境影響
+        </h2>
+        <div class="grid grid-cols-2 gap-4">
+          <div>
+            <p class="text-3xl font-bold">856</p>
+            <p class="text-sm opacity-90">份餐點已救援</p>
+          </div>
+          <div>
+            <p class="text-3xl font-bold">428kg</p>
+            <p class="text-sm opacity-90">減少碳排放</p>
+          </div>
+        </div>
+      </div>
+
+      <!-- Export Buttons -->
+      <div class="grid grid-cols-2 gap-3">
+        <button onclick="exportPDF()" class="bg-white border-2 border-primary text-primary py-3 rounded-xl font-semibold hover:bg-primary/5 transition-all">
+          匯出 PDF
+        </button>
+        <button onclick="exportCSV()" class="bg-white border-2 border-gray-300 text-gray-700 py-3 rounded-xl font-semibold hover:bg-gray-50 transition-all">
+          匯出 CSV
+        </button>
+      </div>
+
+    </main>
+
+    <!-- Bottom Navigation -->
+    <footer class="bg-white border-t border-gray-200 px-4 py-2 fixed bottom-0 left-0 right-0 max-w-md mx-auto">
+      <nav class="flex justify-around">
+        <a class="flex flex-col items-center gap-1 text-gray-400 py-2" href="community_partner_dashboard.html">
+          <span class="material-symbols-outlined text-2xl">dashboard</span>
+          <span class="text-xs font-medium">儀表板</span>
+        </a>
+        <a class="flex flex-col items-center gap-1 text-gray-400 py-2" href="partner_distribution_log.html">
+          <span class="material-symbols-outlined text-2xl">assignment</span>
+          <span class="text-xs font-medium">分發日誌</span>
+        </a>
+        <a class="flex flex-col items-center gap-1 text-purple-600 py-2" href="partner_analytics.html">
+          <span class="material-symbols-outlined text-2xl" style="font-variation-settings: 'FILL' 1">bar_chart</span>
+          <span class="text-xs font-bold">數據</span>
+        </a>
+        <a class="flex flex-col items-center gap-1 text-gray-400 py-2" href="profile_partner.html">
+          <span class="material-symbols-outlined text-2xl">person</span>
+          <span class="text-xs font-medium">我的</span>
+        </a>
+      </nav>
+    </footer>
+
+  </div>
+
+  <script>
+    function exportPDF() {
+      alert('匯出 PDF 報告\n\n實際應用中會生成包含所有圖表和統計數據的完整 PDF 報告。');
+    }
+
+    function exportCSV() {
+      alert('匯出 CSV 數據\n\n實際應用中會生成可在 Excel 中打開的數據表格。');
+    }
+  </script>
+</body>
+</html>
+

@@ -1,0 +1,206 @@
+<!DOCTYPE html>
+<html lang="zh-HK">
+<head>
+  <meta charset="utf-8"/>
+  <meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+  <title>FoodConnect - 評分</title>
+  <link href="https://fonts.googleapis.com" rel="preconnect"/>
+  <link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet"/>
+  <script src="https://cdn.tailwindcss.com?plugins=forms"></script>
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          colors: { 
+            "primary": "#4CAF50",
+            "secondary": "#FF9800",
+          },
+          fontFamily: { "display": ["Inter"] },
+        },
+      },
+    }
+  </script>
+  <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined" rel="stylesheet"/>
+  <style>
+    .material-symbols-outlined { font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24; }
+    .star-btn { transition: all 0.2s; }
+    .star-btn:hover { transform: scale(1.2); }
+  </style>
+</head>
+<body class="bg-gray-50 font-display">
+  <div class="max-w-md mx-auto min-h-screen flex flex-col">
+    
+    <!-- Header - Mobile App Style -->
+    <header class="bg-white px-4 py-4 border-b border-gray-200 flex items-center gap-3">
+      <button onclick="history.back()" class="p-2 -ml-2 rounded-full hover:bg-gray-100">
+        <span class="material-symbols-outlined">close</span>
+      </button>
+      <h1 class="text-xl font-bold flex-1">為這次交易評分</h1>
+    </header>
+
+    <main class="flex-grow overflow-y-auto p-6 space-y-6">
+      
+      <!-- Transaction Info -->
+      <div class="bg-white rounded-xl p-4 shadow-sm">
+        <div class="flex gap-3">
+          <img src="https://images.unsplash.com/photo-1628776047620-c8f41409e15a?w=200&h=200&fit=crop" alt="Food" class="w-16 h-16 rounded-lg object-cover"/>
+          <div>
+            <h3 class="font-bold">今日湯品</h3>
+            <p class="text-sm text-gray-600">綠色餐廳</p>
+            <p class="text-xs text-gray-400 mt-1">3天前領取</p>
+          </div>
+        </div>
+      </div>
+
+      <!-- FR-22: Mutual Rating System -->
+      <!-- Rating Section -->
+      <div class="bg-white rounded-xl p-6 shadow-sm">
+        <h2 class="text-lg font-bold mb-4 text-center">您對這次體驗的評價？</h2>
+        
+        <!-- Star Rating -->
+        <div class="flex justify-center gap-2 mb-6">
+          <button class="star-btn" onclick="setRating(1)">
+            <span id="star-1" class="material-symbols-outlined text-5xl text-gray-300">star</span>
+          </button>
+          <button class="star-btn" onclick="setRating(2)">
+            <span id="star-2" class="material-symbols-outlined text-5xl text-gray-300">star</span>
+          </button>
+          <button class="star-btn" onclick="setRating(3)">
+            <span id="star-3" class="material-symbols-outlined text-5xl text-gray-300">star</span>
+          </button>
+          <button class="star-btn" onclick="setRating(4)">
+            <span id="star-4" class="material-symbols-outlined text-5xl text-gray-300">star</span>
+          </button>
+          <button class="star-btn" onclick="setRating(5)">
+            <span id="star-5" class="material-symbols-outlined text-5xl text-gray-300">star</span>
+          </button>
+        </div>
+
+        <p id="rating-text" class="text-center text-gray-400 mb-6">點擊星星評分</p>
+
+        <!-- Comment -->
+        <div>
+          <label class="block text-sm font-semibold mb-2">分享您的體驗（選填）</label>
+          <textarea 
+            id="comment" 
+            rows="4" 
+            placeholder="食物品質如何？捐贈者友善嗎？" 
+            class="w-full px-4 py-3 rounded-xl border border-gray-300 focus:border-primary focus:ring-2 focus:ring-primary/20 outline-none resize-none"
+          ></textarea>
+          <p class="text-xs text-gray-500 mt-2">💡 您的評論將匿名顯示，幫助其他用戶做出選擇</p>
+        </div>
+
+      </div>
+
+      <!-- Quick Tags (Optional) -->
+      <div class="bg-white rounded-xl p-4 shadow-sm">
+        <label class="block text-sm font-semibold mb-3">快速標籤（選填）</label>
+        <div class="flex flex-wrap gap-2">
+          <button class="px-3 py-1.5 rounded-full border-2 border-gray-300 text-sm font-medium hover:border-primary hover:bg-primary/5 transition-all" onclick="toggleTag(this)">
+            🍲 食物新鮮
+          </button>
+          <button class="px-3 py-1.5 rounded-full border-2 border-gray-300 text-sm font-medium hover:border-primary hover:bg-primary/5 transition-all" onclick="toggleTag(this)">
+            📦 份量充足
+          </button>
+          <button class="px-3 py-1.5 rounded-full border-2 border-gray-300 text-sm font-medium hover:border-primary hover:bg-primary/5 transition-all" onclick="toggleTag(this)">
+            😊 友善
+          </button>
+          <button class="px-3 py-1.5 rounded-full border-2 border-gray-300 text-sm font-medium hover:border-primary hover:bg-primary/5 transition-all" onclick="toggleTag(this)">
+            ⏰ 準時
+          </button>
+          <button class="px-3 py-1.5 rounded-full border-2 border-gray-300 text-sm font-medium hover:border-primary hover:bg-primary/5 transition-all" onclick="toggleTag(this)">
+            📍 位置方便
+          </button>
+        </div>
+      </div>
+
+      <!-- Privacy Notice (Scenario 2 - Trust Building) -->
+      <div class="bg-green-50 border border-green-200 rounded-xl p-4 text-sm">
+        <p class="text-green-900 font-semibold mb-1">🔒 關於評分系統</p>
+        <ul class="text-green-800 space-y-1 text-xs">
+          <li>• 評分將<strong>匿名顯示</strong>，保護您的隱私</li>
+          <li>• 評分有助於建立信任社群，識別優質捐贈者</li>
+          <li>• 不當評論將被審核並可能移除</li>
+        </ul>
+      </div>
+
+    </main>
+
+    <!-- Submit Button -->
+    <div class="p-4 bg-white border-t border-gray-200">
+      <button id="submit-btn" onclick="submitRating()" disabled class="w-full bg-gray-300 text-gray-500 py-4 rounded-2xl font-bold text-lg cursor-not-allowed">
+        提交評分
+      </button>
+      <button onclick="skipRating()" class="w-full text-gray-500 py-3 text-sm font-medium mt-2">
+        暫時跳過
+      </button>
+    </div>
+
+  </div>
+
+  <script src="ui_components.js"></script>
+  <script>
+    let currentRating = 0;
+
+    function setRating(rating) {
+      currentRating = rating;
+      
+      // Update stars
+      for (let i = 1; i <= 5; i++) {
+        const star = document.getElementById(`star-${i}`);
+        if (i <= rating) {
+          star.className = 'material-symbols-outlined text-5xl text-yellow-500';
+          star.style.fontVariationSettings = "'FILL' 1";
+        } else {
+          star.className = 'material-symbols-outlined text-5xl text-gray-300';
+          star.style.fontVariationSettings = "'FILL' 0";
+        }
+      }
+
+      // Update text
+      const texts = ['', '很差', '不好', '普通', '很好', '非常好'];
+      document.getElementById('rating-text').textContent = texts[rating];
+      document.getElementById('rating-text').className = 'text-center text-yellow-600 font-semibold mb-6';
+
+      // Enable submit button
+      const submitBtn = document.getElementById('submit-btn');
+      submitBtn.disabled = false;
+      submitBtn.className = 'w-full bg-gradient-to-r from-primary to-green-600 text-white py-4 rounded-2xl font-bold text-lg shadow-lg hover:shadow-xl transition-all';
+    }
+
+    function toggleTag(btn) {
+      if (btn.classList.contains('border-primary')) {
+        btn.classList.remove('border-primary', 'bg-primary/5', 'text-primary');
+        btn.classList.add('border-gray-300');
+      } else {
+        btn.classList.remove('border-gray-300');
+        btn.classList.add('border-primary', 'bg-primary/5', 'text-primary');
+      }
+    }
+
+    function submitRating() {
+      if (currentRating === 0) {
+        showToast('請先選擇評分', 'warning');
+        return;
+      }
+
+      const comment = document.getElementById('comment').value;
+      
+      showSuccess(
+        '評分已提交！',
+        `評分: ${currentRating} 星\n${comment ? '評論: ' + comment : ''}\n\n感謝您的反饋，這有助於建立更好的社群！`,
+        '完成',
+        () => { history.back(); }
+      );
+    }
+
+    function skipRating() {
+      if (confirm('確定要跳過評分嗎？\n\n您可以稍後在「我的領取」中補充評分。')) {
+        history.back();
+      }
+    }
+  </script>
+</body>
+</html>
+

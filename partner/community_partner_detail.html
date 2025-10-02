@@ -1,0 +1,295 @@
+<!DOCTYPE html>
+<html lang="zh-HK">
+<head>
+  <meta charset="utf-8"/>
+  <meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+  <title>FoodConnect - 批量領取</title>
+  <link href="https://fonts.googleapis.com" rel="preconnect"/>
+  <link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet"/>
+  <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+  <script>
+    tailwind.config = {
+      darkMode: "class",
+      theme: {
+        extend: {
+          colors: {
+            "primary": "#4CAF50",
+            "secondary": "#FF9800",
+            "background-light": "#f6f7f8",
+            "background-dark": "#101922",
+          },
+          fontFamily: {
+            "display": ["Inter"]
+          },
+        },
+      },
+    }
+  </script>
+  <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined" rel="stylesheet"/>
+  <style>
+    .material-symbols-outlined {
+      font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+    }
+    /* 數量選擇器特殊樣式 */
+    input[type="number"]::-webkit-inner-spin-button,
+    input[type="number"]::-webkit-outer-spin-button {
+      opacity: 1;
+      height: 40px;
+    }
+  </style>
+</head>
+<body class="bg-background-light dark:bg-background-dark font-display text-gray-800 dark:text-gray-200">
+  <div class="max-w-md mx-auto min-h-screen flex flex-col pb-32">
+    
+    <!-- Header -->
+    <header class="relative">
+      <div class="relative h-56 bg-gray-200 dark:bg-gray-800">
+        <img src="https://images.unsplash.com/photo-1567620905732-2d1ec7ab7445?w=800&h=600&fit=crop" alt="Hotel Buffet" class="w-full h-full object-cover"/>
+        <button onclick="history.back()" class="absolute top-4 left-4 bg-white/90 dark:bg-gray-900/90 backdrop-blur-sm p-2 rounded-full shadow-lg">
+          <span class="material-symbols-outlined">arrow_back</span>
+        </button>
+        <div class="absolute bottom-4 left-4 bg-orange-500 text-white px-3 py-1.5 rounded-full text-xs font-bold shadow-lg flex items-center gap-1">
+          <span class="material-symbols-outlined text-sm">local_fire_department</span>
+          熱門項目
+        </div>
+      </div>
+    </header>
+
+    <!-- Main Content -->
+    <main class="flex-grow px-4 py-4 space-y-4">
+      
+      <!-- 標題 -->
+      <div>
+        <h1 class="text-2xl font-bold mb-2">五星酒店自助餐剩餘</h1>
+        <div class="flex items-center gap-2 text-sm text-gray-600 dark:text-gray-400">
+          <span class="material-symbols-outlined text-lg">location_on</span>
+          <span>1.2km • 皇家大酒店</span>
+        </div>
+      </div>
+
+      <!-- 關鍵資訊卡片：庫存狀態 -->
+      <div class="bg-gradient-to-br from-primary/10 to-blue-500/10 border-2 border-primary/30 rounded-xl p-4">
+        <div class="flex items-center justify-between mb-3">
+          <div class="flex items-center gap-2">
+            <span class="material-symbols-outlined text-primary text-2xl">inventory_2</span>
+            <h3 class="font-bold text-lg">庫存狀態</h3>
+          </div>
+          <span class="bg-primary text-white px-3 py-1 rounded-full text-sm font-bold">充足</span>
+        </div>
+        <div class="grid grid-cols-2 gap-4">
+          <div>
+            <p class="text-xs text-gray-500 dark:text-gray-400 mb-1">剩餘可領</p>
+            <p class="text-3xl font-bold text-primary">30</p>
+          </div>
+          <div>
+            <p class="text-xs text-gray-500 dark:text-gray-400 mb-1">總數量</p>
+            <p class="text-3xl font-bold text-gray-700 dark:text-gray-300">50</p>
+          </div>
+        </div>
+        <div class="mt-3 pt-3 border-t border-primary/20">
+          <div class="flex justify-between text-sm">
+            <span class="text-gray-600 dark:text-gray-400">已有 4 個組織領取</span>
+            <span class="font-semibold text-primary">20 份</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- 時效性警告 -->
+      <div class="bg-red-50 dark:bg-red-900/20 border border-red-200 dark:border-red-800 rounded-xl p-4">
+        <div class="flex items-start gap-3">
+          <span class="material-symbols-outlined text-red-600 dark:text-red-400 text-2xl flex-shrink-0">schedule</span>
+          <div class="flex-1">
+            <h3 class="font-bold text-red-900 dark:text-red-200 mb-1">領取時段</h3>
+            <p class="text-sm text-red-800 dark:text-red-300">
+              今天 <span class="font-bold">21:00 - 23:00</span><br/>
+              <span class="text-xs">剩餘約 3 小時，請盡快領取</span>
+            </p>
+          </div>
+        </div>
+      </div>
+
+      <!-- 食物標籤 -->
+      <div class="flex flex-wrap gap-2">
+        <span class="bg-blue-100 dark:bg-blue-900 text-blue-700 dark:text-blue-300 px-3 py-1.5 rounded-full text-sm font-semibold">不含豬肉</span>
+        <span class="bg-green-100 dark:bg-green-900 text-green-700 dark:text-green-300 px-3 py-1.5 rounded-full text-sm font-semibold">素食選擇</span>
+        <span class="bg-purple-100 dark:bg-purple-900 text-purple-700 dark:text-purple-300 px-3 py-1.5 rounded-full text-sm font-semibold">多樣化</span>
+      </div>
+
+      <!-- 描述 -->
+      <div class="bg-white dark:bg-gray-900 rounded-xl p-4">
+        <h2 class="font-bold text-lg mb-2 flex items-center gap-2">
+          <span class="material-symbols-outlined text-primary">description</span>
+          食物詳情
+        </h2>
+        <p class="text-sm text-gray-600 dark:text-gray-400 leading-relaxed">
+          五星級酒店國際自助餐晚宴剩餘食物，包含：<br/>
+          • 西式熱菜（意粉、烤雞、魚類）<br/>
+          • 亞洲風味菜餚（炒飯、麵條、咖喱）<br/>
+          • 新鮮沙拉吧<br/>
+          • 麵包和甜點<br/><br/>
+          所有食物均於今日製作，保存在適當溫度下。適合作為社區聚餐或分發給多戶家庭。
+        </p>
+        <div class="mt-3 pt-3 border-t border-gray-200 dark:border-gray-800 text-sm">
+          <div class="flex justify-between py-1">
+            <span class="text-gray-500 dark:text-gray-400">每份份量</span>
+            <span class="font-semibold">約 500g（一人份正餐）</span>
+          </div>
+          <div class="flex justify-between py-1">
+            <span class="text-gray-500 dark:text-gray-400">包裝方式</span>
+            <span class="font-semibold">獨立密封餐盒</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- 捐贈者資訊 -->
+      <div class="bg-white dark:bg-gray-900 rounded-xl p-4">
+        <h2 class="font-bold text-lg mb-3 flex items-center gap-2">
+          <span class="material-symbols-outlined text-primary">business</span>
+          捐贈者
+        </h2>
+        <div class="flex items-center gap-3">
+          <div class="w-12 h-12 bg-gradient-to-br from-yellow-400 to-yellow-600 rounded-full flex items-center justify-center text-white font-bold text-lg">
+            皇
+          </div>
+          <div class="flex-1">
+            <h3 class="font-bold">皇家大酒店</h3>
+            <div class="flex items-center gap-2 mt-1">
+              <div class="flex items-center text-yellow-500">
+                <span class="material-symbols-outlined text-sm" style="font-variation-settings: 'FILL' 1">star</span>
+                <span class="material-symbols-outlined text-sm" style="font-variation-settings: 'FILL' 1">star</span>
+                <span class="material-symbols-outlined text-sm" style="font-variation-settings: 'FILL' 1">star</span>
+                <span class="material-symbols-outlined text-sm" style="font-variation-settings: 'FILL' 1">star</span>
+                <span class="material-symbols-outlined text-sm" style="font-variation-settings: 'FILL' 1">star</span>
+              </div>
+              <span class="text-xs text-gray-500 dark:text-gray-400">(89 評價)</span>
+            </div>
+          </div>
+        </div>
+        <div class="mt-3 pt-3 border-t border-gray-200 dark:border-gray-800">
+          <p class="text-xs text-gray-500 dark:text-gray-400">
+            已成功捐贈 <span class="font-bold text-primary">156次</span> • 企業 CSR 合作夥伴
+          </p>
+        </div>
+      </div>
+
+      <!-- 領取地點 -->
+      <div class="bg-white dark:bg-gray-900 rounded-xl p-4">
+        <h2 class="font-bold text-lg mb-3 flex items-center gap-2">
+          <span class="material-symbols-outlined text-primary">pin_drop</span>
+          領取地點
+        </h2>
+        <p class="text-sm text-gray-600 dark:text-gray-400 mb-3">
+          尖沙咀海濱道88號皇家大酒店<br/>
+          後門貨運區（地下層）
+        </p>
+        <div class="h-32 bg-gray-100 dark:bg-gray-800 rounded-lg flex items-center justify-center">
+          <span class="text-gray-400 text-sm">地圖預覽</span>
+        </div>
+      </div>
+
+    </main>
+
+    <!-- 固定底部：批量領取區 -->
+    <div class="fixed bottom-0 left-0 right-0 bg-white dark:bg-gray-900 border-t-2 border-primary/20 p-4 max-w-md mx-auto shadow-2xl">
+      
+      <!-- 數量選擇器 -->
+      <div class="mb-3">
+        <label class="block text-sm font-bold mb-2 text-gray-700 dark:text-gray-300">選擇領取數量</label>
+        <div class="flex items-center gap-3">
+          <button onclick="decreaseQuantity()" class="w-12 h-12 bg-gray-200 dark:bg-gray-800 rounded-lg font-bold text-xl hover:bg-gray-300 dark:hover:bg-gray-700 transition-colors">
+            −
+          </button>
+          <input 
+            type="number" 
+            id="quantity-input" 
+            value="5" 
+            min="1" 
+            max="30" 
+            class="flex-1 h-12 text-center text-2xl font-bold border-2 border-primary rounded-lg focus:ring-2 focus:ring-primary dark:bg-gray-800 dark:border-primary/50"
+          />
+          <button onclick="increaseQuantity()" class="w-12 h-12 bg-gray-200 dark:bg-gray-800 rounded-lg font-bold text-xl hover:bg-gray-300 dark:hover:bg-gray-700 transition-colors">
+            +
+          </button>
+          <button onclick="claimAll()" class="px-4 h-12 bg-primary/10 text-primary rounded-lg font-semibold text-sm hover:bg-primary/20 transition-colors whitespace-nowrap">
+            全部領取
+          </button>
+        </div>
+        <p class="text-xs text-gray-500 dark:text-gray-400 mt-2 text-center">
+          您可以領取 1-30 份 • 剩餘 <span class="font-bold text-primary" id="remaining">30</span> 份
+        </p>
+      </div>
+
+      <!-- CTA 按鈕 -->
+      <button onclick="bulkClaim()" class="w-full bg-gradient-to-r from-primary to-green-600 text-white py-4 rounded-2xl font-bold text-lg shadow-lg hover:shadow-xl transition-all flex items-center justify-center gap-2">
+        <span class="material-symbols-outlined text-2xl" style="font-variation-settings: 'FILL' 1">shopping_cart</span>
+        確認領取 <span id="display-quantity">5</span> 份
+      </button>
+
+    </div>
+
+  </div>
+
+  <script src="../common/ui_components.js"></script>
+  <script>
+    const maxQuantity = 30;
+    
+    function getQuantity() {
+      return parseInt(document.getElementById('quantity-input').value) || 1;
+    }
+
+    function setQuantity(value) {
+      const clamped = Math.max(1, Math.min(maxQuantity, value));
+      document.getElementById('quantity-input').value = clamped;
+      document.getElementById('display-quantity').textContent = clamped;
+      updateRemaining(clamped);
+    }
+
+    function updateRemaining(claimed) {
+      const remaining = maxQuantity - claimed;
+      document.getElementById('remaining').textContent = remaining;
+    }
+
+    function decreaseQuantity() {
+      setQuantity(getQuantity() - 1);
+    }
+
+    function increaseQuantity() {
+      setQuantity(getQuantity() + 1);
+    }
+
+    function claimAll() {
+      setQuantity(maxQuantity);
+    }
+
+    function bulkClaim() {
+      const quantity = getQuantity();
+      showConfirm(
+        '確認批量領取',
+        `確認要為您的組織領取 ${quantity} 份食物嗎？\n\n領取時段: 今天 21:00-23:00\n地點: 尖沙咀海濱道88號皇家大酒店\n\n提示：領取後請前往「分發日誌」記錄受惠者資訊。`,
+        `handleBulkClaimSuccess(${quantity})`
+      );
+    }
+
+    function handleBulkClaimSuccess(quantity) {
+      showSuccess(
+        '批量領取成功！',
+        `已領取 ${quantity} 份五星酒店自助餐剩餘\n\n請在今天 21:00-23:00 前往領取。\n\n別忘記在分發後更新「分發日誌」。`,
+        '前往分發日誌',
+        () => { window.location.href = 'partner_distribution_log.html'; }
+      );
+    }
+
+    // 監聽輸入變化
+    document.getElementById('quantity-input').addEventListener('input', function() {
+      setQuantity(parseInt(this.value));
+    });
+
+    // 初始化顯示
+    setQuantity(5);
+  </script>
+</body>
+</html>
+
+
+

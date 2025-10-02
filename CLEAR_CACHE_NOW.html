@@ -1,0 +1,157 @@
+<!DOCTYPE html>
+<html lang="zh-HK">
+<head>
+  <meta charset="utf-8"/>
+  <meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate"/>
+  <meta http-equiv="Pragma" content="no-cache"/>
+  <meta http-equiv="Expires" content="0"/>
+  <meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+  <title>清除緩存 - FoodConnect</title>
+  <style>
+    body {
+      font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+      background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+      color: white;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      min-height: 100vh;
+      margin: 0;
+      padding: 20px;
+    }
+    .container {
+      max-width: 600px;
+      background: rgba(255,255,255,0.1);
+      backdrop-filter: blur(10px);
+      border-radius: 20px;
+      padding: 40px;
+      text-align: center;
+    }
+    h1 {
+      font-size: 2.5em;
+      margin-bottom: 20px;
+    }
+    .warning {
+      background: rgba(255,255,255,0.2);
+      padding: 20px;
+      border-radius: 10px;
+      margin: 20px 0;
+    }
+    .steps {
+      text-align: left;
+      background: rgba(255,255,255,0.1);
+      padding: 20px;
+      border-radius: 10px;
+      margin: 20px 0;
+    }
+    .steps ol {
+      margin: 10px 0;
+      padding-left: 20px;
+    }
+    .steps li {
+      margin: 10px 0;
+      line-height: 1.6;
+    }
+    button {
+      background: white;
+      color: #667eea;
+      border: none;
+      padding: 15px 40px;
+      font-size: 1.1em;
+      font-weight: bold;
+      border-radius: 50px;
+      cursor: pointer;
+      margin: 10px;
+      transition: transform 0.2s;
+    }
+    button:hover {
+      transform: scale(1.05);
+    }
+    .success {
+      background: #10b981;
+      color: white;
+      padding: 15px;
+      border-radius: 10px;
+      margin-top: 20px;
+      display: none;
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <h1>⚠️ 需要清除瀏覽器緩存</h1>
+    
+    <div class="warning">
+      <p style="font-size: 1.2em; margin: 0;">
+        您的瀏覽器正在使用<strong>舊的緩存文件</strong>，<br/>
+        這會導致路徑錯誤和 404 問題。
+      </p>
+    </div>
+
+    <div class="steps">
+      <h2>🔧 快速修復（3 種方法）</h2>
+      
+      <h3>方法 1: 硬刷新（最簡單）⭐</h3>
+      <ol>
+        <li>在<strong>任何有問題的頁面</strong>按下：</li>
+        <li><strong>Windows</strong>: <code>Ctrl + F5</code></li>
+        <li><strong>Mac</strong>: <code>Cmd + Shift + R</code></li>
+      </ol>
+
+      <h3>方法 2: 開發者工具</h3>
+      <ol>
+        <li>按 <code>F12</code> 打開開發者工具</li>
+        <li>在 <strong>Network</strong> 標籤勾選 <strong>Disable cache</strong></li>
+        <li>重新載入頁面</li>
+      </ol>
+
+      <h3>方法 3: 無痕模式</h3>
+      <ol>
+        <li><strong>Windows</strong>: <code>Ctrl + Shift + N</code></li>
+        <li><strong>Mac</strong>: <code>Cmd + Shift + N</code></li>
+        <li>在無痕窗口中打開 <code>index.html</code></li>
+      </ol>
+    </div>
+
+    <button onclick="clearAndReload()">
+      🔄 清除緩存並重新載入
+    </button>
+
+    <button onclick="goToStart()">
+      🏠 返回首頁
+    </button>
+
+    <div id="success" class="success">
+      ✅ 緩存已清除！正在重新載入...
+    </div>
+
+    <p style="margin-top: 30px; font-size: 0.9em; opacity: 0.8;">
+      💡 提示：如果仍有問題，請完全關閉瀏覽器後重新打開。
+    </p>
+  </div>
+
+  <script>
+    function clearAndReload() {
+      // 顯示成功訊息
+      document.getElementById('success').style.display = 'block';
+      
+      // 嘗試清除緩存（部分瀏覽器支持）
+      if ('caches' in window) {
+        caches.keys().then(names => {
+          names.forEach(name => caches.delete(name));
+        });
+      }
+      
+      // 延遲後重新載入
+      setTimeout(() => {
+        window.location.href = 'index.html?v=' + Date.now();
+      }, 1500);
+    }
+
+    function goToStart() {
+      window.location.href = 'index.html?v=' + Date.now();
+    }
+  </script>
+</body>
+</html>
+

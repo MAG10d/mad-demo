@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="zh-HK">
+<head>
+  <meta charset="utf-8"/>
+  <meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+  <title>FoodConnect - 歡迎</title>
+  <link href="https://fonts.googleapis.com" rel="preconnect"/>
+  <link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet"/>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          colors: {
+            "primary": "#4CAF50",
+            "secondary": "#FF9800",
+          },
+          fontFamily: {
+            "display": ["Inter"]
+          },
+        },
+      },
+    }
+  </script>
+  <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined" rel="stylesheet"/>
+  <style>
+    .material-symbols-outlined {
+      font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+    }
+  </style>
+</head>
+<body class="bg-gradient-to-br from-green-500 via-green-600 to-emerald-600 font-display text-white">
+  <div class="max-w-md mx-auto min-h-screen flex flex-col">
+    
+    <!-- Hero Section -->
+    <div class="flex-grow flex flex-col items-center justify-center px-6 py-12">
+      
+      <!-- Logo/Icon -->
+      <div class="mb-8 relative">
+        <div class="w-32 h-32 bg-white/20 backdrop-blur-sm rounded-3xl flex items-center justify-center shadow-2xl">
+          <span class="material-symbols-outlined text-white" style="font-size: 80px; font-variation-settings: 'FILL' 1">restaurant</span>
+        </div>
+        <div class="absolute -top-2 -right-2 w-12 h-12 bg-green-400 rounded-full flex items-center justify-center shadow-lg">
+          <span class="material-symbols-outlined text-white text-2xl" style="font-variation-settings: 'FILL' 1">favorite</span>
+        </div>
+      </div>
+
+      <!-- Title -->
+      <h1 class="text-5xl font-bold mb-3 text-center">FoodConnect</h1>
+      <p class="text-xl text-blue-100 text-center mb-12 px-4">
+        連結剩餘食物與需要的人
+      </p>
+
+      <!-- Feature Highlights -->
+      <div class="space-y-4 w-full mb-8">
+        <div class="flex items-center gap-4 bg-white/10 backdrop-blur-sm rounded-xl p-4">
+          <div class="w-12 h-12 bg-white/20 rounded-full flex items-center justify-center flex-shrink-0">
+            <span class="material-symbols-outlined text-2xl">store</span>
+          </div>
+          <div class="flex-1">
+            <h3 class="font-bold text-lg">商家捐贈剩餘</h3>
+            <p class="text-sm text-blue-100">減少浪費，幫助社區</p>
+          </div>
+        </div>
+
+        <div class="flex items-center gap-4 bg-white/10 backdrop-blur-sm rounded-xl p-4">
+          <div class="w-12 h-12 bg-white/20 rounded-full flex items-center justify-center flex-shrink-0">
+            <span class="material-symbols-outlined text-2xl">person</span>
+          </div>
+          <div class="flex-1">
+            <h3 class="font-bold text-lg">個人免費領取</h3>
+            <p class="text-sm text-blue-100">尊嚴、便捷、安全</p>
+          </div>
+        </div>
+
+        <div class="flex items-center gap-4 bg-white/10 backdrop-blur-sm rounded-xl p-4">
+          <div class="w-12 h-12 bg-white/20 rounded-full flex items-center justify-center flex-shrink-0">
+            <span class="material-symbols-outlined text-2xl">volunteer_activism</span>
+          </div>
+          <div class="flex-1">
+            <h3 class="font-bold text-lg">社群夥伴協作</h3>
+            <p class="text-sm text-blue-100">NGO 批量分發支援</p>
+          </div>
+        </div>
+      </div>
+
+    </div>
+
+    <!-- CTA Buttons -->
+    <div class="px-6 pb-8 space-y-3">
+      <button onclick="location.href='login_screen.html'" class="w-full bg-white text-green-600 py-4 rounded-2xl font-bold text-lg shadow-xl hover:shadow-2xl transition-all">
+        登入
+      </button>
+      <button onclick="location.href='register_screen.html'" class="w-full bg-white/20 backdrop-blur-sm text-white border-2 border-white/40 py-4 rounded-2xl font-bold text-lg hover:bg-white/30 transition-all">
+        註冊新帳號
+      </button>
+      <p class="text-center text-sm text-green-100 mt-4">
+        繼續即代表您同意我們的<a href="#" class="underline">服務條款</a>和<a href="#" class="underline">私隱政策</a>
+      </p>
+    </div>
+
+  </div>
+</body>
+</html>
+

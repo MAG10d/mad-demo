@@ -1,0 +1,167 @@
+<!DOCTYPE html>
+<html lang="zh-HK">
+<head>
+  <meta charset="utf-8"/>
+  <meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+  <title>FoodConnect - 發佈歷史</title>
+  <link href="https://fonts.googleapis.com" rel="preconnect"/>
+  <link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet"/>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          colors: { 
+            "primary": "#4CAF50",
+            "secondary": "#FF9800",
+          },
+          fontFamily: { "display": ["Inter"] },
+        },
+      },
+    }
+  </script>
+  <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined" rel="stylesheet"/>
+  <style>
+    .material-symbols-outlined { font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24; }
+  </style>
+</head>
+<body class="bg-gray-50 font-display">
+  <div class="max-w-md mx-auto min-h-screen flex flex-col pb-20">
+    
+    <!-- Header - Mobile App Style -->
+    <header class="bg-white px-4 py-4 border-b border-gray-200 flex items-center gap-3">
+      <button onclick="history.back()" class="p-2 -ml-2 rounded-full hover:bg-gray-100">
+        <span class="material-symbols-outlined">arrow_back</span>
+      </button>
+      <h1 class="text-xl font-bold flex-1">發佈歷史</h1>
+    </header>
+
+    <!-- Stats Summary -->
+    <div class="bg-gradient-to-r from-green-500 to-emerald-600 text-white p-4">
+      <div class="grid grid-cols-3 gap-3">
+        <div class="text-center">
+          <p class="text-2xl font-bold">142</p>
+          <p class="text-xs opacity-90 mt-1">總發佈</p>
+        </div>
+        <div class="text-center">
+          <p class="text-2xl font-bold">98%</p>
+          <p class="text-xs opacity-90 mt-1">領取率</p>
+        </div>
+        <div class="text-center">
+          <p class="text-2xl font-bold">856</p>
+          <p class="text-xs opacity-90 mt-1">總份數</p>
+        </div>
+      </div>
+    </div>
+
+    <main class="flex-grow overflow-y-auto p-4 space-y-4">
+      
+      <!-- Timeline -->
+      <div class="relative">
+        <div class="absolute left-8 top-0 bottom-0 w-0.5 bg-gray-200"></div>
+        
+        <!-- History Item 1 -->
+        <div class="relative flex gap-3 mb-4">
+          <div class="flex-shrink-0 w-16 pt-1">
+            <div class="w-8 h-8 bg-green-500 rounded-full flex items-center justify-center text-white text-xs font-bold relative z-10">
+              ✓
+            </div>
+            <p class="text-xs text-gray-500 mt-1">2天前</p>
+          </div>
+          <div class="flex-1 bg-white rounded-xl p-3 shadow-sm">
+            <div class="flex gap-2">
+              <img src="https://images.unsplash.com/photo-1509440159596-0249088772ff?w=200&h=200&fit=crop" alt="Bread" class="w-16 h-16 rounded object-cover"/>
+              <div class="flex-1">
+                <h3 class="font-bold text-sm">每日麵包</h3>
+                <p class="text-xs text-gray-500 mt-1">陽光烘焙坊</p>
+                <div class="flex items-center gap-2 mt-2">
+                  <span class="bg-green-100 text-green-700 px-2 py-0.5 rounded text-xs font-semibold">已完成</span>
+                  <span class="text-xs text-gray-400">20/20 已領</span>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- History Item 2 -->
+        <div class="relative flex gap-3 mb-4">
+          <div class="flex-shrink-0 w-16 pt-1">
+            <div class="w-8 h-8 bg-blue-500 rounded-full flex items-center justify-center text-white text-xs font-bold relative z-10">
+              ⏳
+            </div>
+            <p class="text-xs text-gray-500 mt-1">昨天</p>
+          </div>
+          <div class="flex-1 bg-white rounded-xl p-3 shadow-sm">
+            <div class="flex gap-2">
+              <img src="https://images.unsplash.com/photo-1546069901-ba9599a7e63c?w=200&h=200&fit=crop" alt="Salad" class="w-16 h-16 rounded object-cover"/>
+              <div class="flex-1">
+                <h3 class="font-bold text-sm">新鮮蔬菜沙拉</h3>
+                <p class="text-xs text-gray-500 mt-1">綠色餐廳</p>
+                <div class="flex items-center gap-2 mt-2">
+                  <span class="bg-blue-100 text-blue-700 px-2 py-0.5 rounded text-xs font-semibold">進行中</span>
+                  <span class="text-xs text-gray-400">5/10 已領</span>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- History Item 3 -->
+        <div class="relative flex gap-3 mb-4">
+          <div class="flex-shrink-0 w-16 pt-1">
+            <div class="w-8 h-8 bg-green-500 rounded-full flex items-center justify-center text-white text-xs font-bold relative z-10">
+              ✓
+            </div>
+            <p class="text-xs text-gray-500 mt-1">1週前</p>
+          </div>
+          <div class="flex-1 bg-white rounded-xl p-3 shadow-sm">
+            <div class="flex gap-2">
+              <img src="https://images.unsplash.com/photo-1628776047620-c8f41409e15a?w=200&h=200&fit=crop" alt="Canned" class="w-16 h-16 rounded object-cover"/>
+              <div class="flex-1">
+                <h3 class="font-bold text-sm">罐裝食品包</h3>
+                <p class="text-xs text-gray-500 mt-1">萬家超市</p>
+                <div class="flex items-center gap-2 mt-2">
+                  <span class="bg-green-100 text-green-700 px-2 py-0.5 rounded text-xs font-semibold">已完成</span>
+                  <span class="text-xs text-gray-400">50/50 已領</span>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- More items -->
+        <div class="text-center py-4">
+          <button class="text-primary text-sm font-semibold">載入更多</button>
+        </div>
+
+      </div>
+
+    </main>
+
+    <!-- Bottom Navigation -->
+    <footer class="bg-white border-t border-gray-200 px-4 py-2 fixed bottom-0 left-0 right-0 max-w-md mx-auto">
+      <nav class="flex justify-around">
+        <a class="flex flex-col items-center gap-1 text-gray-400 py-2" href="volunteer_dashboard.html">
+          <span class="material-symbols-outlined text-2xl">volunteer_activism</span>
+          <span class="text-xs font-medium">我的任務</span>
+        </a>
+        <a class="flex flex-col items-center gap-1 text-gray-400 py-2" href="volunteer_merchants.html">
+          <span class="material-symbols-outlined text-2xl">store</span>
+          <span class="text-xs font-medium">商家</span>
+        </a>
+        <a class="flex flex-col items-center gap-1 text-primary py-2" href="volunteer_history.html">
+          <span class="material-symbols-outlined text-2xl" style="font-variation-settings: 'FILL' 1">history</span>
+          <span class="text-xs font-bold">歷史</span>
+        </a>
+        <a class="flex flex-col items-center gap-1 text-gray-400 py-2" href="profile_volunteer.html">
+          <span class="material-symbols-outlined text-2xl">person</span>
+          <span class="text-xs font-medium">我的</span>
+        </a>
+      </nav>
+    </footer>
+
+  </div>
+</body>
+</html>
+

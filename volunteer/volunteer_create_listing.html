@@ -1,0 +1,181 @@
+<!DOCTYPE html>
+<html lang="zh-HK">
+<head>
+  <meta charset="utf-8"/>
+  <meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+  <title>FoodConnect - 為商家發佈捐贈</title>
+  <link href="https://fonts.googleapis.com" rel="preconnect"/>
+  <link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet"/>
+  <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+  <script>
+    tailwind.config = {
+      darkMode: "class",
+      theme: {
+        extend: {
+          colors: {
+            "primary": "#4CAF50",
+            "secondary": "#FF9800",
+            "background-light": "#f6f7f8",
+            "background-dark": "#101922",
+          },
+          fontFamily: {
+            "display": ["Inter"]
+          },
+        },
+      },
+    }
+  </script>
+  <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined" rel="stylesheet"/>
+  <style>
+    .material-symbols-outlined {
+      font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+    }
+  </style>
+</head>
+<body class="bg-background-light dark:bg-background-dark font-display text-gray-800 dark:text-gray-200">
+  <div class="max-w-md mx-auto min-h-screen flex flex-col pb-24">
+    
+    <!-- Header - Mobile App Style -->
+    <header class="bg-white dark:bg-gray-900 px-4 py-4 sticky top-0 z-10 shadow-sm flex items-center gap-3">
+      <button onclick="history.back()" class="p-2 -ml-2 rounded-full hover:bg-gray-100 dark:hover:bg-gray-800">
+        <span class="material-symbols-outlined">close</span>
+      </button>
+      <div class="flex-1">
+        <h1 class="text-xl font-bold">為商家發佈捐贈</h1>
+        <p class="text-xs text-gray-500 dark:text-gray-400">幫助商家上架剩餘食物</p>
+      </div>
+    </header>
+
+    <!-- Main Content -->
+    <main class="flex-grow overflow-y-auto px-4 py-4">
+      
+      <!-- 選擇商家（志工特有） -->
+      <div class="bg-gradient-to-br from-green-50 to-emerald-50 dark:from-green-900/20 dark:to-emerald-900/20 border-2 border-green-200 dark:border-green-800 rounded-xl p-4 mb-4">
+        <label class="block text-sm font-bold mb-2 text-green-900 dark:text-green-200 flex items-center gap-2">
+          <span class="material-symbols-outlined">store</span>
+          選擇商家 *
+        </label>
+        <select class="w-full rounded-lg border-green-300 dark:border-green-700 bg-white dark:bg-gray-800 focus:border-green-500 focus:ring-green-500">
+          <option>陽光烘焙坊</option>
+          <option>綠色餐廳</option>
+          <option>萬家超市</option>
+          <option>香料屋餐廳</option>
+          <option>皇家大酒店</option>
+        </select>
+        <p class="text-xs text-green-700 dark:text-green-300 mt-2">
+          ✓ 您正在以志工身份代表商家發佈
+        </p>
+      </div>
+
+      <form class="space-y-4">
+        
+        <!-- 食物標題 -->
+        <div>
+          <label class="block text-sm font-bold mb-2">食物標題 *</label>
+          <input type="text" placeholder="例如：新鮮麵包、蔬菜沙拉..." class="w-full rounded-lg border-gray-300 dark:border-gray-700 bg-white dark:bg-gray-800 focus:border-primary focus:ring-primary"/>
+        </div>
+
+        <!-- 照片上傳 -->
+        <div>
+          <label class="block text-sm font-bold mb-2">食物照片 *</label>
+          <div class="border-2 border-dashed border-gray-300 dark:border-gray-700 rounded-lg p-6 text-center hover:border-primary transition-colors cursor-pointer">
+            <span class="material-symbols-outlined text-4xl text-gray-400 mb-2">add_photo_alternate</span>
+            <p class="text-sm text-gray-600 dark:text-gray-400">點擊或拖曳上傳照片</p>
+          </div>
+        </div>
+
+        <!-- 數量 -->
+        <div>
+          <label class="block text-sm font-bold mb-2">總數量 *</label>
+          <input type="number" value="10" min="1" class="w-full rounded-lg border-gray-300 dark:border-gray-700 bg-white dark:bg-gray-800 focus:border-primary focus:ring-primary"/>
+        </div>
+
+        <!-- 領取時段 -->
+        <div>
+          <label class="block text-sm font-bold mb-2">領取時段 *</label>
+          <div class="grid grid-cols-2 gap-3">
+            <div>
+              <label class="block text-xs text-gray-500 dark:text-gray-400 mb-1">開始時間</label>
+              <input type="time" value="17:00" class="w-full rounded-lg border-gray-300 dark:border-gray-700 bg-white dark:bg-gray-800 focus:border-primary focus:ring-primary"/>
+            </div>
+            <div>
+              <label class="block text-xs text-gray-500 dark:text-gray-400 mb-1">結束時間</label>
+              <input type="time" value="21:00" class="w-full rounded-lg border-gray-300 dark:border-gray-700 bg-white dark:bg-gray-800 focus:border-primary focus:ring-primary"/>
+            </div>
+          </div>
+        </div>
+
+        <!-- 食物有效期 -->
+        <div>
+          <label class="block text-sm font-bold mb-2">食物有效期 *</label>
+          <input type="datetime-local" class="w-full rounded-lg border-gray-300 dark:border-gray-700 bg-white dark:bg-gray-800 focus:border-primary focus:ring-primary"/>
+        </div>
+
+        <!-- 食物標籤 -->
+        <div>
+          <label class="block text-sm font-bold mb-2">食物標籤</label>
+          <div class="flex flex-wrap gap-2">
+            <label class="flex items-center gap-2 px-3 py-2 rounded-full border-2 border-gray-300 dark:border-gray-700 cursor-pointer has-[:checked]:bg-green-100 has-[:checked]:border-green-500 has-[:checked]:text-green-700">
+              <input type="checkbox" class="sr-only"/>
+              <span class="text-sm font-medium">素食</span>
+            </label>
+            <label class="flex items-center gap-2 px-3 py-2 rounded-full border-2 border-gray-300 dark:border-gray-700 cursor-pointer has-[:checked]:bg-green-100 has-[:checked]:border-green-500 has-[:checked]:text-green-700">
+              <input type="checkbox" class="sr-only"/>
+              <span class="text-sm font-medium">純素</span>
+            </label>
+            <label class="flex items-center gap-2 px-3 py-2 rounded-full border-2 border-gray-300 dark:border-gray-700 cursor-pointer has-[:checked]:bg-emerald-100 has-[:checked]:border-emerald-500 has-[:checked]:text-emerald-700">
+              <input type="checkbox" class="sr-only"/>
+              <span class="text-sm font-medium">Halal 清真</span>
+            </label>
+            <label class="flex items-center gap-2 px-3 py-2 rounded-full border-2 border-gray-300 dark:border-gray-700 cursor-pointer has-[:checked]:bg-blue-100 has-[:checked]:border-blue-500 has-[:checked]:text-blue-700">
+              <input type="checkbox" class="sr-only"/>
+              <span class="text-sm font-medium">不含豬肉</span>
+            </label>
+          </div>
+        </div>
+
+        <!-- 描述 -->
+        <div>
+          <label class="block text-sm font-bold mb-2">食物描述</label>
+          <textarea rows="4" placeholder="描述食物內容、份量、注意事項等..." class="w-full rounded-lg border-gray-300 dark:border-gray-700 bg-white dark:bg-gray-800 focus:border-primary focus:ring-primary"></textarea>
+        </div>
+
+      </form>
+
+    </main>
+
+    <!-- 固定底部按鈕 -->
+    <div class="fixed bottom-0 left-0 right-0 bg-white dark:bg-gray-900 border-t border-gray-200 dark:border-gray-800 p-4 max-w-md mx-auto">
+      <button onclick="publishListing()" class="w-full bg-gradient-to-r from-primary to-green-600 text-white py-4 rounded-2xl font-bold text-lg shadow-lg hover:shadow-xl transition-all flex items-center justify-center gap-2">
+        <span class="material-symbols-outlined text-2xl" style="font-variation-settings: 'FILL' 1">publish</span>
+        發佈捐贈
+      </button>
+    </div>
+
+  </div>
+
+  <script src="../common/ui_components.js"></script>
+  <script>
+    function publishListing() {
+      showConfirm(
+        '確認發佈',
+        '確認要發佈這個捐贈嗎？\n\n發佈後，領取者將能看到並領取此捐贈。',
+        'handlePublishSuccess()'
+      );
+    }
+
+    function handlePublishSuccess() {
+      showSuccess(
+        '發佈成功！',
+        '您已成功為商家發佈捐贈。\n\n可在「我的任務」中查看狀態。',
+        '返回',
+        () => { history.back(); }
+      );
+    }
+  </script>
+</body>
+</html>
+
+
+

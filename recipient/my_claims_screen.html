@@ -1,0 +1,265 @@
+<!DOCTYPE html>
+<html lang="zh-HK">
+<head>
+  <meta charset="utf-8"/>
+  <meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+  <title>FoodConnect - 我的領取</title>
+  <link href="https://fonts.googleapis.com" rel="preconnect"/>
+  <link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet"/>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          colors: { 
+            "primary": "#4CAF50",
+            "secondary": "#FF9800",
+          },
+          fontFamily: { "display": ["Inter"] },
+        },
+      },
+    }
+  </script>
+  <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined" rel="stylesheet"/>
+  <style>
+    .material-symbols-outlined { font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24; }
+  </style>
+</head>
+<body class="bg-gray-50 font-display">
+  <div class="max-w-md mx-auto min-h-screen flex flex-col pb-20">
+    
+    <!-- Header - Mobile App Style -->
+    <header class="bg-white px-4 py-4 border-b border-gray-200 flex items-center gap-3">
+      <button onclick="history.back()" class="p-2 -ml-2 rounded-full hover:bg-gray-100">
+        <span class="material-symbols-outlined">arrow_back</span>
+      </button>
+      <h1 class="text-xl font-bold flex-1">我的領取</h1>
+    </header>
+
+    <!-- Tabs -->
+    <div class="sticky top-0 bg-white border-b border-gray-200 px-4 py-2 z-10">
+      <div class="flex gap-4">
+        <button id="tab-ongoing" class="py-2 px-1 border-b-2 border-primary text-primary font-semibold text-sm" onclick="switchTab('ongoing')">
+          進行中 (2)
+        </button>
+        <button id="tab-completed" class="py-2 px-1 border-b-2 border-transparent text-gray-500 font-semibold text-sm" onclick="switchTab('completed')">
+          已完成
+        </button>
+      </div>
+    </div>
+
+    <main class="flex-grow overflow-y-auto">
+      
+      <!-- Ongoing Claims -->
+      <div id="content-ongoing" class="p-4 space-y-3">
+        
+        <!-- Claim Card 1: Confirmed, ready to pick up -->
+        <div class="bg-white rounded-xl shadow-sm border-l-4 border-green-500 overflow-hidden">
+          <div class="p-4">
+            <div class="flex items-center justify-between mb-2">
+              <span class="bg-green-100 text-green-700 px-3 py-1 rounded-full text-xs font-bold">等待領取</span>
+              <span class="text-xs text-gray-500">今天</span>
+            </div>
+            
+            <div class="flex gap-3 mt-3">
+              <img src="https://images.unsplash.com/photo-1546069901-ba9599a7e63c?w=200&h=200&fit=crop" alt="Salad" class="w-20 h-20 rounded-lg object-cover flex-shrink-0"/>
+              <div class="flex-1 min-w-0">
+                <h3 class="font-bold text-base">新鮮蔬菜沙拉</h3>
+                <p class="text-sm text-gray-600 mt-1">綠色餐廳</p>
+                <p class="text-xs text-gray-500 mt-1">
+                  <span class="material-symbols-outlined align-middle text-sm">schedule</span>
+                  今天 18:00-20:00 領取
+                </p>
+                <p class="text-xs text-primary font-semibold mt-1">
+                  <span class="material-symbols-outlined align-middle text-sm">inventory_2</span>
+                  已領取 1 份
+                </p>
+              </div>
+            </div>
+
+            <!-- Actions -->
+            <div class="flex gap-2 mt-4 pt-3 border-t border-gray-100">
+              <button onclick="viewLocation()" class="flex-1 bg-primary/10 text-primary py-2 rounded-lg text-sm font-semibold hover:bg-primary/20 transition-colors flex items-center justify-center gap-1">
+                <span class="material-symbols-outlined text-lg">location_on</span>
+                查看地點
+              </button>
+              <button onclick="contactDonor()" class="flex-1 bg-gray-100 text-gray-700 py-2 rounded-lg text-sm font-semibold hover:bg-gray-200 transition-colors flex items-center justify-center gap-1">
+                <span class="material-symbols-outlined text-lg">chat</span>
+                聯絡
+              </button>
+              <button onclick="cancelClaim()" class="px-4 bg-red-50 text-red-600 py-2 rounded-lg text-sm font-semibold hover:bg-red-100 transition-colors">
+                取消
+              </button>
+            </div>
+          </div>
+        </div>
+
+        <!-- Claim Card 2: Confirmed, later pickup -->
+        <div class="bg-white rounded-xl shadow-sm border-l-4 border-blue-500 overflow-hidden">
+          <div class="p-4">
+            <div class="flex items-center justify-between mb-2">
+              <span class="bg-blue-100 text-blue-700 px-3 py-1 rounded-full text-xs font-bold">已確認</span>
+              <span class="text-xs text-gray-500">明天</span>
+            </div>
+            
+            <div class="flex gap-3 mt-3">
+              <img src="https://images.unsplash.com/photo-1509440159596-0249088772ff?w=200&h=200&fit=crop" alt="Bread" class="w-20 h-20 rounded-lg object-cover flex-shrink-0"/>
+              <div class="flex-1 min-w-0">
+                <h3 class="font-bold text-base">每日麵包</h3>
+                <p class="text-sm text-gray-600 mt-1">陽光烘焙坊</p>
+                <p class="text-xs text-gray-500 mt-1">
+                  <span class="material-symbols-outlined align-middle text-sm">schedule</span>
+                  明天 17:00-21:00 領取
+                </p>
+                <p class="text-xs text-primary font-semibold mt-1">
+                  <span class="material-symbols-outlined align-middle text-sm">inventory_2</span>
+                  已領取 1 份
+                </p>
+              </div>
+            </div>
+
+            <div class="flex gap-2 mt-4 pt-3 border-t border-gray-100">
+              <button onclick="viewLocation()" class="flex-1 bg-primary/10 text-primary py-2 rounded-lg text-sm font-semibold hover:bg-primary/20 transition-colors flex items-center justify-center gap-1">
+                <span class="material-symbols-outlined text-lg">location_on</span>
+                查看地點
+              </button>
+              <button onclick="cancelClaim()" class="px-4 bg-red-50 text-red-600 py-2 rounded-lg text-sm font-semibold hover:bg-red-100 transition-colors">
+                取消
+              </button>
+            </div>
+          </div>
+        </div>
+
+      </div>
+
+      <!-- Completed Claims -->
+      <div id="content-completed" class="p-4 space-y-3" style="display: none;">
+        
+        <!-- Completed Claim - Pending Rating -->
+        <div class="bg-white rounded-xl shadow-sm overflow-hidden">
+          <div class="p-4">
+            <div class="flex items-center justify-between mb-2">
+              <span class="bg-gray-100 text-gray-700 px-3 py-1 rounded-full text-xs font-bold">已完成</span>
+              <span class="text-xs text-gray-500">3天前</span>
+            </div>
+            
+            <div class="flex gap-3 mt-3">
+              <img src="https://images.unsplash.com/photo-1628776047620-c8f41409e15a?w=200&h=200&fit=crop" alt="Soup" class="w-20 h-20 rounded-lg object-cover flex-shrink-0"/>
+              <div class="flex-1 min-w-0">
+                <h3 class="font-bold text-base">今日湯品</h3>
+                <p class="text-sm text-gray-600 mt-1">綠色餐廳</p>
+                <p class="text-xs text-gray-500 mt-1">
+                  ✓ 已於 3天前 領取
+                </p>
+              </div>
+            </div>
+
+            <!-- Rating CTA (FR-22) -->
+            <div class="mt-4 pt-3 border-t border-gray-100">
+              <button onclick="location.href='../common/rating_screen.html'" class="w-full bg-yellow-50 border border-yellow-200 text-yellow-800 py-3 rounded-lg text-sm font-semibold hover:bg-yellow-100 transition-colors flex items-center justify-center gap-2">
+                <span class="material-symbols-outlined">star</span>
+                為這次交易評分
+              </button>
+            </div>
+          </div>
+        </div>
+
+        <!-- Completed Claim - Already Rated -->
+        <div class="bg-white rounded-xl shadow-sm overflow-hidden">
+          <div class="p-4">
+            <div class="flex items-center justify-between mb-2">
+              <span class="bg-gray-100 text-gray-700 px-3 py-1 rounded-full text-xs font-bold">已完成</span>
+              <span class="text-xs text-gray-500">1週前</span>
+            </div>
+            
+            <div class="flex gap-3 mt-3">
+              <img src="https://images.unsplash.com/photo-1585937421612-70a008356fbe?w=200&h=200&fit=crop" alt="Rice" class="w-20 h-20 rounded-lg object-cover flex-shrink-0"/>
+              <div class="flex-1 min-w-0">
+                <h3 class="font-bold text-base">印度香料飯套餐</h3>
+                <p class="text-sm text-gray-600 mt-1">香料屋餐廳</p>
+                <p class="text-xs text-gray-500 mt-1">
+                  ✓ 已於 1週前 領取
+                </p>
+                <div class="flex items-center gap-1 mt-2 text-yellow-500">
+                  <span class="material-symbols-outlined text-sm" style="font-variation-settings: 'FILL' 1">star</span>
+                  <span class="material-symbols-outlined text-sm" style="font-variation-settings: 'FILL' 1">star</span>
+                  <span class="material-symbols-outlined text-sm" style="font-variation-settings: 'FILL' 1">star</span>
+                  <span class="material-symbols-outlined text-sm" style="font-variation-settings: 'FILL' 1">star</span>
+                  <span class="material-symbols-outlined text-sm" style="font-variation-settings: 'FILL' 1">star</span>
+                  <span class="text-xs text-gray-600 ml-1">您的評分</span>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+      </div>
+
+    </main>
+
+    <!-- Bottom Navigation -->
+    <footer class="bg-white border-t border-gray-200 px-4 py-2 fixed bottom-0 left-0 right-0 max-w-md mx-auto">
+      <nav class="flex justify-around">
+        <a class="flex flex-col items-center gap-1 text-gray-400 py-2" href="individual_recipient_home.html">
+          <span class="material-symbols-outlined text-2xl">home</span>
+          <span class="text-xs font-medium">首頁</span>
+        </a>
+        <a class="flex flex-col items-center gap-1 text-gray-400 py-2" href="favorites_screen.html">
+          <span class="material-symbols-outlined text-2xl">favorite</span>
+          <span class="text-xs font-medium">我的最愛</span>
+        </a>
+        <a class="flex flex-col items-center gap-1 text-primary py-2" href="#">
+          <span class="material-symbols-outlined text-2xl" style="font-variation-settings: 'FILL' 1">receipt_long</span>
+          <span class="text-xs font-bold">我的領取</span>
+        </a>
+        <a class="flex flex-col items-center gap-1 text-gray-400 py-2" href="profile_recipient.html">
+          <span class="material-symbols-outlined text-2xl">person</span>
+          <span class="text-xs font-medium">我的</span>
+        </a>
+      </nav>
+    </footer>
+
+  </div>
+
+  <script src="../common/ui_components.js"></script>
+  <script>
+    function switchTab(tab) {
+      if (tab === 'ongoing') {
+        document.getElementById('tab-ongoing').className = "py-2 px-1 border-b-2 border-primary text-primary font-semibold text-sm";
+        document.getElementById('tab-completed').className = "py-2 px-1 border-b-2 border-transparent text-gray-500 font-semibold text-sm";
+        document.getElementById('content-ongoing').style.display = 'block';
+        document.getElementById('content-completed').style.display = 'none';
+      } else {
+        document.getElementById('tab-ongoing').className = "py-2 px-1 border-b-2 border-transparent text-gray-500 font-semibold text-sm";
+        document.getElementById('tab-completed').className = "py-2 px-1 border-b-2 border-primary text-primary font-semibold text-sm";
+        document.getElementById('content-ongoing').style.display = 'none';
+        document.getElementById('content-completed').style.display = 'block';
+      }
+    }
+
+    function contactDonor() {
+      location.href = '../common/messaging_screen.html';
+    }
+
+    function cancelClaim() {
+      showConfirm(
+        '取消領取',
+        '確定要取消這次領取嗎？\n\n取消後其他人可以領取這份食物。',
+        'handleCancelSuccess()'
+      );
+    }
+
+    function handleCancelSuccess() {
+      showToast('領取已取消');
+      setTimeout(() => location.reload(), 1500);
+    }
+
+    function viewLocation() {
+      showToast('正在打開地圖...', 'info');
+      // 實際應用中會打開地圖應用
+    }
+  </script>
+</body>
+</html>
+

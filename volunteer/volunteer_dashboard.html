@@ -1,0 +1,297 @@
+<!DOCTYPE html>
+<html lang="zh-HK">
+<head>
+  <meta charset="utf-8"/>
+  <meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+  <title>FoodConnect - 志工儀表板</title>
+  <link href="https://fonts.googleapis.com" rel="preconnect"/>
+  <link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet"/>
+  <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+  <script>
+    tailwind.config = {
+      darkMode: "class",
+      theme: {
+        extend: {
+          colors: {
+            "primary": "#4CAF50",
+            "secondary": "#FF9800",
+            "background-light": "#f6f7f8",
+            "background-dark": "#101922",
+          },
+          fontFamily: {
+            "display": ["Inter"]
+          },
+        },
+      },
+    }
+  </script>
+  <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined" rel="stylesheet"/>
+  <style>
+    .material-symbols-outlined {
+      font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+    }
+  </style>
+</head>
+<body class="bg-background-light dark:bg-background-dark font-display text-gray-800 dark:text-gray-200">
+  <div class="max-w-md mx-auto min-h-screen flex flex-col">
+    
+    <!-- Header -->
+    <header class="bg-gradient-to-r from-green-500 to-emerald-600 text-white px-4 py-5">
+      <div class="flex items-center justify-between mb-4">
+        <div>
+          <p class="text-xs opacity-90 flex items-center gap-1">
+            <span class="material-symbols-outlined text-sm">volunteer_activism</span>
+            志工帳號
+          </p>
+          <h1 class="text-xl font-bold">李志明</h1>
+        </div>
+        <button class="p-2 rounded-full hover:bg-white/10">
+          <span class="material-symbols-outlined">notifications</span>
+        </button>
+      </div>
+      
+      <!-- 志工統計 -->
+      <div class="grid grid-cols-3 gap-2">
+        <div class="bg-white/10 backdrop-blur-sm rounded-lg p-3 text-center">
+          <p class="text-2xl font-bold">28</p>
+          <p class="text-xs opacity-90 mt-1">本月幫助</p>
+        </div>
+        <div class="bg-white/10 backdrop-blur-sm rounded-lg p-3 text-center">
+          <p class="text-2xl font-bold">5</p>
+          <p class="text-xs opacity-90 mt-1">合作商家</p>
+        </div>
+        <div class="bg-white/10 backdrop-blur-sm rounded-lg p-3 text-center">
+          <p class="text-2xl font-bold">142</p>
+          <p class="text-xs opacity-90 mt-1">總發佈數</p>
+        </div>
+      </div>
+    </header>
+
+    <!-- Main Content -->
+    <main class="flex-grow overflow-y-auto">
+      
+      <!-- 核心操作：巨大的 CTA -->
+      <div class="p-4">
+        <button onclick="goToCreateListing()" class="w-full bg-gradient-to-r from-primary to-blue-600 text-white rounded-2xl p-6 shadow-xl hover:shadow-2xl transition-all">
+          <div class="flex items-center justify-center gap-3 mb-2">
+            <span class="material-symbols-outlined text-4xl" style="font-variation-settings: 'FILL' 1">add_circle</span>
+            <span class="text-2xl font-bold">為商家發佈捐贈</span>
+          </div>
+          <p class="text-sm opacity-90">幫助合作商家上架剩餘食物</p>
+        </button>
+      </div>
+
+      <!-- 合作商家列表 -->
+      <div class="px-4 pb-4">
+        <div class="flex items-center justify-between mb-3">
+          <h2 class="text-lg font-bold">我的合作商家</h2>
+          <button class="text-primary text-sm font-semibold flex items-center gap-1">
+            <span class="material-symbols-outlined text-lg">add</span>
+            新增
+          </button>
+        </div>
+
+        <div class="space-y-3">
+          
+          <!-- 商家卡片 1 -->
+          <div class="bg-white dark:bg-gray-900 rounded-xl p-4 shadow-sm">
+            <div class="flex items-start gap-3">
+              <div class="w-14 h-14 bg-gradient-to-br from-orange-400 to-orange-600 rounded-lg flex items-center justify-center text-white font-bold text-xl flex-shrink-0">
+                陽
+              </div>
+              <div class="flex-1 min-w-0">
+                <div class="flex items-start justify-between gap-2">
+                  <div>
+                    <h3 class="font-bold text-base">陽光烘焙坊</h3>
+                    <p class="text-xs text-gray-500 dark:text-gray-400 mt-0.5">觀塘道56號</p>
+                  </div>
+                  <span class="bg-green-100 dark:bg-green-900 text-green-700 dark:text-green-300 px-2 py-1 rounded-full text-xs font-semibold flex-shrink-0">
+                    活躍
+                  </span>
+                </div>
+                <div class="flex items-center gap-4 mt-3 text-xs text-gray-600 dark:text-gray-400">
+                  <div>
+                    <span class="font-semibold text-primary">24</span> 次發佈
+                  </div>
+                  <div>
+                    最近: 2天前
+                  </div>
+                </div>
+              </div>
+              <button onclick="createForMerchant('陽光烘焙坊')" class="text-primary p-2">
+                <span class="material-symbols-outlined">add_box</span>
+              </button>
+            </div>
+          </div>
+
+          <!-- 商家卡片 2 -->
+          <div class="bg-white dark:bg-gray-900 rounded-xl p-4 shadow-sm">
+            <div class="flex items-start gap-3">
+              <div class="w-14 h-14 bg-gradient-to-br from-green-400 to-green-600 rounded-lg flex items-center justify-center text-white font-bold text-xl flex-shrink-0">
+                綠
+              </div>
+              <div class="flex-1 min-w-0">
+                <div class="flex items-start justify-between gap-2">
+                  <div>
+                    <h3 class="font-bold text-base">綠色餐廳</h3>
+                    <p class="text-xs text-gray-500 dark:text-gray-400 mt-0.5">觀塘道123號</p>
+                  </div>
+                  <span class="bg-green-100 dark:bg-green-900 text-green-700 dark:text-green-300 px-2 py-1 rounded-full text-xs font-semibold flex-shrink-0">
+                    活躍
+                  </span>
+                </div>
+                <div class="flex items-center gap-4 mt-3 text-xs text-gray-600 dark:text-gray-400">
+                  <div>
+                    <span class="font-semibold text-primary">18</span> 次發佈
+                  </div>
+                  <div>
+                    最近: 昨天
+                  </div>
+                </div>
+              </div>
+              <button onclick="createForMerchant('綠色餐廳')" class="text-primary p-2">
+                <span class="material-symbols-outlined">add_box</span>
+              </button>
+            </div>
+          </div>
+
+          <!-- 商家卡片 3 -->
+          <div class="bg-white dark:bg-gray-900 rounded-xl p-4 shadow-sm">
+            <div class="flex items-start gap-3">
+              <div class="w-14 h-14 bg-gradient-to-br from-blue-400 to-blue-600 rounded-lg flex items-center justify-center text-white font-bold text-xl flex-shrink-0">
+                萬
+              </div>
+              <div class="flex-1 min-w-0">
+                <div class="flex items-start justify-between gap-2">
+                  <div>
+                    <h3 class="font-bold text-base">萬家超市</h3>
+                    <p class="text-xs text-gray-500 dark:text-gray-400 mt-0.5">觀塘道200號</p>
+                  </div>
+                  <span class="bg-yellow-100 dark:bg-yellow-900 text-yellow-700 dark:text-yellow-300 px-2 py-1 rounded-full text-xs font-semibold flex-shrink-0">
+                    普通
+                  </span>
+                </div>
+                <div class="flex items-center gap-4 mt-3 text-xs text-gray-600 dark:text-gray-400">
+                  <div>
+                    <span class="font-semibold text-primary">9</span> 次發佈
+                  </div>
+                  <div>
+                    最近: 1週前
+                  </div>
+                </div>
+              </div>
+              <button onclick="createForMerchant('萬家超市')" class="text-primary p-2">
+                <span class="material-symbols-outlined">add_box</span>
+              </button>
+            </div>
+          </div>
+
+        </div>
+      </div>
+
+      <!-- 我的發佈記錄 -->
+      <div class="px-4 pb-4">
+        <h2 class="text-lg font-bold mb-3">最近發佈</h2>
+
+        <div class="space-y-2">
+          
+          <!-- 發佈記錄 1 -->
+          <div class="bg-white dark:bg-gray-900 rounded-lg p-3 border border-gray-200 dark:border-gray-800">
+            <div class="flex items-center gap-3">
+              <img src="https://images.unsplash.com/photo-1509440159596-0249088772ff?w=200&h=200&fit=crop" alt="Bread" class="w-16 h-16 rounded object-cover flex-shrink-0"/>
+              <div class="flex-1 min-w-0">
+                <h3 class="font-bold text-sm line-clamp-1">每日麵包組合</h3>
+                <p class="text-xs text-gray-500 dark:text-gray-400 mt-0.5">陽光烘焙坊 • 2天前</p>
+                <div class="flex items-center gap-2 mt-1.5">
+                  <span class="bg-green-100 dark:bg-green-900 text-green-700 dark:text-green-300 px-2 py-0.5 rounded text-xs font-semibold">已完成</span>
+                  <span class="text-xs text-gray-400">20份已領取</span>
+                </div>
+              </div>
+              <button class="text-gray-400">
+                <span class="material-symbols-outlined">more_vert</span>
+              </button>
+            </div>
+          </div>
+
+          <!-- 發佈記錄 2 -->
+          <div class="bg-white dark:bg-gray-900 rounded-lg p-3 border border-gray-200 dark:border-gray-800">
+            <div class="flex items-center gap-3">
+              <img src="https://images.unsplash.com/photo-1546069901-ba9599a7e63c?w=200&h=200&fit=crop" alt="Salad" class="w-16 h-16 rounded object-cover flex-shrink-0"/>
+              <div class="flex-1 min-w-0">
+                <h3 class="font-bold text-sm line-clamp-1">新鮮蔬菜沙拉</h3>
+                <p class="text-xs text-gray-500 dark:text-gray-400 mt-0.5">綠色餐廳 • 昨天</p>
+                <div class="flex items-center gap-2 mt-1.5">
+                  <span class="bg-blue-100 dark:bg-blue-900 text-blue-700 dark:text-blue-300 px-2 py-0.5 rounded text-xs font-semibold">進行中</span>
+                  <span class="text-xs text-gray-400">5/10 已領</span>
+                </div>
+              </div>
+              <button class="text-gray-400">
+                <span class="material-symbols-outlined">more_vert</span>
+              </button>
+            </div>
+          </div>
+
+          <!-- 發佈記錄 3 -->
+          <div class="bg-white dark:bg-gray-900 rounded-lg p-3 border border-gray-200 dark:border-gray-800">
+            <div class="flex items-center gap-3">
+              <img src="https://images.unsplash.com/photo-1628776047620-c8f41409e15a?w=200&h=200&fit=crop" alt="Canned" class="w-16 h-16 rounded object-cover flex-shrink-0"/>
+              <div class="flex-1 min-w-0">
+                <h3 class="font-bold text-sm line-clamp-1">罐裝食品包</h3>
+                <p class="text-xs text-gray-500 dark:text-gray-400 mt-0.5">萬家超市 • 1週前</p>
+                <div class="flex items-center gap-2 mt-1.5">
+                  <span class="bg-green-100 dark:bg-green-900 text-green-700 dark:text-green-300 px-2 py-0.5 rounded text-xs font-semibold">已完成</span>
+                  <span class="text-xs text-gray-400">50份已領取</span>
+                </div>
+              </div>
+              <button class="text-gray-400">
+                <span class="material-symbols-outlined">more_vert</span>
+              </button>
+            </div>
+          </div>
+
+        </div>
+      </div>
+
+    </main>
+
+    <!-- Bottom Navigation -->
+    <footer class="bg-white dark:bg-gray-900 border-t border-gray-200 dark:border-gray-800 px-4 py-2 sticky bottom-0">
+      <nav class="flex justify-around">
+        <a class="flex flex-col items-center gap-1 text-primary py-2" href="volunteer_dashboard.html">
+          <span class="material-symbols-outlined text-2xl" style="font-variation-settings: 'FILL' 1">volunteer_activism</span>
+          <span class="text-xs font-bold">我的任務</span>
+        </a>
+        <a class="flex flex-col items-center gap-1 text-gray-400 dark:text-gray-500 py-2" href="volunteer_merchants.html">
+          <span class="material-symbols-outlined text-2xl">store</span>
+          <span class="text-xs font-medium">商家</span>
+        </a>
+        <a class="flex flex-col items-center gap-1 text-gray-400 dark:text-gray-500 py-2" href="volunteer_history.html">
+          <span class="material-symbols-outlined text-2xl">history</span>
+          <span class="text-xs font-medium">歷史</span>
+        </a>
+        <a class="flex flex-col items-center gap-1 text-gray-400 dark:text-gray-500 py-2" href="profile_volunteer.html">
+          <span class="material-symbols-outlined text-2xl">person</span>
+          <span class="text-xs font-medium">我的</span>
+        </a>
+      </nav>
+    </footer>
+
+  </div>
+
+  <script>
+    function goToCreateListing() {
+      window.location.href = 'volunteer_create_listing.html';
+    }
+
+    function createForMerchant(merchantName) {
+      if (confirm(`要為「${merchantName}」發佈新的捐贈嗎？`)) {
+        window.location.href = `volunteer_create_listing.html?merchant=${encodeURIComponent(merchantName)}`;
+      }
+    }
+  </script>
+</body>
+</html>
+
+
+

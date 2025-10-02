@@ -1,0 +1,271 @@
+<!DOCTYPE html>
+<html lang="zh-HK">
+<head>
+  <meta charset="utf-8"/>
+  <meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+  <title>FoodConnect - 社群夥伴儀表板</title>
+  <link href="https://fonts.googleapis.com" rel="preconnect"/>
+  <link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet"/>
+  <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+  <script>
+    tailwind.config = {
+      darkMode: "class",
+      theme: {
+        extend: {
+          colors: {
+            "primary": "#4CAF50",
+            "secondary": "#FF9800",
+            "background-light": "#f6f7f8",
+            "background-dark": "#101922",
+          },
+          fontFamily: {
+            "display": ["Inter"]
+          },
+        },
+      },
+    }
+  </script>
+  <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined" rel="stylesheet"/>
+  <style>
+    .material-symbols-outlined {
+      font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+    }
+  </style>
+</head>
+<body class="bg-background-light dark:bg-background-dark font-display text-gray-800 dark:text-gray-200">
+  <div class="max-w-md mx-auto min-h-screen flex flex-col">
+    
+    <!-- Header: 專業化 -->
+    <header class="bg-gradient-to-r from-primary to-blue-600 text-white px-4 py-5">
+      <div class="flex items-center justify-between mb-4">
+        <div>
+          <p class="text-xs opacity-90">社群夥伴</p>
+          <h1 class="text-xl font-bold">愛心社區中心</h1>
+        </div>
+        <button class="p-2 rounded-full hover:bg-white/10">
+          <span class="material-symbols-outlined">notifications</span>
+        </button>
+      </div>
+      
+      <!-- 快速統計卡片 -->
+      <div class="grid grid-cols-3 gap-2">
+        <div class="bg-white/10 backdrop-blur-sm rounded-lg p-3 text-center">
+          <p class="text-2xl font-bold">42</p>
+          <p class="text-xs opacity-90 mt-1">本週領取</p>
+        </div>
+        <div class="bg-white/10 backdrop-blur-sm rounded-lg p-3 text-center">
+          <p class="text-2xl font-bold">315</p>
+          <p class="text-xs opacity-90 mt-1">總服務人次</p>
+        </div>
+        <div class="bg-white/10 backdrop-blur-sm rounded-lg p-3 text-center">
+          <p class="text-2xl font-bold">18</p>
+          <p class="text-xs opacity-90 mt-1">進行中</p>
+        </div>
+      </div>
+    </header>
+
+    <!-- Main Content -->
+    <main class="flex-grow overflow-y-auto">
+      
+      <!-- 快捷操作區 -->
+      <div class="px-4 py-4 bg-white dark:bg-gray-900 border-b border-gray-200 dark:border-gray-800">
+        <div class="flex gap-2 overflow-x-auto pb-1">
+          <button onclick="location.href='partner_distribution_log.html'" class="flex-shrink-0 flex items-center gap-2 bg-primary/10 text-primary px-4 py-2.5 rounded-lg font-semibold text-sm">
+            <span class="material-symbols-outlined">assignment</span>
+            分發日誌
+          </button>
+          <button onclick="location.href='partner_analytics.html'" class="flex-shrink-0 flex items-center gap-2 bg-gray-100 dark:bg-gray-800 text-gray-700 dark:text-gray-300 px-4 py-2.5 rounded-lg font-semibold text-sm">
+            <span class="material-symbols-outlined">analytics</span>
+            數據報告
+          </button>
+          <button onclick="toggleFilter()" class="flex-shrink-0 flex items-center gap-2 bg-gray-100 dark:bg-gray-800 text-gray-700 dark:text-gray-300 px-4 py-2.5 rounded-lg font-semibold text-sm">
+            <span class="material-symbols-outlined">tune</span>
+            篩選
+          </button>
+        </div>
+      </div>
+
+      <!-- 高密度列表視圖 -->
+      <div class="px-4 py-3">
+        <div class="flex items-center justify-between mb-3">
+          <h2 class="text-sm font-bold text-gray-500 dark:text-gray-400 uppercase tracking-wide">可領取捐贈</h2>
+          <span class="text-xs text-gray-400">共 28 項</span>
+        </div>
+
+        <div class="space-y-2">
+          
+          <!-- 高密度卡片 1: 大批量機會 -->
+          <div class="bg-white dark:bg-gray-900 rounded-lg border-2 border-orange-200 dark:border-orange-800 overflow-hidden" onclick="goToPartnerDetail()">
+            <div class="flex gap-2 p-2.5">
+              <img src="https://images.unsplash.com/photo-1567620905732-2d1ec7ab7445?w=200&h=200&fit=crop" alt="Food" class="w-16 h-16 rounded object-cover flex-shrink-0"/>
+              <div class="flex-1 min-w-0">
+                <div class="flex items-start justify-between gap-1">
+                  <h3 class="font-bold text-sm leading-tight line-clamp-1">五星酒店自助餐剩餘</h3>
+                  <span class="flex-shrink-0 bg-orange-100 dark:bg-orange-900 text-orange-700 dark:text-orange-300 text-xs font-bold px-2 py-0.5 rounded-full">熱門</span>
+                </div>
+                <p class="text-xs text-gray-500 dark:text-gray-400 mt-0.5">皇家大酒店 • 1.2km</p>
+                
+                <!-- 關鍵資訊: 數量 -->
+                <div class="flex items-center gap-3 mt-1.5">
+                  <div class="flex items-center gap-1">
+                    <span class="material-symbols-outlined text-primary text-sm">inventory_2</span>
+                    <span class="text-xs font-bold text-primary">30/50 份可領</span>
+                  </div>
+                  <div class="flex items-center gap-1">
+                    <span class="material-symbols-outlined text-red-500 text-sm">schedule</span>
+                    <span class="text-xs font-semibold text-red-500">3小時</span>
+                  </div>
+                </div>
+                
+                <div class="flex items-center gap-1 mt-1">
+                  <span class="text-xs bg-blue-100 dark:bg-blue-900 text-blue-700 dark:text-blue-300 px-1.5 py-0.5 rounded">不含豬肉</span>
+                  <span class="text-xs bg-green-100 dark:bg-green-900 text-green-700 dark:text-green-300 px-1.5 py-0.5 rounded">素食選擇</span>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- 高密度卡片 2 -->
+          <div class="bg-white dark:bg-gray-900 rounded-lg border border-gray-200 dark:border-gray-800 overflow-hidden" onclick="goToPartnerDetail()">
+            <div class="flex gap-2 p-2.5">
+              <img src="https://images.unsplash.com/photo-1509440159596-0249088772ff?w=200&h=200&fit=crop" alt="Bread" class="w-16 h-16 rounded object-cover flex-shrink-0"/>
+              <div class="flex-1 min-w-0">
+                <h3 class="font-bold text-sm leading-tight line-clamp-1">每日麵包組合</h3>
+                <p class="text-xs text-gray-500 dark:text-gray-400 mt-0.5">陽光烘焙坊 • 300m</p>
+                
+                <div class="flex items-center gap-3 mt-1.5">
+                  <div class="flex items-center gap-1">
+                    <span class="material-symbols-outlined text-primary text-sm">inventory_2</span>
+                    <span class="text-xs font-bold text-primary">12/20 份可領</span>
+                  </div>
+                  <div class="flex items-center gap-1">
+                    <span class="material-symbols-outlined text-orange-500 text-sm">schedule</span>
+                    <span class="text-xs font-semibold text-orange-500">明天</span>
+                  </div>
+                </div>
+                
+                <p class="text-xs text-gray-400 mt-1">今天 17:00-21:00</p>
+              </div>
+            </div>
+          </div>
+
+          <!-- 高密度卡片 3 -->
+          <div class="bg-white dark:bg-gray-900 rounded-lg border border-gray-200 dark:border-gray-800 overflow-hidden" onclick="goToPartnerDetail()">
+            <div class="flex gap-2 p-2.5">
+              <img src="https://images.unsplash.com/photo-1585937421612-70a008356fbe?w=200&h=200&fit=crop" alt="Rice" class="w-16 h-16 rounded object-cover flex-shrink-0"/>
+              <div class="flex-1 min-w-0">
+                <h3 class="font-bold text-sm leading-tight line-clamp-1">印度香料飯套餐</h3>
+                <p class="text-xs text-gray-500 dark:text-gray-400 mt-0.5">香料屋餐廳 • 450m</p>
+                
+                <div class="flex items-center gap-3 mt-1.5">
+                  <div class="flex items-center gap-1">
+                    <span class="material-symbols-outlined text-primary text-sm">inventory_2</span>
+                    <span class="text-xs font-bold text-primary">25/25 份可領</span>
+                  </div>
+                  <div class="flex items-center gap-1">
+                    <span class="material-symbols-outlined text-yellow-600 text-sm">schedule</span>
+                    <span class="text-xs font-semibold text-yellow-600">2天</span>
+                  </div>
+                </div>
+                
+                <div class="flex items-center gap-1 mt-1">
+                  <span class="text-xs bg-emerald-100 dark:bg-emerald-900 text-emerald-700 dark:text-emerald-300 px-1.5 py-0.5 rounded">Halal</span>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- 高密度卡片 4 -->
+          <div class="bg-white dark:bg-gray-900 rounded-lg border border-gray-200 dark:border-gray-800 overflow-hidden" onclick="goToPartnerDetail()">
+            <div class="flex gap-2 p-2.5">
+              <img src="https://images.unsplash.com/photo-1628776047620-c8f41409e15a?w=200&h=200&fit=crop" alt="Canned" class="w-16 h-16 rounded object-cover flex-shrink-0"/>
+              <div class="flex-1 min-w-0">
+                <h3 class="font-bold text-sm leading-tight line-clamp-1">罐裝食品包</h3>
+                <p class="text-xs text-gray-500 dark:text-gray-400 mt-0.5">萬家超市 • 600m</p>
+                
+                <div class="flex items-center gap-3 mt-1.5">
+                  <div class="flex items-center gap-1">
+                    <span class="material-symbols-outlined text-primary text-sm">inventory_2</span>
+                    <span class="text-xs font-bold text-primary">40/50 份可領</span>
+                  </div>
+                  <div class="flex items-center gap-1">
+                    <span class="material-symbols-outlined text-gray-500 text-sm">schedule</span>
+                    <span class="text-xs font-semibold text-gray-600 dark:text-gray-400">一週</span>
+                  </div>
+                </div>
+                
+                <p class="text-xs text-gray-400 mt-1">週三 09:00-18:00</p>
+              </div>
+            </div>
+          </div>
+
+          <!-- 高密度卡片 5 -->
+          <div class="bg-white dark:bg-gray-900 rounded-lg border border-gray-200 dark:border-gray-800 overflow-hidden" onclick="goToPartnerDetail()">
+            <div class="flex gap-2 p-2.5">
+              <img src="https://images.unsplash.com/photo-1546069901-ba9599a7e63c?w=200&h=200&fit=crop" alt="Salad" class="w-16 h-16 rounded object-cover flex-shrink-0"/>
+              <div class="flex-1 min-w-0">
+                <h3 class="font-bold text-sm leading-tight line-clamp-1">新鮮蔬菜沙拉</h3>
+                <p class="text-xs text-gray-500 dark:text-gray-400 mt-0.5">綠色餐廳 • 150m</p>
+                
+                <div class="flex items-center gap-3 mt-1.5">
+                  <div class="flex items-center gap-1">
+                    <span class="material-symbols-outlined text-primary text-sm">inventory_2</span>
+                    <span class="text-xs font-bold text-primary">5/10 份可領</span>
+                  </div>
+                  <div class="flex items-center gap-1">
+                    <span class="material-symbols-outlined text-red-500 text-sm">schedule</span>
+                    <span class="text-xs font-semibold text-red-500">2小時</span>
+                  </div>
+                </div>
+                
+                <div class="flex items-center gap-1 mt-1">
+                  <span class="text-xs bg-green-100 dark:bg-green-900 text-green-700 dark:text-green-300 px-1.5 py-0.5 rounded">素食</span>
+                  <span class="text-xs bg-green-100 dark:bg-green-900 text-green-700 dark:text-green-300 px-1.5 py-0.5 rounded">純素</span>
+                </div>
+              </div>
+            </div>
+          </div>
+
+        </div>
+      </div>
+    </main>
+
+    <!-- Bottom Navigation -->
+    <footer class="bg-white dark:bg-gray-900 border-t border-gray-200 dark:border-gray-800 px-4 py-2 sticky bottom-0">
+      <nav class="flex justify-around">
+        <a class="flex flex-col items-center gap-1 text-purple-600 py-2" href="community_partner_dashboard.html">
+          <span class="material-symbols-outlined text-2xl" style="font-variation-settings: 'FILL' 1">dashboard</span>
+          <span class="text-xs font-bold">儀表板</span>
+        </a>
+        <a class="flex flex-col items-center gap-1 text-gray-400 dark:text-gray-500 py-2" href="partner_distribution_log.html">
+          <span class="material-symbols-outlined text-2xl">assignment</span>
+          <span class="text-xs font-medium">分發日誌</span>
+        </a>
+        <a class="flex flex-col items-center gap-1 text-gray-400 dark:text-gray-500 py-2" href="partner_analytics.html">
+          <span class="material-symbols-outlined text-2xl">bar_chart</span>
+          <span class="text-xs font-medium">數據</span>
+        </a>
+        <a class="flex flex-col items-center gap-1 text-gray-400 dark:text-gray-500 py-2" href="profile_partner.html">
+          <span class="material-symbols-outlined text-2xl">person</span>
+          <span class="text-xs font-medium">我的</span>
+        </a>
+      </nav>
+    </footer>
+
+  </div>
+
+  <script>
+    function goToPartnerDetail() {
+      window.location.href = 'community_partner_detail.html';
+    }
+
+    function toggleFilter() {
+      alert('高級篩選：\n- 最小數量\n- 食物類型\n- 距離範圍\n- 時段\n- 標籤（Halal, 素食等）');
+    }
+  </script>
+</body>
+</html>
+
+
+

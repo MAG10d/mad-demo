@@ -1,0 +1,499 @@
+<!DOCTYPE html>
+<html lang="zh-HK">
+<head>
+  <meta charset="utf-8"/>
+  <meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+  <title>FoodConnect - 角色為本 UI/UX 設計展示</title>
+  <link href="https://fonts.googleapis.com" rel="preconnect"/>
+  <link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet"/>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          fontFamily: {
+            "display": ["Inter"]
+          },
+        },
+      },
+    }
+  </script>
+  <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined" rel="stylesheet"/>
+  <style>
+    .material-symbols-outlined {
+      font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+    }
+  </style>
+</head>
+<body class="bg-gray-50 font-display">
+  <div class="max-w-6xl mx-auto px-4 py-8">
+    
+    <!-- Header -->
+    <header class="text-center mb-12">
+      <h1 class="text-4xl font-bold text-gray-900 mb-2">FoodConnect</h1>
+      <p class="text-xl text-gray-600">角色為本 UI/UX 設計展示</p>
+      <p class="text-sm text-gray-500 mt-2">Role-Based User Interface Design</p>
+    </header>
+
+    <!-- 核心理念 -->
+    <div class="bg-gradient-to-r from-green-500 to-green-600 text-white rounded-2xl p-8 mb-12 shadow-xl">
+      <h2 class="text-2xl font-bold mb-4">✨ 設計理念</h2>
+      <p class="text-lg mb-4">
+        不同角色的用戶有不同的需求、目標和使用情境。<br/>
+        我們為每個角色設計了量身定做的界面，而不是「一刀切」的通用設計。
+      </p>
+      <div class="grid grid-cols-1 md:grid-cols-3 gap-4 mt-6">
+        <div class="bg-white/10 backdrop-blur-sm rounded-lg p-4">
+          <p class="font-bold mb-1">👤 個人領取者</p>
+          <p class="text-sm opacity-90">簡潔、直觀、保護隱私</p>
+        </div>
+        <div class="bg-white/10 backdrop-blur-sm rounded-lg p-4">
+          <p class="font-bold mb-1">🏢 社群夥伴</p>
+          <p class="text-sm opacity-90">高效、批量處理、數據為本</p>
+        </div>
+        <div class="bg-white/10 backdrop-blur-sm rounded-lg p-4">
+          <p class="font-bold mb-1">👷 志工</p>
+          <p class="text-sm opacity-90">任務導向、代表他人操作</p>
+        </div>
+      </div>
+    </div>
+
+    <!-- App Flow Navigation -->
+    <div class="bg-gradient-to-r from-purple-500 to-purple-600 text-white rounded-2xl p-8 mb-12 shadow-xl">
+      <h2 class="text-2xl font-bold mb-4">📱 完整 App 流程</h2>
+      <p class="text-lg mb-6">
+        從歡迎頁到完成交易的完整用戶旅程
+      </p>
+      <div class="grid grid-cols-2 gap-3">
+        <a href="common/welcome_screen.html" class="bg-white/20 backdrop-blur-sm rounded-lg p-3 text-center hover:bg-white/30 transition-all">
+          <span class="material-symbols-outlined text-3xl mb-1">waving_hand</span>
+          <p class="text-sm font-semibold">歡迎頁</p>
+        </a>
+        <a href="common/login_screen.html" class="bg-white/20 backdrop-blur-sm rounded-lg p-3 text-center hover:bg-white/30 transition-all">
+          <span class="material-symbols-outlined text-3xl mb-1">login</span>
+          <p class="text-sm font-semibold">登入</p>
+        </a>
+        <a href="common/register_screen.html" class="bg-white/20 backdrop-blur-sm rounded-lg p-3 text-center hover:bg-white/30 transition-all">
+          <span class="material-symbols-outlined text-3xl mb-1">person_add</span>
+          <p class="text-sm font-semibold">註冊</p>
+        </a>
+        <a href="recipient/my_claims_screen.html" class="bg-white/20 backdrop-blur-sm rounded-lg p-3 text-center hover:bg-white/30 transition-all">
+          <span class="material-symbols-outlined text-3xl mb-1">receipt_long</span>
+          <p class="text-sm font-semibold">我的領取</p>
+        </a>
+        <a href="common/rating_screen.html" class="bg-white/20 backdrop-blur-sm rounded-lg p-3 text-center hover:bg-white/30 transition-all">
+          <span class="material-symbols-outlined text-3xl mb-1">star</span>
+          <p class="text-sm font-semibold">評分</p>
+        </a>
+        <a href="common/messaging_screen.html" class="bg-white/20 backdrop-blur-sm rounded-lg p-3 text-center hover:bg-white/30 transition-all">
+          <span class="material-symbols-outlined text-3xl mb-1">chat</span>
+          <p class="text-sm font-semibold">訊息</p>
+        </a>
+        <a href="recipient/favorites_screen.html" class="bg-white/20 backdrop-blur-sm rounded-lg p-3 text-center hover:bg-white/30 transition-all">
+          <span class="material-symbols-outlined text-3xl mb-1">favorite</span>
+          <p class="text-sm font-semibold">我的最愛</p>
+        </a>
+        <a href="partner/partner_distribution_log.html" class="bg-white/20 backdrop-blur-sm rounded-lg p-3 text-center hover:bg-white/30 transition-all">
+          <span class="material-symbols-outlined text-3xl mb-1">assignment</span>
+          <p class="text-sm font-semibold">分發日誌</p>
+        </a>
+        <a href="partner/partner_analytics.html" class="bg-white/20 backdrop-blur-sm rounded-lg p-3 text-center hover:bg-white/30 transition-all">
+          <span class="material-symbols-outlined text-3xl mb-1">analytics</span>
+          <p class="text-sm font-semibold">數據分析</p>
+        </a>
+        <a href="volunteer/volunteer_merchants.html" class="bg-white/20 backdrop-blur-sm rounded-lg p-3 text-center hover:bg-white/30 transition-all">
+          <span class="material-symbols-outlined text-3xl mb-1">store</span>
+          <p class="text-sm font-semibold">商家管理</p>
+        </a>
+        <a href="volunteer/volunteer_history.html" class="bg-white/20 backdrop-blur-sm rounded-lg p-3 text-center hover:bg-white/30 transition-all">
+          <span class="material-symbols-outlined text-3xl mb-1">history</span>
+          <p class="text-sm font-semibold">發佈歷史</p>
+        </a>
+      </div>
+    </div>
+
+    <!-- 界面展示 -->
+    <div class="space-y-16">
+      
+      <!-- 1. 個人領取者 -->
+      <section>
+        <div class="flex items-center gap-3 mb-6">
+          <span class="material-symbols-outlined text-4xl text-blue-500">person</span>
+          <div>
+            <h2 class="text-3xl font-bold text-gray-900">個人領取者</h2>
+            <p class="text-gray-600">Individual Recipient</p>
+          </div>
+        </div>
+        
+        <div class="bg-white rounded-xl shadow-lg p-6 mb-4">
+          <p class="text-gray-700 mb-4">
+            <strong>設計哲學：</strong> 簡潔、直觀、保護隱私<br/>
+            這個角色的用戶可能是對科技最不熟悉、最需要幫助的群體。介面必須極度簡單，避免任何不必要的複雜性。
+          </p>
+          <div class="flex flex-wrap gap-2">
+            <span class="bg-blue-100 text-blue-700 px-3 py-1 rounded-full text-sm font-semibold">地圖優先</span>
+            <span class="bg-blue-100 text-blue-700 px-3 py-1 rounded-full text-sm font-semibold">單次領取</span>
+            <span class="bg-blue-100 text-blue-700 px-3 py-1 rounded-full text-sm font-semibold">大按鈕</span>
+            <span class="bg-blue-100 text-blue-700 px-3 py-1 rounded-full text-sm font-semibold">食品安全警告</span>
+          </div>
+        </div>
+
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+          <a href="recipient/individual_recipient_home.html" class="group block bg-white rounded-xl shadow-md hover:shadow-xl transition-all overflow-hidden">
+            <div class="bg-gradient-to-br from-blue-400 to-blue-600 p-6 text-white">
+              <div class="flex items-center justify-between mb-2">
+                <h3 class="text-xl font-bold">主畫面</h3>
+                <span class="material-symbols-outlined text-3xl">map</span>
+              </div>
+              <p class="text-sm opacity-90">地圖/列表視圖</p>
+            </div>
+            <div class="p-4">
+              <ul class="text-sm text-gray-600 space-y-1">
+                <li>✓ 地圖視圖為預設 (FR-14)</li>
+                <li>✓ 簡潔的食物卡片</li>
+                <li>✓ 距離與時段資訊</li>
+                <li>✓ 臨期食品紅色警告 (Scenario 2)</li>
+                <li>✓ 食物標籤篩選 (FR-15, Scenario 8)</li>
+              </ul>
+              <div class="mt-4 text-blue-600 font-semibold group-hover:translate-x-2 transition-transform inline-flex items-center gap-1">
+                查看界面
+                <span class="material-symbols-outlined text-sm">arrow_forward</span>
+              </div>
+            </div>
+          </a>
+
+          <a href="recipient/individual_recipient_detail.html" class="group block bg-white rounded-xl shadow-md hover:shadow-xl transition-all overflow-hidden">
+            <div class="bg-gradient-to-br from-blue-500 to-blue-700 p-6 text-white">
+              <div class="flex items-center justify-between mb-2">
+                <h3 class="text-xl font-bold">詳情頁</h3>
+                <span class="material-symbols-outlined text-3xl">restaurant</span>
+              </div>
+              <p class="text-sm opacity-90">單一大 CTA</p>
+            </div>
+            <div class="p-4">
+              <ul class="text-sm text-gray-600 space-y-1">
+                <li>✓ 超大「領取一份」按鈕 (FR-16)</li>
+                <li>✓ 食品安全警告卡片 (Scenario 2)</li>
+                <li>✓ 捐贈者評分與資訊 (FR-22)</li>
+                <li>✓ 清晰的領取時段 (FR-05b)</li>
+                <li>✓ 舉報功能 (FR-04)</li>
+              </ul>
+              <div class="mt-4 text-blue-600 font-semibold group-hover:translate-x-2 transition-transform inline-flex items-center gap-1">
+                查看界面
+                <span class="material-symbols-outlined text-sm">arrow_forward</span>
+              </div>
+            </div>
+          </a>
+        </div>
+      </section>
+
+      <hr class="border-gray-200"/>
+
+      <!-- 2. 捐贈者 -->
+      <section>
+        <div class="flex items-center gap-3 mb-6">
+          <span class="material-symbols-outlined text-4xl text-orange-500">store</span>
+          <div>
+            <h2 class="text-3xl font-bold text-gray-900">捐贈者</h2>
+            <p class="text-gray-600">Donor</p>
+          </div>
+        </div>
+        
+        <div class="bg-white rounded-xl shadow-lg p-6 mb-4">
+          <p class="text-gray-700 mb-4">
+            <strong>設計哲學：</strong> 簡單高效、數據透明<br/>
+            捐贈者（餐廳、商店）需要快速發佈剩餘食物，並追蹤其社會影響力和 CSR 數據。
+          </p>
+          <div class="flex flex-wrap gap-2">
+            <span class="bg-orange-100 text-orange-700 px-3 py-1 rounded-full text-sm font-semibold">快速發佈</span>
+            <span class="bg-orange-100 text-orange-700 px-3 py-1 rounded-full text-sm font-semibold">進度追蹤</span>
+            <span class="bg-orange-100 text-orange-700 px-3 py-1 rounded-full text-sm font-semibold">CSR 數據</span>
+            <span class="bg-orange-100 text-orange-700 px-3 py-1 rounded-full text-sm font-semibold">驚喜袋</span>
+          </div>
+        </div>
+
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+          <a href="donor/donor_dashboard.html" class="group block bg-white rounded-xl shadow-md hover:shadow-xl transition-all overflow-hidden">
+            <div class="bg-gradient-to-br from-orange-400 to-orange-600 p-6 text-white">
+              <div class="flex items-center justify-between mb-2">
+                <h3 class="text-xl font-bold">儀表板</h3>
+                <span class="material-symbols-outlined text-3xl">dashboard</span>
+              </div>
+              <p class="text-sm opacity-90">捐贈管理</p>
+            </div>
+            <div class="p-4">
+              <ul class="text-sm text-gray-600 space-y-1">
+                <li>✓ 捐贈列表與狀態 (FR-07)</li>
+                <li>✓ 領取進度追蹤</li>
+                <li>✓ 快速統計</li>
+              </ul>
+              <div class="mt-4 text-orange-600 font-semibold group-hover:translate-x-2 transition-transform inline-flex items-center gap-1">
+                查看界面
+                <span class="material-symbols-outlined text-sm">arrow_forward</span>
+              </div>
+            </div>
+          </a>
+
+          <a href="donor/donor_create_listing.html" class="group block bg-white rounded-xl shadow-md hover:shadow-xl transition-all overflow-hidden">
+            <div class="bg-gradient-to-br from-orange-500 to-orange-700 p-6 text-white">
+              <div class="flex items-center justify-between mb-2">
+                <h3 class="text-xl font-bold">發佈捐贈</h3>
+                <span class="material-symbols-outlined text-3xl">add_circle</span>
+              </div>
+              <p class="text-sm opacity-90">創建新捐贈</p>
+            </div>
+            <div class="p-4">
+              <ul class="text-sm text-gray-600 space-y-1">
+                <li>✓ 照片上傳 (FR-05)</li>
+                <li>✓ 驚喜袋模式 (FR-05c)</li>
+                <li>✓ 食物標籤選擇 (FR-06)</li>
+                <li>✓ 有效期限設定 (Scenario 2)</li>
+              </ul>
+              <div class="mt-4 text-orange-600 font-semibold group-hover:translate-x-2 transition-transform inline-flex items-center gap-1">
+                查看界面
+                <span class="material-symbols-outlined text-sm">arrow_forward</span>
+              </div>
+            </div>
+          </a>
+
+          <a href="donor/donor_contributions.html" class="group block bg-white rounded-xl shadow-md hover:shadow-xl transition-all overflow-hidden">
+            <div class="bg-gradient-to-br from-orange-600 to-red-600 p-6 text-white">
+              <div class="flex items-center justify-between mb-2">
+                <h3 class="text-xl font-bold">我的貢獻</h3>
+                <span class="material-symbols-outlined text-3xl">bar_chart</span>
+              </div>
+              <p class="text-sm opacity-90">CSR 數據報告</p>
+            </div>
+            <div class="p-4">
+              <ul class="text-sm text-gray-600 space-y-1">
+                <li>✓ 影響力統計 (FR-13)</li>
+                <li>✓ 環境貢獻數據</li>
+                <li>✓ 受惠者分布 (Scenario 5)</li>
+                <li>✓ 評分與評論</li>
+              </ul>
+              <div class="mt-4 text-orange-600 font-semibold group-hover:translate-x-2 transition-transform inline-flex items-center gap-1">
+                查看界面
+                <span class="material-symbols-outlined text-sm">arrow_forward</span>
+              </div>
+            </div>
+          </a>
+        </div>
+      </section>
+
+      <hr class="border-gray-200"/>
+
+      <!-- 3. 社群夥伴 -->
+      <section>
+        <div class="flex items-center gap-3 mb-6">
+          <span class="material-symbols-outlined text-4xl text-purple-500">business</span>
+          <div>
+            <h2 class="text-3xl font-bold text-gray-900">社群夥伴 / NGO</h2>
+            <p class="text-gray-600">Community Partner</p>
+          </div>
+        </div>
+        
+        <div class="bg-white rounded-xl shadow-lg p-6 mb-4">
+          <p class="text-gray-700 mb-4">
+            <strong>設計哲學：</strong> 高效、批量處理、數據為本<br/>
+            這個角色是「超級用戶」，需要快速掃描大量資訊並進行批量操作，為多人領取食物。
+          </p>
+          <div class="flex flex-wrap gap-2">
+            <span class="bg-purple-100 text-purple-700 px-3 py-1 rounded-full text-sm font-semibold">儀表板視圖</span>
+            <span class="bg-purple-100 text-purple-700 px-3 py-1 rounded-full text-sm font-semibold">批量領取</span>
+            <span class="bg-purple-100 text-purple-700 px-3 py-1 rounded-full text-sm font-semibold">數量焦點</span>
+            <span class="bg-purple-100 text-purple-700 px-3 py-1 rounded-full text-sm font-semibold">分發日誌</span>
+          </div>
+        </div>
+
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+          <a href="partner/community_partner_dashboard.html" class="group block bg-white rounded-xl shadow-md hover:shadow-xl transition-all overflow-hidden">
+            <div class="bg-gradient-to-br from-purple-400 to-purple-600 p-6 text-white">
+              <div class="flex items-center justify-between mb-2">
+                <h3 class="text-xl font-bold">儀表板</h3>
+                <span class="material-symbols-outlined text-3xl">dashboard</span>
+              </div>
+              <p class="text-sm opacity-90">數據驅動主畫面</p>
+            </div>
+            <div class="p-4">
+              <ul class="text-sm text-gray-600 space-y-1">
+                <li>✓ 即時統計卡片</li>
+                <li>✓ 高密度列表視圖</li>
+                <li>✓ 顯著標示數量（30/50）</li>
+                <li>✓ 分發日誌入口</li>
+              </ul>
+              <div class="mt-4 text-purple-600 font-semibold group-hover:translate-x-2 transition-transform inline-flex items-center gap-1">
+                查看界面
+                <span class="material-symbols-outlined text-sm">arrow_forward</span>
+              </div>
+            </div>
+          </a>
+
+          <a href="partner/community_partner_detail.html" class="group block bg-white rounded-xl shadow-md hover:shadow-xl transition-all overflow-hidden">
+            <div class="bg-gradient-to-br from-purple-500 to-purple-700 p-6 text-white">
+              <div class="flex items-center justify-between mb-2">
+                <h3 class="text-xl font-bold">批量領取</h3>
+                <span class="material-symbols-outlined text-3xl">inventory_2</span>
+              </div>
+              <p class="text-sm opacity-90">數量選擇器</p>
+            </div>
+            <div class="p-4">
+              <ul class="text-sm text-gray-600 space-y-1">
+                <li>✓ 大型數量選擇器</li>
+                <li>✓ 「全部領取」快捷按鈕</li>
+                <li>✓ 實時庫存狀態</li>
+                <li>✓ 動態確認按鈕</li>
+              </ul>
+              <div class="mt-4 text-purple-600 font-semibold group-hover:translate-x-2 transition-transform inline-flex items-center gap-1">
+                查看界面
+                <span class="material-symbols-outlined text-sm">arrow_forward</span>
+              </div>
+            </div>
+          </a>
+        </div>
+      </section>
+
+      <hr class="border-gray-200"/>
+
+      <!-- 4. 志工 -->
+      <section>
+        <div class="flex items-center gap-3 mb-6">
+          <span class="material-symbols-outlined text-4xl text-green-500">volunteer_activism</span>
+          <div>
+            <h2 class="text-3xl font-bold text-gray-900">志工</h2>
+            <p class="text-gray-600">Volunteer</p>
+          </div>
+        </div>
+        
+        <div class="bg-white rounded-xl shadow-lg p-6 mb-4">
+          <p class="text-gray-700 mb-4">
+            <strong>設計哲學：</strong> 任務導向、代表他人操作<br/>
+            志工的核心職責是「幫助商家收集和上架剩餘食物」。他們不使用領取者的畫面。
+          </p>
+          <div class="flex flex-wrap gap-2">
+            <span class="bg-green-100 text-green-700 px-3 py-1 rounded-full text-sm font-semibold">任務儀表板</span>
+            <span class="bg-green-100 text-green-700 px-3 py-1 rounded-full text-sm font-semibold">代為發佈</span>
+            <span class="bg-green-100 text-green-700 px-3 py-1 rounded-full text-sm font-semibold">商家管理</span>
+            <span class="bg-green-100 text-green-700 px-3 py-1 rounded-full text-sm font-semibold">任務追蹤</span>
+          </div>
+        </div>
+
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+          <a href="volunteer/volunteer_dashboard.html" class="group block bg-white rounded-xl shadow-md hover:shadow-xl transition-all overflow-hidden">
+            <div class="bg-gradient-to-br from-green-400 to-green-600 p-6 text-white">
+              <div class="flex items-center justify-between mb-2">
+                <h3 class="text-xl font-bold">任務儀表板</h3>
+                <span class="material-symbols-outlined text-3xl">assignment</span>
+              </div>
+              <p class="text-sm opacity-90">志工專屬界面</p>
+            </div>
+            <div class="p-4">
+              <ul class="text-sm text-gray-600 space-y-1">
+                <li>✓ 志工統計與成就</li>
+                <li>✓ 巨大的「發佈捐贈」CTA</li>
+                <li>✓ 合作商家列表</li>
+                <li>✓ 最近發佈記錄</li>
+              </ul>
+              <div class="mt-4 text-green-600 font-semibold group-hover:translate-x-2 transition-transform inline-flex items-center gap-1">
+                查看界面
+                <span class="material-symbols-outlined text-sm">arrow_forward</span>
+              </div>
+            </div>
+          </a>
+
+          <a href="volunteer/volunteer_create_listing.html" class="group block bg-white rounded-xl shadow-md hover:shadow-xl transition-all overflow-hidden">
+            <div class="bg-gradient-to-br from-green-500 to-green-700 p-6 text-white">
+              <div class="flex items-center justify-between mb-2">
+                <h3 class="text-xl font-bold">創建捐贈</h3>
+                <span class="material-symbols-outlined text-3xl">add_circle</span>
+              </div>
+              <p class="text-sm opacity-90">代表商家發佈</p>
+            </div>
+            <div class="p-4">
+              <ul class="text-sm text-gray-600 space-y-1">
+                <li>✓ 商家選擇器（專有）</li>
+                <li>✓ 完整的捐贈表單</li>
+                <li>✓ 食物標籤選擇</li>
+                <li>✓ 照片上傳功能</li>
+              </ul>
+              <div class="mt-4 text-green-600 font-semibold group-hover:translate-x-2 transition-transform inline-flex items-center gap-1">
+                查看界面
+                <span class="material-symbols-outlined text-sm">arrow_forward</span>
+              </div>
+            </div>
+          </a>
+        </div>
+      </section>
+
+    </div>
+
+    <!-- 對比表 -->
+    <div class="mt-16 bg-white rounded-2xl shadow-xl p-8">
+      <h2 class="text-2xl font-bold text-gray-900 mb-6 text-center">📊 功能對比表</h2>
+      <div class="overflow-x-auto">
+        <table class="w-full text-sm">
+          <thead class="bg-gray-100">
+            <tr>
+              <th class="px-4 py-3 text-left font-bold">功能 / 畫面</th>
+              <th class="px-4 py-3 text-center font-bold text-blue-600">個人領取者</th>
+              <th class="px-4 py-3 text-center font-bold text-purple-600">社群夥伴</th>
+              <th class="px-4 py-3 text-center font-bold text-green-600">志工</th>
+            </tr>
+          </thead>
+          <tbody class="divide-y divide-gray-200">
+            <tr>
+              <td class="px-4 py-3 font-semibold">主畫面</td>
+              <td class="px-4 py-3 text-center">地圖/列表</td>
+              <td class="px-4 py-3 text-center">儀表板</td>
+              <td class="px-4 py-3 text-center">任務列表</td>
+            </tr>
+            <tr class="bg-gray-50">
+              <td class="px-4 py-3 font-semibold">核心操作</td>
+              <td class="px-4 py-3 text-center">單次領取</td>
+              <td class="px-4 py-3 text-center">批量領取</td>
+              <td class="px-4 py-3 text-center">代為發佈</td>
+            </tr>
+            <tr>
+              <td class="px-4 py-3 font-semibold">資訊焦點</td>
+              <td class="px-4 py-3 text-center">距離、時段</td>
+              <td class="px-4 py-3 text-center">數量、統計</td>
+              <td class="px-4 py-3 text-center">任務、商家</td>
+            </tr>
+            <tr class="bg-gray-50">
+              <td class="px-4 py-3 font-semibold">專有功能</td>
+              <td class="px-4 py-3 text-center">我的最愛</td>
+              <td class="px-4 py-3 text-center">分發日誌</td>
+              <td class="px-4 py-3 text-center">商家管理</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+
+    <!-- Footer -->
+    <footer class="mt-16 text-center text-gray-500 text-sm">
+      <div class="bg-white rounded-xl shadow-lg p-6 mb-8">
+        <h3 class="font-bold text-gray-900 mb-4">📚 文檔導航</h3>
+        <div class="flex flex-wrap justify-center gap-3">
+          <a href="README.md" class="text-green-600 hover:underline font-semibold">📖 完整設計文檔</a>
+          <a href="FILE_STRUCTURE.md" class="text-green-600 hover:underline font-semibold">📁 文件結構說明</a>
+          <a href="START_HERE.md" class="text-green-600 hover:underline font-semibold">🚀 快速開始</a>
+        </div>
+      </div>
+      <p>FoodConnect - 食物捐贈平台 | 角色為本 UI/UX 設計</p>
+      <p class="mt-1">設計日期: 2025-10-02 | 總計 28 個頁面</p>
+      <p class="mt-2 text-xs">
+        <strong>顏色主題：</strong>
+        <span class="text-orange-600">●</span> 捐贈者 
+        <span class="text-blue-600">●</span> 個人領取者 
+        <span class="text-purple-600">●</span> 社群夥伴 
+        <span class="text-green-600">●</span> 志工
+      </p>
+    </footer>
+
+  </div>
+</body>
+</html>
+
+
+
