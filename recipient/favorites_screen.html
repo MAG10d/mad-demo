@@ -22,6 +22,7 @@
     }
   </script>
   <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined" rel="stylesheet"/>
+  <script src="../common/language.js"></script>
   <style>
     .material-symbols-outlined { font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24; }
   </style>
@@ -34,17 +35,17 @@
       <button onclick="history.back()" class="p-2 -ml-2 rounded-full hover:bg-gray-100">
         <span class="material-symbols-outlined">arrow_back</span>
       </button>
-      <h1 class="text-xl font-bold flex-1">我的最愛</h1>
+      <h1 class="text-xl font-bold flex-1" data-i18n="my_favorites">我的最愛</h1>
     </header>
 
     <!-- Tabs -->
     <div class="sticky top-0 bg-white border-b border-gray-200 px-4 py-2 z-10">
       <div class="flex gap-4">
         <button id="tab-donors" class="py-2 px-1 border-b-2 border-primary text-primary font-semibold text-sm" onclick="switchTab('donors')">
-          收藏的捐贈者 (3)
+          <span data-i18n="favorite_donors">收藏的捐贈者</span> (3)
         </button>
         <button id="tab-settings" class="py-2 px-1 border-b-2 border-transparent text-gray-500 font-semibold text-sm" onclick="switchTab('settings')">
-          通知設定
+          <span data-i18n="notification_settings">通知設定</span>
         </button>
       </div>
     </div>
@@ -82,14 +83,14 @@
               <span class="material-symbols-outlined text-sm">location_on</span>
               <span>觀塘道123號 • 150米</span>
             </div>
-            <p class="text-xs text-gray-500 mt-2">最近捐贈: 新鮮蔬菜沙拉</p>
+            <p class="text-xs text-gray-500 mt-2"><span data-i18n="recent_donation">最近捐贈</span>: 新鮮蔬菜沙拉</p>
           </div>
           <div class="flex items-center gap-2 mt-3">
             <label class="flex items-center gap-2 flex-1">
               <input type="checkbox" checked class="rounded border-gray-300 text-primary focus:ring-primary"/>
-              <span class="text-xs text-gray-700">接收新捐贈通知</span>
+              <span class="text-xs text-gray-700" data-i18n="receive_notifications">接收新捐贈通知</span>
             </label>
-            <button class="text-primary text-sm font-semibold">查看資料</button>
+            <button class="text-primary text-sm font-semibold" data-i18n="view_profile">查看資料</button>
           </div>
         </div>
 
@@ -121,14 +122,14 @@
               <span class="material-symbols-outlined text-sm">location_on</span>
               <span>觀塘道56號 • 300米</span>
             </div>
-            <p class="text-xs text-gray-500 mt-2">最近捐贈: 每日麵包</p>
+            <p class="text-xs text-gray-500 mt-2"><span data-i18n="recent_donation">最近捐贈</span>: 每日麵包</p>
           </div>
           <div class="flex items-center gap-2 mt-3">
             <label class="flex items-center gap-2 flex-1">
               <input type="checkbox" checked class="rounded border-gray-300 text-primary focus:ring-primary"/>
-              <span class="text-xs text-gray-700">接收新捐贈通知</span>
+              <span class="text-xs text-gray-700" data-i18n="receive_notifications">接收新捐贈通知</span>
             </label>
-            <button class="text-primary text-sm font-semibold">查看資料</button>
+            <button class="text-primary text-sm font-semibold" data-i18n="view_profile">查看資料</button>
           </div>
         </div>
 
@@ -158,16 +159,16 @@
           <div class="bg-gray-50 rounded-lg p-3">
             <div class="flex items-center gap-2 text-xs text-gray-600">
               <span class="material-symbols-outlined text-sm">location_on</span>
-              <span>觀塘道200號 • 450米</span>
+              <span>觀塘道200號 • 450<span data-i18n="meters">米</span></span>
             </div>
-            <p class="text-xs text-gray-500 mt-2">最近捐贈: 印度香料飯套餐</p>
+            <p class="text-xs text-gray-500 mt-2"><span data-i18n="recent_donation">最近捐贈</span>: 印度香料飯套餐</p>
           </div>
           <div class="flex items-center gap-2 mt-3">
             <label class="flex items-center gap-2 flex-1">
               <input type="checkbox" class="rounded border-gray-300 text-primary focus:ring-primary"/>
-              <span class="text-xs text-gray-700">接收新捐贈通知</span>
+              <span class="text-xs text-gray-700" data-i18n="receive_notifications">接收新捐贈通知</span>
             </label>
-            <button class="text-primary text-sm font-semibold">查看資料</button>
+            <button class="text-primary text-sm font-semibold" data-i18n="view_profile">查看資料</button>
           </div>
         </div>
 
@@ -177,15 +178,15 @@
       <div id="content-settings" class="p-4 space-y-4" style="display: none;">
         
         <div class="bg-white rounded-xl shadow-sm p-4">
-          <h2 class="font-bold mb-3">通知偏好設定</h2>
+          <h2 class="font-bold mb-3" data-i18n="notification_preferences">通知偏好設定</h2>
           
           <div class="space-y-3">
             <label class="flex items-center justify-between py-2">
               <div class="flex items-center gap-3">
                 <span class="material-symbols-outlined text-gray-600">notifications_active</span>
                 <div>
-                  <p class="font-semibold text-sm">收藏捐贈者新發佈</p>
-                  <p class="text-xs text-gray-500">當您收藏的捐贈者發佈新食物時通知您</p>
+                  <p class="font-semibold text-sm" data-i18n="favorite_donor_new_post">收藏捐贈者新發佈</p>
+                  <p class="text-xs text-gray-500" data-i18n="favorite_donor_new_post_desc">當您收藏的捐贈者發佈新食物時通知您</p>
                 </div>
               </div>
               <input type="checkbox" checked class="rounded border-gray-300 text-primary focus:ring-primary"/>
@@ -195,8 +196,8 @@
               <div class="flex items-center gap-3">
                 <span class="material-symbols-outlined text-gray-600">local_dining</span>
                 <div>
-                  <p class="font-semibold text-sm">偏好食物類型</p>
-                  <p class="text-xs text-gray-500">素食、Halal 等標籤食物發佈時通知</p>
+                  <p class="font-semibold text-sm" data-i18n="preferred_food_types">偏好食物類型</p>
+                  <p class="text-xs text-gray-500" data-i18n="preferred_food_types_desc">素食、Halal 等標籤食物發佈時通知</p>
                 </div>
               </div>
               <input type="checkbox" checked class="rounded border-gray-300 text-primary focus:ring-primary"/>
@@ -206,8 +207,8 @@
               <div class="flex items-center gap-3">
                 <span class="material-symbols-outlined text-gray-600">location_on</span>
                 <div>
-                  <p class="font-semibold text-sm">附近新捐贈</p>
-                  <p class="text-xs text-gray-500">500米內有新捐贈時通知</p>
+                  <p class="font-semibold text-sm" data-i18n="nearby_new_donations">附近新捐贈</p>
+                  <p class="text-xs text-gray-500" data-i18n="nearby_new_donations_desc">500米內有新捐贈時通知</p>
                 </div>
               </div>
               <input type="checkbox" class="rounded border-gray-300 text-primary focus:ring-primary"/>
@@ -217,30 +218,30 @@
 
         <!-- Food Preferences -->
         <div class="bg-white rounded-xl shadow-sm p-4">
-          <h2 class="font-bold mb-3">飲食偏好標籤</h2>
-          <p class="text-xs text-gray-500 mb-3">選擇您偏好的食物標籤，我們會優先推薦相關捐贈</p>
+          <h2 class="font-bold mb-3" data-i18n="food_preference_tags">飲食偏好標籤</h2>
+          <p class="text-xs text-gray-500 mb-3" data-i18n="food_preference_desc">選擇您偏好的食物標籤，我們會優先推薦相關捐贈</p>
           
           <div class="flex flex-wrap gap-2">
             <label class="flex items-center gap-2 px-3 py-2 rounded-full border-2 border-primary bg-primary/10 text-primary cursor-pointer">
               <input type="checkbox" checked class="sr-only"/>
-              <span class="text-sm font-medium">素食</span>
+              <span class="text-sm font-medium" data-i18n="tag_vegetarian">素食</span>
             </label>
             <label class="flex items-center gap-2 px-3 py-2 rounded-full border-2 border-emerald-500 bg-emerald-100 text-emerald-700 cursor-pointer">
               <input type="checkbox" checked class="sr-only"/>
-              <span class="text-sm font-medium">清真 Halal</span>
+              <span class="text-sm font-medium" data-i18n="tag_halal">清真 Halal</span>
             </label>
             <label class="flex items-center gap-2 px-3 py-2 rounded-full border-2 border-gray-300 cursor-pointer has-[:checked]:bg-blue-100 has-[:checked]:border-blue-500 has-[:checked]:text-blue-700">
               <input type="checkbox" class="sr-only"/>
-              <span class="text-sm font-medium">純素</span>
+              <span class="text-sm font-medium" data-i18n="tag_vegan">純素</span>
             </label>
             <label class="flex items-center gap-2 px-3 py-2 rounded-full border-2 border-gray-300 cursor-pointer has-[:checked]:bg-blue-100 has-[:checked]:border-blue-500 has-[:checked]:text-blue-700">
               <input type="checkbox" class="sr-only"/>
-              <span class="text-sm font-medium">無麩質</span>
+              <span class="text-sm font-medium" data-i18n="tag_gluten_free">無麩質</span>
             </label>
           </div>
         </div>
 
-        <button class="w-full bg-gradient-to-r from-primary to-green-600 text-white py-3 rounded-xl font-semibold">
+        <button class="w-full bg-gradient-to-r from-primary to-green-600 text-white py-3 rounded-xl font-semibold" data-i18n="save_settings">
           儲存設定
         </button>
 
@@ -253,19 +254,19 @@
       <nav class="flex justify-around">
         <a class="flex flex-col items-center gap-1 text-gray-400 py-2" href="individual_recipient_home.html">
           <span class="material-symbols-outlined text-2xl">home</span>
-          <span class="text-xs font-medium">首頁</span>
+          <span class="text-xs font-medium" data-i18n="nav_home">首頁</span>
         </a>
         <a class="flex flex-col items-center gap-1 text-primary py-2" href="favorites_screen.html">
           <span class="material-symbols-outlined text-2xl" style="font-variation-settings: 'FILL' 1">favorite</span>
-          <span class="text-xs font-bold">我的最愛</span>
+          <span class="text-xs font-bold" data-i18n="nav_favorites">我的最愛</span>
         </a>
         <a class="flex flex-col items-center gap-1 text-gray-400 py-2" href="my_claims_screen.html">
           <span class="material-symbols-outlined text-2xl">receipt_long</span>
-          <span class="text-xs font-medium">我的領取</span>
+          <span class="text-xs font-medium" data-i18n="nav_claims">我的領取</span>
         </a>
         <a class="flex flex-col items-center gap-1 text-gray-400 py-2" href="profile_recipient.html">
           <span class="material-symbols-outlined text-2xl">person</span>
-          <span class="text-xs font-medium">我的</span>
+          <span class="text-xs font-medium" data-i18n="nav_profile">我的</span>
         </a>
       </nav>
     </footer>
@@ -288,8 +289,8 @@
     }
 
     function toggleFavorite(id) {
-      if (confirm('確定要取消收藏這個捐贈者嗎？')) {
-        alert('已取消收藏');
+      if (confirm(t('remove_favorite_confirm'))) {
+        alert(t('favorite_removed'));
       }
     }
   </script>

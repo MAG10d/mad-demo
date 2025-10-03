@@ -24,6 +24,7 @@
     }
   </script>
   <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined" rel="stylesheet"/>
+  <script src="language.js"></script>
   <style>
     .material-symbols-outlined {
       font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
@@ -39,9 +40,13 @@
         <span class="material-symbols-outlined">arrow_back</span>
       </button>
       <div class="flex-1">
-        <h1 class="text-xl font-bold text-gray-900">建立新帳號</h1>
-        <p class="text-xs text-gray-500">加入 FoodConnect 社群</p>
+        <h1 class="text-xl font-bold text-gray-900" data-i18n="register">建立新帳號</h1>
+        <p class="text-xs text-gray-500" id="join-text">加入 FoodConnect 社群</p>
       </div>
+      <!-- 語言切換 -->
+      <button onclick="toggleLanguage()" class="p-2 rounded-full hover:bg-gray-100">
+        <span class="material-symbols-outlined text-gray-600">language</span>
+      </button>
     </header>
 
     <!-- Main Content -->
@@ -52,14 +57,14 @@
         
         <!-- Role Selection (FR-01) -->
         <div>
-          <label class="block text-sm font-semibold text-gray-700 mb-3">我是... *</label>
+          <label class="block text-sm font-semibold text-gray-700 mb-3" data-i18n="select_role">我是... *</label>
           <div class="grid grid-cols-2 gap-3">
             <label class="relative cursor-pointer">
               <input type="radio" name="role" value="donor" class="peer sr-only" required/>
               <div class="border-2 border-gray-300 rounded-xl p-4 text-center peer-checked:border-primary peer-checked:bg-primary/5 transition-all">
                 <span class="material-symbols-outlined text-3xl text-gray-600 peer-checked:text-primary mb-2">store</span>
-                <p class="font-semibold text-sm">捐贈者</p>
-                <p class="text-xs text-gray-500 mt-1">餐廳/商店</p>
+                <p class="font-semibold text-sm" data-i18n="role_donor">捐贈者</p>
+                <p class="text-xs text-gray-500 mt-1" data-i18n="role_donor_desc">餐廳/商店</p>
               </div>
             </label>
 
@@ -67,8 +72,8 @@
               <input type="radio" name="role" value="recipient_individual" class="peer sr-only"/>
               <div class="border-2 border-gray-300 rounded-xl p-4 text-center peer-checked:border-primary peer-checked:bg-primary/5 transition-all">
                 <span class="material-symbols-outlined text-3xl text-gray-600 mb-2">person</span>
-                <p class="font-semibold text-sm">個人領取者</p>
-                <p class="text-xs text-gray-500 mt-1">個人/家庭</p>
+                <p class="font-semibold text-sm" data-i18n="role_recipient">個人領取者</p>
+                <p class="text-xs text-gray-500 mt-1" data-i18n="role_recipient_desc">個人/家庭</p>
               </div>
             </label>
 
@@ -76,8 +81,8 @@
               <input type="radio" name="role" value="recipient_partner" class="peer sr-only"/>
               <div class="border-2 border-gray-300 rounded-xl p-4 text-center peer-checked:border-primary peer-checked:bg-primary/5 transition-all">
                 <span class="material-symbols-outlined text-3xl text-gray-600 mb-2">business</span>
-                <p class="font-semibold text-sm">社群夥伴</p>
-                <p class="text-xs text-gray-500 mt-1">NGO/社區</p>
+                <p class="font-semibold text-sm" data-i18n="role_partner">社群夥伴</p>
+                <p class="text-xs text-gray-500 mt-1" data-i18n="role_partner_desc">NGO/社區</p>
               </div>
             </label>
 
@@ -85,8 +90,8 @@
               <input type="radio" name="role" value="volunteer" class="peer sr-only"/>
               <div class="border-2 border-gray-300 rounded-xl p-4 text-center peer-checked:border-primary peer-checked:bg-primary/5 transition-all">
                 <span class="material-symbols-outlined text-3xl text-gray-600 mb-2">volunteer_activism</span>
-                <p class="font-semibold text-sm">志工</p>
-                <p class="text-xs text-gray-500 mt-1">協助者</p>
+                <p class="font-semibold text-sm" data-i18n="role_volunteer">志工</p>
+                <p class="text-xs text-gray-500 mt-1" data-i18n="role_volunteer_desc">協助者</p>
               </div>
             </label>
           </div>
@@ -94,19 +99,20 @@
 
         <!-- Name / Organization -->
         <div>
-          <label class="block text-sm font-semibold text-gray-700 mb-2">名稱 *</label>
+          <label class="block text-sm font-semibold text-gray-700 mb-2" id="name-label">名稱 *</label>
           <input 
             type="text" 
             placeholder="個人姓名或機構名稱" 
+            id="name-input"
             class="w-full px-4 py-3 rounded-xl border border-gray-300 focus:border-primary focus:ring-2 focus:ring-primary/20 outline-none transition-all"
             required
           />
-          <p class="text-xs text-gray-500 mt-1">機構請填寫正式名稱（如：XX餐廳、XX社區中心）</p>
+          <p class="text-xs text-gray-500 mt-1" id="name-hint">機構請填寫正式名稱（如：XX餐廳、XX社區中心）</p>
         </div>
 
         <!-- Email -->
         <div>
-          <label class="block text-sm font-semibold text-gray-700 mb-2">電郵地址 *</label>
+          <label class="block text-sm font-semibold text-gray-700 mb-2" data-i18n="email">電郵地址 *</label>
           <input 
             type="email" 
             placeholder="your@email.com" 
@@ -117,7 +123,7 @@
 
         <!-- Password -->
         <div>
-          <label class="block text-sm font-semibold text-gray-700 mb-2">密碼 *</label>
+          <label class="block text-sm font-semibold text-gray-700 mb-2" data-i18n="password">密碼 *</label>
           <input 
             type="password" 
             placeholder="至少 8 個字符" 

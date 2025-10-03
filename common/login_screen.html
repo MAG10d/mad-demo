@@ -24,6 +24,7 @@
     }
   </script>
   <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined" rel="stylesheet"/>
+  <script src="language.js"></script>
   <style>
     .material-symbols-outlined {
       font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
@@ -39,9 +40,13 @@
         <span class="material-symbols-outlined">arrow_back</span>
       </button>
       <div class="flex-1">
-        <h1 class="text-xl font-bold text-gray-900">登入</h1>
-        <p class="text-xs text-gray-500">歡迎回來</p>
+        <h1 class="text-xl font-bold text-gray-900" data-i18n="login">登入</h1>
+        <p class="text-xs text-gray-500" data-i18n="welcome">歡迎回來</p>
       </div>
+      <!-- 語言切換（右上角） -->
+      <button onclick="toggleLanguage()" class="p-2 rounded-full hover:bg-gray-100">
+        <span class="material-symbols-outlined text-gray-600">language</span>
+      </button>
     </header>
 
     <!-- Main Content -->
@@ -59,7 +64,7 @@
         
         <!-- Email -->
         <div>
-          <label class="block text-sm font-semibold text-gray-700 mb-2">電郵地址</label>
+          <label class="block text-sm font-semibold text-gray-700 mb-2" data-i18n="email">電郵地址</label>
           <input 
             type="email" 
             placeholder="your@email.com" 
@@ -70,7 +75,7 @@
 
         <!-- Password -->
         <div>
-          <label class="block text-sm font-semibold text-gray-700 mb-2">密碼</label>
+          <label class="block text-sm font-semibold text-gray-700 mb-2" data-i18n="password">密碼</label>
           <input 
             type="password" 
             placeholder="••••••••" 
@@ -83,13 +88,13 @@
         <div class="flex items-center justify-between text-sm">
           <label class="flex items-center gap-2 cursor-pointer">
             <input type="checkbox" class="rounded border-gray-300 text-primary focus:ring-primary"/>
-            <span class="text-gray-700">記住我</span>
+            <span class="text-gray-700" id="remember-me">記住我</span>
           </label>
-          <a href="#" class="text-primary font-semibold hover:underline">忘記密碼？</a>
+          <a href="#" class="text-primary font-semibold hover:underline" data-i18n="forgot_password">忘記密碼？</a>
         </div>
 
         <!-- Submit Button -->
-        <button type="submit" class="w-full bg-gradient-to-r from-primary to-green-600 text-white py-4 rounded-2xl font-bold text-lg shadow-lg hover:shadow-xl transition-all mt-6">
+        <button type="submit" class="w-full bg-gradient-to-r from-primary to-green-600 text-white py-4 rounded-2xl font-bold text-lg shadow-lg hover:shadow-xl transition-all mt-6" data-i18n="login">
           登入
         </button>
 
@@ -98,24 +103,24 @@
       <!-- Divider -->
       <div class="flex items-center gap-4 my-8">
         <div class="flex-1 h-px bg-gray-300"></div>
-        <span class="text-sm text-gray-500">或</span>
+        <span class="text-sm text-gray-500" id="or-text">或</span>
         <div class="flex-1 h-px bg-gray-300"></div>
       </div>
 
       <!-- Role Selection (Demo) -->
       <div class="bg-green-50 border border-green-200 rounded-xl p-4 mb-4">
-        <p class="text-sm font-semibold text-green-900 mb-3">🎯 Demo 快速登入（選擇角色）：</p>
+        <p class="text-sm font-semibold text-green-900 mb-3" id="demo-text">🎯 Demo 快速登入（選擇角色）：</p>
         <div class="grid grid-cols-2 gap-2">
-          <button onclick="quickLogin('donor')" class="bg-white border border-green-300 text-green-700 py-2 px-3 rounded-lg text-sm font-semibold hover:bg-green-50 transition-all">
+          <button onclick="quickLogin('donor')" class="bg-white border border-green-300 text-green-700 py-2 px-3 rounded-lg text-sm font-semibold hover:bg-green-50 transition-all" data-i18n="role_donor">
             捐贈者
           </button>
-          <button onclick="quickLogin('recipient')" class="bg-white border border-green-300 text-green-700 py-2 px-3 rounded-lg text-sm font-semibold hover:bg-green-50 transition-all">
+          <button onclick="quickLogin('recipient')" class="bg-white border border-green-300 text-green-700 py-2 px-3 rounded-lg text-sm font-semibold hover:bg-green-50 transition-all" data-i18n="role_recipient">
             個人領取者
           </button>
-          <button onclick="quickLogin('partner')" class="bg-white border border-green-300 text-green-700 py-2 px-3 rounded-lg text-sm font-semibold hover:bg-green-50 transition-all">
+          <button onclick="quickLogin('partner')" class="bg-white border border-green-300 text-green-700 py-2 px-3 rounded-lg text-sm font-semibold hover:bg-green-50 transition-all" data-i18n="role_partner">
             社群夥伴
           </button>
-          <button onclick="quickLogin('volunteer')" class="bg-white border border-green-300 text-green-700 py-2 px-3 rounded-lg text-sm font-semibold hover:bg-green-50 transition-all">
+          <button onclick="quickLogin('volunteer')" class="bg-white border border-green-300 text-green-700 py-2 px-3 rounded-lg text-sm font-semibold hover:bg-green-50 transition-all" data-i18n="role_volunteer">
             志工
           </button>
         </div>
@@ -123,8 +128,8 @@
 
       <!-- Sign Up Link -->
       <p class="text-center text-gray-600">
-        還沒有帳號？
-        <a href="register_screen.html" class="text-primary font-semibold hover:underline">立即註冊</a>
+        <span data-i18n="no_account">還沒有帳號？</span>
+        <a href="register_screen.html" class="text-primary font-semibold hover:underline" data-i18n="sign_up">立即註冊</a>
       </p>
 
     </main>
@@ -132,9 +137,16 @@
   </div>
 
   <script>
+    // 簡易語言切換
+    function toggleLanguage() {
+      const currentLang = getCurrentLanguage();
+      const newLang = currentLang === 'zh-HK' ? 'en' : 'zh-HK';
+      changeLanguage(newLang);
+    }
+    
     function handleLogin(event) {
       event.preventDefault();
-      alert('登入功能（實際應用中會驗證憑證）');
+      alert(t('login_success'));
       // 預設導向個人領取者主頁
       location.href = '../recipient/individual_recipient_home.html';
     }
@@ -155,6 +167,17 @@
           break;
       }
     }
+    
+    // 頁面載入時更新特殊文字
+    document.addEventListener('DOMContentLoaded', () => {
+      const lang = getCurrentLanguage();
+      document.title = `FoodConnect - ${t('login')}`;
+      document.getElementById('or-text').textContent = lang === 'zh-HK' ? '或' : 'OR';
+      document.getElementById('remember-me').textContent = lang === 'zh-HK' ? '記住我' : 'Remember me';
+      document.getElementById('demo-text').textContent = lang === 'zh-HK' 
+        ? '🎯 Demo 快速登入（選擇角色）：'
+        : '🎯 Demo Quick Login (Select Role):';
+    });
   </script>
 </body>
 </html>

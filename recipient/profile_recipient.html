@@ -22,6 +22,7 @@
     }
   </script>
   <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined" rel="stylesheet"/>
+  <script src="../common/language.js"></script>
   <style>
     .material-symbols-outlined { font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24; }
   </style>
@@ -112,13 +113,13 @@
           <h3 class="font-bold text-sm text-gray-500 uppercase tracking-wide">偏好設定</h3>
         </div>
         
-        <button class="w-full flex items-center justify-between px-4 py-4 hover:bg-gray-50 transition-colors border-b border-gray-100">
+        <button onclick="openLanguageSelector()" class="w-full flex items-center justify-between px-4 py-4 hover:bg-gray-50 transition-colors border-b border-gray-100">
           <div class="flex items-center gap-3">
             <span class="material-symbols-outlined text-gray-600">language</span>
-            <span class="font-medium">語言</span>
+            <span class="font-medium" data-i18n="language">語言</span>
           </div>
           <div class="flex items-center gap-2">
-            <span class="text-sm text-gray-500">繁體中文</span>
+            <span id="current-language" class="text-sm text-gray-500">繁體中文</span>
             <span class="material-symbols-outlined text-gray-400">chevron_right</span>
           </div>
         </button>
@@ -223,13 +224,88 @@
 
   </div>
 
+  <!-- 語言選擇彈出層 -->
+  <div id="language-overlay" class="fixed inset-0 bg-black/50 z-30 hidden" onclick="closeLanguageSelector()"></div>
+  <div id="language-panel" class="fixed bottom-0 left-0 right-0 bg-white z-40 max-w-md mx-auto rounded-t-3xl shadow-2xl transform translate-y-full transition-transform duration-300">
+    <div class="p-4 border-b border-gray-200 flex items-center justify-between">
+      <h2 class="text-lg font-bold" data-i18n="select_language">選擇語言</h2>
+      <button onclick="closeLanguageSelector()" class="p-2 rounded-full hover:bg-gray-100">
+        <span class="material-symbols-outlined">close</span>
+      </button>
+    </div>
+    
+    <div class="p-4 space-y-2">
+      <!-- 繁體中文 -->
+      <button onclick="changeLanguage('zh-HK')" class="w-full flex items-center justify-between px-4 py-4 hover:bg-gray-50 rounded-xl transition-colors border border-gray-200">
+        <div class="flex items-center gap-3">
+          <span class="text-2xl">🇭🇰</span>
+          <div class="text-left">
+            <p class="font-semibold">繁體中文</p>
+            <p class="text-xs text-gray-500">Traditional Chinese</p>
+          </div>
+        </div>
+        <span id="check-zh-HK" class="material-symbols-outlined text-primary text-2xl" style="font-variation-settings: 'FILL' 1">check_circle</span>
+      </button>
+
+      <!-- English -->
+      <button onclick="changeLanguage('en')" class="w-full flex items-center justify-between px-4 py-4 hover:bg-gray-50 rounded-xl transition-colors border border-gray-200">
+        <div class="flex items-center gap-3">
+          <span class="text-2xl">🇬🇧</span>
+          <div class="text-left">
+            <p class="font-semibold">English</p>
+            <p class="text-xs text-gray-500">English</p>
+          </div>
+        </div>
+        <span id="check-en" class="material-symbols-outlined text-primary text-2xl hidden" style="font-variation-settings: 'FILL' 1">check_circle</span>
+      </button>
+    </div>
+
+    <div class="p-4 pb-6">
+      <p class="text-xs text-center text-gray-400" data-i18n="language_note">切換語言後將自動重新載入頁面</p>
+    </div>
+  </div>
+
   <script>
+    // 頁面特定的 UI 函數（使用 language.js 中的翻譯）
+    
+    // 打開語言選擇器
+    function openLanguageSelector() {
+      const overlay = document.getElementById('language-overlay');
+      const panel = document.getElementById('language-panel');
+      overlay.classList.remove('hidden');
+      setTimeout(() => {
+        panel.classList.remove('translate-y-full');
+      }, 10);
+    }
+
+    // 關閉語言選擇器
+    function closeLanguageSelector() {
+      const overlay = document.getElementById('language-overlay');
+      const panel = document.getElementById('language-panel');
+      panel.classList.add('translate-y-full');
+      setTimeout(() => {
+        overlay.classList.add('hidden');
+      }, 300);
+    }
+
+    // 登出功能
     function logout() {
-      if (confirm('確定要登出嗎？')) {
-        alert('已成功登出');
+      if (confirm(t('confirm_logout'))) {
+        alert(t('logout_success'));
         location.href = '../common/welcome_screen.html';
       }
     }
+
+    // 頁面載入完成後，額外更新頁面標題和當前語言顯示
+    document.addEventListener('DOMContentLoaded', () => {
+      const lang = getCurrentLanguage();
+      
+      // 更新頁面標題
+      document.title = `FoodConnect - ${t('profile_title')}`;
+      
+      // 更新當前語言顯示
+      document.getElementById('current-language').textContent = lang === 'zh-HK' ? t('lang_zh') : t('lang_en');
+    });
   </script>
 </body>
 </html>
